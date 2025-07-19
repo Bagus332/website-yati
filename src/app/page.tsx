@@ -1,102 +1,77 @@
 import Image from "next/image";
+import Navbar from "../components/Navbar";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
+    <div className="font-sans min-h-screen flex flex-col bg-gradient-to-br from-green-50 to-green-200">
+      <Navbar />
+      <main className="flex flex-col items-center justify-center flex-1 px-4 py-12 sm:py-20">
         <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
+          src="/logo-ponpes.png"
+          alt="Logo Pondok Pesantren Yati"
+          width={120}
+          height={120}
+          className="mb-6 rounded-full shadow-lg"
           priority
         />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
+        <h1 className="text-3xl sm:text-5xl font-bold text-green-900 mb-4 text-center">
+          Pondok Pesantren Yati
+        </h1>
+        <p className="text-lg sm:text-xl text-green-800 mb-8 text-center max-w-2xl">
+          Selamat datang di website resmi Pondok Pesantren Yati. Tempat pendidikan
+          agama, pengembangan karakter, dan pembinaan generasi Islami yang
+          berakhlak mulia.
+        </p>
+        <div className="flex flex-col sm:flex-row gap-4 mb-10">
           <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            className="rounded-full bg-green-700 text-white px-6 py-3 font-semibold shadow hover:bg-green-800 transition"
+            href="#profil"
           >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+            Profil Pesantren
           </a>
           <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+            className="rounded-full bg-white border border-green-700 text-green-700 px-6 py-3 font-semibold shadow hover:bg-green-100 transition"
+            href="#pendaftaran"
           >
-            Read our docs
+            Pendaftaran Santri
           </a>
         </div>
+        <section
+          id="profil"
+          className="bg-white rounded-xl shadow p-6 max-w-2xl w-full mb-8"
+        >
+          <h2 className="text-2xl font-bold text-green-900 mb-2">
+            Tentang Kami
+          </h2>
+          <p className="text-green-800">
+            Pondok Pesantren Yati berdiri sejak tahun 1980 dan telah melahirkan
+            ribuan santri yang berprestasi di bidang agama maupun umum. Kami
+            berkomitmen memberikan pendidikan terbaik dengan mengedepankan
+            nilai-nilai Islam, disiplin, dan cinta tanah air.
+          </p>
+        </section>
+        <section
+          id="pendaftaran"
+          className="bg-white rounded-xl shadow p-6 max-w-2xl w-full"
+        >
+          <h2 className="text-2xl font-bold text-green-900 mb-2">
+            Pendaftaran Santri Baru
+          </h2>
+          <p className="text-green-800 mb-4">
+            Pendaftaran santri baru tahun ajaran 2025/2026 telah dibuka. Klik
+            tombol di bawah untuk informasi lebih lanjut.
+          </p>
+          <a
+            className="inline-block rounded bg-green-700 text-white px-5 py-2 font-semibold hover:bg-green-800 transition"
+            href="/pendaftaran"
+          >
+            Info Pendaftaran
+          </a>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+      <footer className="bg-green-900 text-white text-center py-4 mt-auto">
+        &copy; {new Date().getFullYear()} Pondok Pesantren Yati. All rights
+        reserved.
       </footer>
     </div>
   );
