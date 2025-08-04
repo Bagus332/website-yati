@@ -11,28 +11,7 @@ const Navbar = () => {
   return (
     <nav className="bg-blue-800 text-white p-4 shadow-lg border-b-4 border-blue-400">
       <div className="container mx-auto flex justify-between items-center">
-        <Link href="/" className="font-bold text-xl flex items-center gap-2">
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <circle cx="16" cy="16" r="16" fill="#3B82F6" />
-            <text
-              x="16"
-              y="21"
-              textAnchor="middle"
-              fontSize="16"
-              fill="white"
-              fontFamily="sans-serif"
-            >
-              Y
-            </text>
-          </svg>
-          Pondok Pesantren XYZ
-        </Link>
+        <img className="rounded-full w-12 h-12" src="logo.jpeg" alt="logo" />
         <div className="space-x-4 flex items-center">
           <Link href="/" className="hover:text-blue-200">
             Beranda

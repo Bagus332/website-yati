@@ -16,7 +16,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       <div className="fixed inset-0 bg-[url('/pattern.png')] opacity-5 pointer-events-none" />
-      
+      <Navbar />
       {/* Hero Section */}
       <section className="relative h-screen">
         <Image
@@ -64,11 +64,11 @@ export default function Home() {
               <div className="grid grid-cols-2 gap-4 mt-8">
                 <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
                   <h4 className="font-semibold mb-2">Santri Aktif</h4>
-                  <p className="text-2xl font-bold text-emerald-600">500+</p>
+                  <p className="text-2xl font-bold text-emerald-600">150+</p>
                 </div>
                 <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
                   <h4 className="font-semibold mb-2">Pengajar</h4>
-                  <p className="text-2xl font-bold text-emerald-600">50+</p>
+                  <p className="text-2xl font-bold text-emerald-600">42</p>
                 </div>
               </div>
             </div>
