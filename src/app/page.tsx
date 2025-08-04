@@ -22,9 +22,9 @@ export default function Home() {
 
       <main className="flex flex-col items-center justify-center flex-1 px-4 py-12 sm:py-20 relative z-10">
         {/* Logo Section with Enhanced Animation */}
-        <div className="mb-8 flex items-center justify-center group animate-fade-in-down">
+        <div className="mb-8 flex items-center justify-center group">
           <div className="bg-gradient-to-br from-blue-100 to-blue-300 rounded-full p-8 shadow-2xl border-4 border-white transform transition-all duration-700 hover:scale-110 hover:rotate-6 hover:shadow-3xl animate-logo-bounce">
-            <div className="bg-white rounded-full p-3 shadow-inner animate-logo-spin">
+            <div className="bg-white rounded-full p-3 shadow-inner">
               <Image
                 src="/logo-ponpes.png"
                 alt="Logo Pondok Pesantren Yati"
