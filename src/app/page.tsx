@@ -4,7 +4,7 @@ import Image from "next/image";
 import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react";
 import {
   FaQuran,
   FaBook,
@@ -19,6 +19,15 @@ import {
   FaGraduationCap,
   FaUsers,
 } from "react-icons/fa";
+import { supabase } from "@/lib/supabase";
+
+interface Article {
+  id: number;
+  created_at: string;
+  title: string;
+  content: string;
+  image_url: string;
+}
 
 export default function Home() {
   const aboutRef = useRef(null);
@@ -27,6 +36,23 @@ export default function Home() {
   const isAboutInView = useInView(aboutRef, { once: true });
   const isProgramsInView = useInView(programsRef, { once: true });
   const isStatsInView = useInView(statsRef, { once: true });
+
+  const [articles, setArticles] = useState<Article[]>([]);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const { data, error } = await supabase
+        .from("articles")
+        .select("*")
+        .order("created_at", { ascending: false });
+
+      if (data) {
+        setArticles(data);
+      }
+    };
+
+    fetchArticles();
+  }, []);
 
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -53,6 +79,37 @@ export default function Home() {
       </div>
 
       <Navbar />
+
+      {/* Berita Terbaru Section */}
+      <div className="container mx-auto p-4">
+        <h1 className="text-3xl font-bold text-center my-8">Berita Terbaru</h1>
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {articles.map((article) => (
+            <div
+              key={article.id}
+              className="bg-white rounded-lg shadow-md overflow-hidden"
+            >
+              <img
+                src={article.image_url}
+                alt={article.title}
+                className="w-full h-48 object-cover"
+              />
+              <div className="p-4">
+                <h2 className="text-xl font-bold mb-2">{article.title}</h2>
+                <p className="text-gray-700">
+                  {article.content.substring(0, 100)}...
+                </p>
+                <a
+                  href="#"
+                  className="text-blue-500 mt-4 inline-block"
+                >
+                  Baca Selengkapnya
+                </a>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
 
       {/* Enhanced Hero Section */}
       <section className="relative h-screen overflow-hidden">
