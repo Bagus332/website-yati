@@ -5,214 +5,553 @@ import Navbar from "../components/Navbar";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { FaQuran, FaBook, FaLanguage, FaLaptop, FaCampground, FaTshirt, FaMicrophone, FaPeopleCarry, FaMosque } from 'react-icons/fa';
+import {
+  FaQuran,
+  FaBook,
+  FaLanguage,
+  FaLaptop,
+  FaCampground,
+  FaTshirt,
+  FaMicrophone,
+  FaPeopleCarry,
+  FaMosque,
+  FaStar,
+  FaGraduationCap,
+  FaUsers,
+} from "react-icons/fa";
 
 export default function Home() {
   const aboutRef = useRef(null);
   const programsRef = useRef(null);
+  const statsRef = useRef(null);
   const isAboutInView = useInView(aboutRef, { once: true });
   const isProgramsInView = useInView(programsRef, { once: true });
+  const isStatsInView = useInView(statsRef, { once: true });
+
+  const fadeInUp = {
+    initial: { opacity: 0, y: 60 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.8, ease: "easeOut" },
+  };
+
+  const staggerContainer = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  };
 
   return (
-    <main className="min-h-screen">
-      <div className="fixed inset-0 bg-[url('/pattern.png')] opacity-5 pointer-events-none" />
+    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
+      {/* Enhanced Background Pattern */}
+      <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_theme(colors.emerald.500)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,_theme(colors.emerald.500)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_75%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
+      </div>
+
       <Navbar />
-      {/* Hero Section */}
-      <section className="relative h-screen">
+
+      {/* Enhanced Hero Section */}
+      <section className="relative h-screen overflow-hidden">
         <Image
           src="/hero.webp"
           alt="Pondok Pesantren YATI"
           fill
-          className="object-cover brightness-50 opacity-40"
+          className="object-cover brightness-[0.3] scale-105"
           priority
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 to-transparent" />
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
+
+        {/* Gradient Overlays */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
+        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/30 via-transparent to-blue-900/30" />
+
+        {/* Floating Elements */}
+        <div className="absolute top-20 left-10 w-2 h-2 bg-emerald-400 rounded-full animate-pulse opacity-60" />
+        <div className="absolute top-32 right-20 w-1 h-1 bg-blue-400 rounded-full animate-pulse opacity-60" />
+        <div className="absolute bottom-40 left-20 w-1.5 h-1.5 bg-white rounded-full animate-pulse opacity-40" />
+
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="absolute inset-0 flex flex-col items-center justify-center text-white"
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          className="absolute inset-0 flex flex-col items-center justify-center text-white px-4"
         >
-          <div className="relative">
-            <div className="absolute -left-10 -top-10 w-20 h-20 bg-emerald-500/20 rounded-full blur-xl" />
-            <div className="absolute -right-10 -bottom-10 w-20 h-20 bg-blue-500/20 rounded-full blur-xl" />
-            <h1 className="text-4xl md:text-6xl font-bold text-center mb-4">
-              Pondok Pesantren YATI Kamang Mudik
-            </h1>
-            <p className="text-xl md:text-2xl text-center max-w-2xl mx-4">
-              Yayasan Tarbiyah Islamiyah Buya H. Mansur
-            </p>
+          <div className="relative max-w-5xl mx-auto text-center">
+            {/* Decorative Elements */}
+            <motion.div
+              initial={{ scale: 0, rotate: -180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ delay: 0.5, duration: 0.8 }}
+              className="absolute -left-16 -top-16 w-32 h-32 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-full blur-2xl"
+            />
+            <motion.div
+              initial={{ scale: 0, rotate: 180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ delay: 0.7, duration: 0.8 }}
+              className="absolute -right-16 -bottom-16 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-2xl"
+            />
+
+            {/* Title with Enhanced Typography */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.8 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight"
+            >
+              <span className="bg-gradient-to-r from-white via-emerald-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
+                Pondok Pesantren
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-emerald-300 via-blue-200 to-emerald-300 bg-clip-text text-transparent">
+                YATI
+              </span>
+            </motion.h1>
+
+            <motion.div
+              initial={{ width: 0 }}
+              animate={{ width: "12rem" }}
+              transition={{ delay: 0.8, duration: 0.6 }}
+              className="h-1 bg-gradient-to-r from-emerald-400 to-blue-400 mx-auto mb-8 rounded-full"
+            />
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="text-xl md:text-3xl lg:text-4xl font-light mb-8 text-emerald-100 max-w-4xl mx-auto leading-relaxed"
+            >
+              Yayasan Tarbiyah Islamiyah
+              <br />
+              <span className="text-blue-200">Buya H. Mansur</span>
+            </motion.p>
+
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="text-lg md:text-xl text-gray-300 font-medium tracking-wide"
+            >
+              Kamang Mudik • Sumatera Barat
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.5 }}
+          className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
+        >
+          <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-bounce" />
           </div>
         </motion.div>
       </section>
 
-      {/* About Section */}
-      <section className="py-16 px-14 bg-white relative overflow-hidden" ref={aboutRef}>
-        <div className="absolute -right-20 -top-20 w-40 h-40 bg-emerald-100 rounded-full opacity-50" />
-        <div className="absolute -left-20 -bottom-20 w-40 h-40 bg-blue-100 rounded-full opacity-50" />
-        <motion.div 
-          style={{
-            transform: isAboutInView ? "none" : "translateY(50px)",
-            opacity: isAboutInView ? 1 : 0,
-            transition: "all 0.9s cubic-bezier(0.17, 0.55, 0.55, 1) 0.5s"
-          }}
-          className="max-w-6xl mx-auto relative"
+      {/* Enhanced About Section */}
+      <section
+        className="py-24 px-6 lg:px-14 relative overflow-hidden"
+        ref={aboutRef}
+      >
+        {/* Background Elements */}
+        <div className="absolute -right-32 -top-32 w-64 h-64 bg-gradient-to-br from-emerald-100/40 to-transparent rounded-full blur-3xl" />
+        <div className="absolute -left-32 -bottom-32 w-64 h-64 bg-gradient-to-br from-blue-100/40 to-transparent rounded-full blur-3xl" />
+
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          animate={isAboutInView ? "animate" : "initial"}
+          className="max-w-7xl mx-auto relative"
         >
-          <h2 className="text-3xl font-bold text-center mb-8">Tentang Kami</h2>
-          <div className="grid md:grid-cols-2 gap-8">
-            <div className="space-y-6">
-              <div className="flex items-center space-x-4 mb-6">
-                <div className="w-1 h-16 bg-emerald-500" />
-                <h3 className="text-2xl font-semibold text-gray-800">Profil Pesantren</h3>
+          {/* Section Header */}
+          <motion.div variants={fadeInUp} className="text-center mb-20">
+            <span className="inline-block bg-gradient-to-r from-emerald-100 to-blue-100 text-emerald-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
+              Profil Pesantren
+            </span>
+            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-6">
+              Tentang Kami
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+          </motion.div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Content */}
+            <motion.div variants={fadeInUp} className="space-y-8">
+              <div className="flex items-start space-x-4 mb-8">
+                <div className="w-2 h-20 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full flex-shrink-0" />
+                <div>
+                  <h3 className="text-3xl font-bold text-gray-800 mb-4">
+                    Lembaga Pendidikan Islam Terpadu
+                  </h3>
+                  <p className="text-lg text-gray-600 leading-relaxed">
+                    Pondok Pesantren YATI Kamang Mudik merupakan lembaga
+                    pendidikan agama Islam yang terdiri dari Madrasah Aliyah
+                    untuk tingkat SMA dan Madrasah Tsanawiyah untuk Tingkat SMP,
+                    bernaung di bawah Yayasan yang dikelola oleh keluarga Buya
+                    H. Mansur Dt. Nagari Basa.
+                  </p>
+                </div>
               </div>
-              <p className="text-gray-600 leading-relaxed">
-                Pondok Pesantren YATI Kamang Mudik merupakan lembaga pendidikan agama Islam yang terdiri dari Madrasah Aliyah untuk tingkat SMA dan Madrasah Tsanawiyah untuk Tingkat SMP, bernaung di bawah Yayasan yang dikelola oleh keluarga Buya H. Mansur Dt. Nagari Basa.
+
+              {/* Enhanced Contact Info */}
+              <div className="bg-gradient-to-r from-gray-50 to-emerald-50/30 p-8 rounded-2xl border border-gray-100">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">
+                        📍 Alamat
+                      </h4>
+                      <p className="text-gray-600">
+                        Jalan Kampung Baru, Jorong Pakan Sinayan
+                        <br />
+                        Nagari Kamang Mudiak, Kec. Kamang Magek
+                        <br />
+                        Kab. Agam, Sumatera Barat
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">
+                        👨‍💼 Pimpinan
+                      </h4>
+                      <p className="text-gray-600">Mhd Padhil, S.Pd</p>
+                    </div>
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">
+                        📧 Email
+                      </h4>
+                      <p className="text-emerald-600 font-medium">
+                        mti.yati@yahoo.com
+                      </p>
+                    </div>
+                    <div>
+                      <h4 className="font-semibold text-gray-800 mb-2">
+                        📞 Telepon
+                      </h4>
+                      <p className="text-emerald-600 font-medium">
+                        081374549687
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Enhanced Stats */}
+              <div className="grid grid-cols-2 gap-6">
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="bg-gradient-to-br from-emerald-500 to-emerald-600 p-6 rounded-2xl text-white shadow-xl hover:shadow-emerald-200 transition-all duration-300"
+                >
+                  <div className="text-3xl mb-2">🏫</div>
+                  <h4 className="font-bold mb-2">Luas Tanah</h4>
+                  <p className="text-3xl font-black">101.202 m²</p>
+                </motion.div>
+                <motion.div
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl text-white shadow-xl hover:shadow-blue-200 transition-all duration-300"
+                >
+                  <div className="text-3xl mb-2">🏢</div>
+                  <h4 className="font-bold mb-2">Luas Bangunan</h4>
+                  <p className="text-3xl font-black">505 m²</p>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Enhanced Image */}
+            <motion.div variants={fadeInUp} className="relative">
+              <div className="relative h-96 lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/kegiatan.jpeg"
+                  alt="Kegiatan Santri"
+                  fill
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+              </div>
+              {/* Floating Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={
+                  isAboutInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 20 }
+                }
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100"
+              >
+                <div className="flex items-center space-x-3">
+                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-full flex items-center justify-center">
+                    <FaGraduationCap className="text-white text-xl" />
+                  </div>
+                  <div>
+                    <div className="font-bold text-gray-800">
+                      Pendidikan Berkualitas
+                    </div>
+                    <div className="text-sm text-gray-600">Sejak 1985</div>
+                  </div>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
+        </motion.div>
+      </section>
+
+      {/* Enhanced Programs Section */}
+      <section
+        className="py-24 px-6 lg:px-14 bg-gradient-to-b from-gray-50 to-white relative"
+        ref={programsRef}
+      >
+        {/* Background Elements */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_theme(colors.emerald.100)_0%,_transparent_50%)] opacity-30" />
+
+        <motion.div
+          variants={staggerContainer}
+          initial="initial"
+          animate={isProgramsInView ? "animate" : "initial"}
+          className="max-w-7xl mx-auto relative"
+        >
+          {/* Section Header */}
+          <motion.div variants={fadeInUp} className="text-center mb-20">
+            <span className="inline-block bg-gradient-to-r from-emerald-100 to-blue-100 text-emerald-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
+              Program Unggulan
+            </span>
+            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-6">
+              Program dan Kegiatan
+            </h2>
+            <div className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+          </motion.div>
+
+          {/* Enhanced Kurikulum */}
+          <motion.div variants={fadeInUp} className="mb-20">
+            <h3 className="text-3xl font-bold text-center mb-12 text-gray-800">
+              Sistem Kurikulum Terintegrasi
+            </h3>
+            <div className="grid lg:grid-cols-2 gap-8">
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-emerald-100 relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-400/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
+                    <FaBook className="text-2xl text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800">
+                    Kurikulum Pondok
+                  </h3>
+                </div>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Berbasis karakter dengan faham Ahlussunnah wal Jama'ah dalam
+                  kajian Akidah dan Mazhab Syafi'i dalam kajian Fiqh.
+                </p>
+                <div className="space-y-3">
+                  {[
+                    "Memberdayakan tradisi Mudzakarah",
+                    "Pola halaqah dalam pendalaman kitab kuning",
+                    "Sistem klasikal dalam PBM umum",
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0" />
+                      <span className="text-gray-700">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+
+              <motion.div
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-blue-100 relative overflow-hidden"
+              >
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
+                <div className="flex items-center space-x-4 mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
+                    <FaLanguage className="text-2xl text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800">
+                    Kurikulum Nasional
+                  </h3>
+                </div>
+                <p className="text-gray-600 mb-6 leading-relaxed">
+                  Mengadopsi Kurikulum 2013 yang menekankan pendidikan berbasis
+                  karakter, sejalan dengan pola pendidikan pesantren.
+                </p>
+                <div className="space-y-3">
+                  {[
+                    "Integrasi ilmu umum dan agama",
+                    "Penerapan sejak tahun 2014-2015",
+                    "Pembelajaran berbasis karakter",
+                  ].map((item, index) => (
+                    <div key={index} className="flex items-center space-x-3">
+                      <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
+                      <span className="text-gray-700">{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          {/* Enhanced Ekstrakurikuler */}
+          <motion.div variants={fadeInUp} className="mb-20">
+            <div className="text-center mb-16">
+              <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-4">
+                Program Ekstrakurikuler
+              </h3>
+              <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+                Program pengembangan diri yang terintegrasi dengan nilai-nilai
+                Islam
               </p>
-              <div className="space-y-2 text-gray-600">
-                <p><strong>Alamat:</strong> Jalan Kampung Baru, Jorong Pakan Sinayan</p>
-                <p>Nagari Kamang Mudiak, Kec. Kamang Magek</p>
-                <p>Kab. Agam, Sumatera Barat</p>
-                <p><strong>Email:</strong> mti.yati@yahoo.com</p>
-                <p><strong>Pimpinan:</strong> Mhd Padhil, S.Pd</p>
-                <p><strong>No. Telepon:</strong> 081374549687</p>
-              </div>
-              <div className="grid grid-cols-2 gap-4 mt-8">
-                <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
-                  <h4 className="font-semibold mb-2">Luas Tanah</h4>
-                  <p className="text-2xl font-bold text-emerald-600">101.202 m²</p>
-                </div>
-                <div className="p-4 bg-gray-50 rounded-lg border border-gray-100">
-                  <h4 className="font-semibold mb-2">Luas Bangunan</h4>
-                  <p className="text-2xl font-bold text-emerald-600">505 m²</p>
-                </div>
-              </div>
             </div>
-            <div className="relative h-64 md:h-128">
-              <Image
-                src="/kegiatan.jpeg"
-                alt="Kegiatan Santri"
-                fill
-                className="object-cover rounded-lg"
-              />
-            </div>
-          </div>
-        </motion.div>
-      </section>
 
-      {/* Programs Section */}
-      <section className="py-16 px-4 bg-gray-50 relative" ref={programsRef}>
-        <div className="absolute inset-0 bg-gradient-radial from-emerald-50 to-transparent opacity-60" />
-        <motion.div className="max-w-6xl mx-auto relative">
-          <h2 className="text-3xl font-bold text-center mb-12">Program dan Kegiatan Madrasah</h2>
-          
-          {/* Kurikulum */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-semibold mb-6 text-emerald-700">Kurikulum Madrasah</h3>
-            <div className="grid md:grid-cols-2 gap-8">
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
-              >
-                <div className="text-4xl text-emerald-500 mb-6">
-                  <FaBook />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">Kurikulum Pondok</h3>
-                <p className="text-gray-600 mb-4">
-                  Berbasis karakter dengan faham Ahlussunnah wal Jama'ah dalam kajian Akidah dan Mazhab Syafi'i dalam kajian Fiqh.
-                </p>
-                <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                  <li>Memberdayakan tradisi Mudzakarah</li>
-                  <li>Pola halaqah dalam pendalaman kitab kuning</li>
-                  <li>Sistem klasikal dalam PBM umum</li>
-                </ul>
-              </motion.div>
-
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
-              >
-                <div className="text-4xl text-emerald-500 mb-6">
-                  <FaLanguage />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">Kurikulum Nasional</h3>
-                <p className="text-gray-600 mb-4">
-                  Mengadopsi Kurikulum 2013 yang menekankan pendidikan berbasis karakter, sejalan dengan pola pendidikan pesantren.
-                </p>
-                <ul className="list-disc pl-6 space-y-2 text-gray-600">
-                  <li>Integrasi ilmu umum dan agama</li>
-                  <li>Penerapan sejak tahun 2014-2015</li>
-                  <li>Pembelajaran berbasis karakter</li>
-                </ul>
-              </motion.div>
-            </div>
-          </div>
-
-          {/* Kegiatan Ekstrakurikuler */}
-          <div className="mb-12">
-            <h3 className="text-2xl font-semibold mb-6 text-emerald-700">Program Ekstrakurikuler</h3>
             <div className="grid md:grid-cols-3 gap-8">
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
-              >
-                <div className="text-4xl text-emerald-500 mb-6">
-                  <FaQuran />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">Tahfizhul Qur'an</h3>
-                <p className="text-gray-600">Terintegrasi dalam PBM dengan tingkatan juz tertentu untuk setiap kelas.</p>
-              </motion.div>
+              {[
+                {
+                  icon: FaQuran,
+                  title: "Tahfizhul Qur'an",
+                  description:
+                    "Program hafalan Al-Qur'an terintegrasi dalam pembelajaran dengan target juz tertentu untuk setiap tingkatan kelas.",
+                  gradient: "from-emerald-500 to-teal-500",
+                  bgGradient: "from-white to-emerald-50",
+                  borderColor: "border-emerald-100",
+                  shadowColor: "hover:shadow-emerald-200/60",
+                },
+                {
+                  icon: FaMicrophone,
+                  title: "Muhadharah",
+                  description:
+                    "Pelatihan pidato dan khutbah dengan jadwal rutin setiap Selasa malam dan Senin ke-4, mengombinasikan teori dan praktik.",
+                  gradient: "from-blue-500 to-purple-500",
+                  bgGradient: "from-white to-blue-50",
+                  borderColor: "border-blue-100",
+                  shadowColor: "hover:shadow-blue-200/60",
+                },
+                {
+                  icon: FaCampground,
+                  title: "Pramuka",
+                  description:
+                    "Kegiatan kepramukaan wajib untuk kelas VII-IX MTs dan X-XII MA, sesuai dengan implementasi Kurikulum 2013.",
+                  gradient: "from-teal-500 to-emerald-500",
+                  bgGradient: "from-white to-teal-50",
+                  borderColor: "border-teal-100",
+                  shadowColor: "hover:shadow-teal-200/60",
+                },
+              ].map((program, index) => (
+                <motion.div
+                  key={index}
+                  whileHover={{ y: -12, scale: 1.03 }}
+                  whileTap={{ scale: 0.98 }}
+                  className={`group bg-gradient-to-br ${program.bgGradient} p-8 rounded-3xl shadow-2xl ${program.shadowColor} transition-all duration-500 border ${program.borderColor} relative overflow-hidden cursor-pointer`}
+                >
+                  <div className="absolute top-0 right-0 w-24 h-24 bg-gradient-to-br from-white/20 to-transparent rounded-full blur-2xl group-hover:scale-125 transition-transform duration-500" />
 
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
-              >
-                <div className="text-4xl text-emerald-500 mb-6">
-                  <FaMicrophone />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">Muhadharah</h3>
-                <p className="text-gray-600">Program pidato dan khutbah setiap Selasa malam dan Senin ke-4, dengan teori dan praktek.</p>
-              </motion.div>
+                  <div
+                    className={`w-20 h-20 bg-gradient-to-br ${program.gradient} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 shadow-lg`}
+                  >
+                    <program.icon className="text-3xl text-white" />
+                  </div>
 
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
-              >
-                <div className="text-4xl text-emerald-500 mb-6">
-                  <FaCampground />
-                </div>
-                <h3 className="text-xl font-semibold mb-4">Pramuka</h3>
-                <p className="text-gray-600">Wajib bagi kelas VII-IX MTs dan X-XII MA sesuai Kurikulum 2013.</p>
-              </motion.div>
+                  <h3 className="text-2xl font-bold mb-4 text-gray-800 group-hover:text-gray-900 transition-colors">
+                    {program.title}
+                  </h3>
+
+                  <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors">
+                    {program.description}
+                  </p>
+
+                  <div className="mt-6 flex items-center text-sm font-medium text-gray-500 group-hover:text-gray-600 transition-colors">
+                    <span>Pelajari lebih lanjut</span>
+                    <svg
+                      className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          </div>
+          </motion.div>
 
-          {/* Kegiatan Eksternal */}
-          <div>
-            <h3 className="text-2xl font-semibold mb-6 text-emerald-700">Kegiatan Eksternal</h3>
+          {/* Enhanced Kegiatan Eksternal */}
+          <motion.div variants={fadeInUp}>
+            <div className="text-center mb-12">
+              <h3 className="text-3xl font-bold text-gray-800 mb-4">
+                Kegiatan Sosial & Dakwah
+              </h3>
+              <p className="text-lg text-gray-600">
+                Mengembangkan jiwa sosial dan dakwah santri melalui kegiatan
+                kemasyarakatan
+              </p>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8">
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
+              {/* Sosial Kemasyarakatan Card */}
+              <motion.div
+                whileHover={{ scale: 1.06, y: -10, rotate: -1 }}
+                className="relative bg-white/70 backdrop-blur-lg p-10 rounded-[2.5rem] shadow-2xl border-2 border-transparent group transition-all duration-500 overflow-visible hover:border-emerald-400/60 hover:shadow-emerald-200/60"
               >
-                <div className="text-4xl text-emerald-500 mb-6">
-                  <FaPeopleCarry />
+                {/* Floating Icon */}
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center shadow-lg border-4 border-white/60 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 z-20">
+                  <FaPeopleCarry className="text-3xl text-white drop-shadow" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">Sosial Kemasyarakatan</h3>
-                <p className="text-gray-600">Kegiatan gotong royong bersama masyarakat di lingkungan Madrasah dan tempat-tempat umum.</p>
+                <div className="pt-16 text-center">
+                  <h3 className="text-2xl font-extrabold text-emerald-700 mb-3 tracking-tight group-hover:text-emerald-800 transition-colors">
+                    Sosial Kemasyarakatan
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-2">
+                    Kegiatan gotong royong bersama masyarakat di lingkungan
+                    Madrasah dan tempat-tempat umum untuk membangun karakter
+                    peduli sosial.
+                  </p>
+                  <div className="mt-4 flex justify-center">
+                    <span className="inline-block bg-gradient-to-r from-emerald-100 to-blue-100 text-emerald-700 px-4 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
+                      Peduli Sosial
+                    </span>
+                  </div>
+                </div>
+                {/* Decorative Gradient Border */}
+                <div className="absolute -inset-1 rounded-[2.7rem] bg-gradient-to-br from-emerald-200/40 via-white/0 to-blue-200/40 blur-[2px] -z-10" />
               </motion.div>
 
-              <motion.div 
-                whileHover={{ scale: 1.05 }}
-                className="bg-white p-8 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border border-gray-100"
+              {/* Program Dakwah Card */}
+              <motion.div
+                whileHover={{ scale: 1.06, y: -10, rotate: 1 }}
+                className="relative bg-white/70 backdrop-blur-lg p-10 rounded-[2.5rem] shadow-2xl border-2 border-transparent group transition-all duration-500 overflow-visible hover:border-blue-400/60 hover:shadow-blue-200/60"
               >
-                <div className="text-4xl text-emerald-500 mb-6">
-                  <FaMosque />
+                {/* Floating Icon */}
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-lg border-4 border-white/60 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 z-20">
+                  <FaMosque className="text-3xl text-white drop-shadow" />
                 </div>
-                <h3 className="text-xl font-semibold mb-4">Dakwah</h3>
-                <p className="text-gray-600">Program dakwah bil hal dan bil qaul: Mesjidku Bersih, Safari Dakwah, dan penyelenggaraan jenazah.</p>
+                <div className="pt-16 text-center">
+                  <h3 className="text-2xl font-extrabold text-blue-700 mb-3 tracking-tight group-hover:text-blue-800 transition-colors">
+                    Program Dakwah
+                  </h3>
+                  <p className="text-gray-700 leading-relaxed mb-2">
+                    Program dakwah bil hal dan bil qaul: Mesjidku Bersih, Safari
+                    Dakwah, dan penyelenggaraan jenazah sebagai bentuk
+                    pengabdian kepada masyarakat.
+                  </p>
+                  <div className="mt-4 flex justify-center">
+                    <span className="inline-block bg-gradient-to-r from-blue-100 to-emerald-100 text-blue-700 px-4 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
+                      Pengabdian Umat
+                    </span>
+                  </div>
+                </div>
+                {/* Decorative Gradient Border */}
+                <div className="absolute -inset-1 rounded-[2.7rem] bg-gradient-to-br from-blue-200/40 via-white/0 to-emerald-200/40 blur-[2px] -z-10" />
               </motion.div>
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       </section>
     </main>
