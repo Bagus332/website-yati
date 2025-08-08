@@ -68,12 +68,12 @@ export default function Home() {
     },
   };
 
-        const createSlug = (title: string) => {
-  return title
-    .toLowerCase()
-    .replace(/ /g, '-')
-    .replace(/[^\w-]+/g, '');
-};
+  const createSlug = (title: string) => {
+    return title
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/[^\w-]+/g, "");
+  };
 
   return (
     <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
@@ -86,39 +86,6 @@ export default function Home() {
       </div>
 
       <Navbar />
-      {/* Berita Terbaru Section */}
-      <div className="container mx-auto p-4">
-        <h1 className="text-3xl font-bold text-center my-8">Berita Terbaru</h1>
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {articles.map((article) => {
-            const slug = createSlug(article.title);
-            return (
-              <div
-                key={article.id}
-                className="bg-white rounded-lg shadow-md overflow-hidden"
-              >
-                <img
-                  src={article.image_url}
-                  alt={article.title}
-                  className="w-full h-48 object-cover"
-                />
-                <div className="p-4">
-                  <h2 className="text-xl font-bold mb-2">{article.title}</h2>
-                  <p className="text-gray-700">
-                    {article.content.substring(0, 100)}...
-                  </p>
-                  <a
-                    href={`/berita/${slug}`} // Perbarui tautan di sini
-                    className="text-blue-500 mt-4 inline-block"
-                  >
-                    Baca Selengkapnya
-                  </a>
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </div>
 
       {/* Enhanced Hero Section */}
       <section className="relative h-screen overflow-hidden">
@@ -619,6 +586,107 @@ export default function Home() {
             </div>
           </motion.div>
         </motion.div>
+      </section>
+
+      {/* Enhanced News Section */}
+      <section className="py-24 px-6 lg:px-14 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
+        {/* Decorative Background */}
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-white to-blue-50/50" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-100/20 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-100/20 to-transparent rounded-full blur-3xl" />
+
+        <div className="max-w-7xl mx-auto relative">
+          {/* Section Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block bg-gradient-to-r from-emerald-100 to-blue-100 text-emerald-800 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
+              Updates & Informasi
+            </span>
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-6">
+              Berita Terbaru
+            </h2>
+            <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+            <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
+              Ikuti perkembangan terbaru dari Pondok Pesantren YATI Kamang Mudik
+            </p>
+          </motion.div>
+
+          {/* News Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {articles.map((article, index) => {
+              const slug = createSlug(article.title);
+              return (
+                <motion.div
+                  key={article.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  whileHover={{ y: -8, scale: 1.02 }}
+                  className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
+                >
+                  {/* Image Container */}
+                  <div className="relative h-56 overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
+                    <img
+                      src={article.image_url}
+                      alt={article.title}
+                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                    />
+                  </div>
+
+                  {/* Content */}
+                  <div className="p-6">
+                    <div className="mb-4">
+                      <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-emerald-600 transition-colors">
+                        {article.title}
+                      </h3>
+                      <p className="text-gray-600 line-clamp-3">
+                        {article.content.substring(0, 150)}...
+                      </p>
+                    </div>
+
+                    {/* Read More Link */}
+                    <div className="mt-6 flex items-center justify-between">
+                      <a
+                        href={`/berita/${slug}`}
+                        className="inline-flex items-center space-x-2 text-emerald-600 font-medium group-hover:text-emerald-700 transition-colors"
+                      >
+                        <span>Baca Selengkapnya</span>
+                        <svg
+                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M9 5l7 7-7 7"
+                          />
+                        </svg>
+                      </a>
+                      <span className="text-sm text-gray-500">
+                        {new Date(article.created_at).toLocaleDateString(
+                          "id-ID",
+                          {
+                            day: "numeric",
+                            month: "short",
+                            year: "numeric",
+                          }
+                        )}
+                      </span>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
       </section>
     </main>
   );
