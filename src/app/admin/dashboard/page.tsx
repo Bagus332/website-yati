@@ -1,9 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import React, { JSX, useState } from "react";
 import ArticleManager from "./components/ArticleManager";
 import GalleryManager from "./components/GalleryManager";
 import AlumniManager from "./components/AlumniManager";
+import { FaNewspaper, FaImages, FaUserGraduate } from 'react-icons/fa';
 
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState('articles');
@@ -20,20 +21,38 @@ export default function AdminDashboardPage() {
     }
   };
 
-  return (
-    <div className="container mx-auto p-4 md:p-8 bg-gray-50 min-h-screen">
-      <h1 className="text-4xl font-bold mb-8 text-center text-gray-800">Dasbor Admin</h1>
-      
-      <div className="mb-8 border-b border-gray-200">
-        <nav className="flex space-x-2 md:space-x-4">
-          <button onClick={() => setActiveTab('articles')} className={`py-3 px-4 font-semibold rounded-t-lg ${activeTab === 'articles' ? 'bg-white border-b-2 border-blue-600 text-blue-600' : 'text-gray-500 hover:bg-gray-100'}`}>Kelola Artikel</button>
-          <button onClick={() => setActiveTab('gallery')} className={`py-3 px-4 font-semibold rounded-t-lg ${activeTab === 'gallery' ? 'bg-white border-b-2 border-blue-600 text-blue-600' : 'text-gray-500 hover:bg-gray-100'}`}>Kelola Galeri</button>
-          <button onClick={() => setActiveTab('alumni')} className={`py-3 px-4 font-semibold rounded-t-lg ${activeTab === 'alumni' ? 'bg-white border-b-2 border-blue-600 text-blue-600' : 'text-gray-500 hover:bg-gray-100'}`}>Kelola Alumni</button>
-        </nav>
-      </div>
+  const TabButton = ({ tabName, icon, label }: { tabName: string; icon: JSX.Element; label: string }) => (
+    <button 
+      onClick={() => setActiveTab(tabName)} 
+      className={`flex items-center gap-2 py-3 px-4 font-semibold rounded-t-lg transition-colors duration-300 ${
+        activeTab === tabName 
+          ? 'bg-white text-[#3572EF] border-b-2 border-[#3572EF]' 
+          : 'text-[#071952] hover:bg-white/50'
+      }`}
+    >
+      {icon}
+      <span>{label}</span>
+    </button>
+  );
 
-      <div>
-        {renderContent()}
+  return (
+    <div className="min-h-screen bg-[#E0F7FA]">
+      <div className="container mx-auto p-4 md:p-8">
+        <h1 className="text-4xl font-bold mb-8 text-center text-[#071952]">
+          Dasbor Admin
+        </h1>
+        
+        <div className="mb-8 border-b border-[#97FEED]">
+          <nav className="flex space-x-2 md:space-x-4">
+            <TabButton tabName="articles" icon={<FaNewspaper />} label="Artikel" />
+            <TabButton tabName="gallery" icon={<FaImages />} label="Galeri" />
+            <TabButton tabName="alumni" icon={<FaUserGraduate />} label="Alumni" />
+          </nav>
+        </div>
+
+        <div>
+          {renderContent()}
+        </div>
       </div>
     </div>
   );
