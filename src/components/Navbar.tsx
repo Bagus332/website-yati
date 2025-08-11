@@ -9,7 +9,6 @@ interface DropdownProps {
 }
 
 // A simple mock for dropdowns since we can't import external libraries.
-// This component manages its own open/close state.
 const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
@@ -99,18 +98,6 @@ const Navbar: React.FC = () => {
               Sejarah
             </a>
             <a
-              href="/profile/struktur-org"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
-            >
-              Struktur Organisasi
-            </a>
-            <a
-              href="/profile/profil-pimpinan"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
-            >
-              Profil Pimpinan
-            </a>
-            <a
               href="/profile/manajemen"
               className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
             >
@@ -124,7 +111,7 @@ const Navbar: React.FC = () => {
             </a>
           </Dropdown>
 
-          <Dropdown title="MTs">
+          <Dropdown title="MTsS">
             <a
               href="/mts/profil"
               className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
@@ -136,6 +123,18 @@ const Navbar: React.FC = () => {
               className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
             >
               Tendik
+            </a>
+            <a
+              href="/mts/struktur-org"
+              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+            >
+              Struktur Organisasi
+            </a>
+            <a
+              href="/mts/alumni"
+              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+            >
+              Alumni
             </a>
           </Dropdown>
 
@@ -152,7 +151,35 @@ const Navbar: React.FC = () => {
             >
               Tendik
             </a>
+            <a
+              href="/ma/struktur-org"
+              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+            >
+              Struktur Organisasi
+            </a>
+            <a
+              href="/ma/alumni"
+              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+            >
+              Alumni
+            </a>
           </Dropdown>
+
+          <a
+            href="/berita"
+            className="text-slate-300 hover:text-white transition-colors relative group"
+          >
+            Berita
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+          </a>
+
+          <a
+            href="/galeri"
+            className="text-slate-300 hover:text-white transition-colors relative group"
+          >
+            Galeri
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+          </a>
 
           <a
             href="/kontak"
@@ -213,18 +240,6 @@ const Navbar: React.FC = () => {
                 Sejarah
               </a>
               <a
-                href="/profile/struktur-org"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Struktur Organisasi
-              </a>
-              <a
-                href="/profile/profil-pimpinan"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Profil Pimpinan
-              </a>
-              <a
                 href="/profile/manajemen"
                 className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
               >
@@ -239,7 +254,7 @@ const Navbar: React.FC = () => {
             </Dropdown>
           </div>
           <div className="border-t border-slate-700 pt-2">
-            <Dropdown title="MTs">
+            <Dropdown title="MTsS">
               <a
                 href="/mts/profil"
                 className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
@@ -251,6 +266,18 @@ const Navbar: React.FC = () => {
                 className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
               >
                 Tendik
+              </a>
+              <a
+                href="/mts/struktur-org"
+                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
+              >
+                Struktur Organisasi
+              </a>
+              <a
+                href="/mts/alumni"
+                className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              >
+                Alumni
               </a>
             </Dropdown>
           </div>
@@ -268,8 +295,32 @@ const Navbar: React.FC = () => {
               >
                 Tendik
               </a>
+              <a
+                href="/ma/struktur-org"
+                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
+              >
+                Struktur Organisasi
+              </a>
+              <a
+                href="/ma/alumni"
+                className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              >
+                Alumni
+              </a>
             </Dropdown>
           </div>
+          <a
+            href="/berita/[slug]"
+            className="block px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
+          >
+            Berita
+          </a>
+          <a
+            href="/galeri"
+            className="block px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
+          >
+            Galeri
+          </a>
           <a
             href="/kontak"
             className="block px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
