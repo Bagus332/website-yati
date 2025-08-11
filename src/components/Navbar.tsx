@@ -8,20 +8,19 @@ interface DropdownProps {
   children: ReactNode;
 }
 
-// A simple mock for dropdowns since we can't import external libraries.
 const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggleDropdown = () => setIsOpen(!isOpen);
 
   return (
     <div className="relative">
-      {/* Dropdown trigger button */}
+      {/* Tombol Dropdown */}
       <button
         onClick={toggleDropdown}
-        className="flex items-center gap-2 text-slate-300 hover:text-white transition-colors focus:outline-none"
+        className="flex items-center gap-2 text-[#DCF2F1] hover:text-[#7FC7D9] transition-colors focus:outline-none"
       >
         <span>{title}</span>
-        {/* Chevron icon for the dropdown */}
+        {/* Ikon Chevron */}
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="18"
@@ -40,9 +39,9 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
         </svg>
       </button>
 
-      {/* Dropdown content */}
+      {/* Isi Dropdown */}
       {isOpen && (
-        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-xl shadow-lg bg-slate-800 text-slate-200 ring-1 ring-slate-700 z-20 overflow-hidden">
+        <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-56 rounded-xl shadow-lg bg-[#365486] text-[#DCF2F1] ring-1 ring-[#7FC7D9] z-20 overflow-hidden">
           <div className="py-2">{children}</div>
         </div>
       )}
@@ -50,62 +49,61 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
   );
 };
 
-// Main Navbar component
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <nav className="bg-slate-900 text-slate-300 p-4 shadow-xl border-b-4 border-blue-600 font-sans">
+    <nav className="bg-[#0F1035] text-[#DCF2F1] p-4 shadow-xl border-b-4 border-[#7FC7D9] font-sans">
       <div className="container mx-auto flex justify-between items-center">
-        {/* Logo Section */}
+        {/* Logo */}
         <div className="flex items-center gap-4">
           <a href="/" className="flex items-center gap-3">
             <Image
-              className="rounded-full border-2 border-blue-600 object-cover transform transition-transform hover:scale-110"
+              className="rounded-full border-2 border-[#7FC7D9] object-cover transform transition-transform hover:scale-110"
               src="/logo.jpeg"
               alt="Logo Pondok Pesantren YATI"
               width={48}
               height={48}
               priority
             />
-            <span className="text-2xl font-bold text-white hidden md:block transition-colors hover:text-blue-400">
+            <span className="text-2xl font-bold text-white hidden md:block transition-colors hover:text-[#7FC7D9]">
               Pondok Pesantren YATI
             </span>
           </a>
         </div>
 
-        {/* Desktop Navigation Links */}
+        {/* Menu Desktop */}
         <div className="hidden md:flex items-center space-x-8 text-lg">
           <a
             href="/"
-            className="text-slate-300 hover:text-white transition-colors relative group"
+            className="text-[#DCF2F1] hover:text-[#7FC7D9] transition-colors relative group"
           >
             Beranda
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#7FC7D9] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
           </a>
 
           <Dropdown title="Profil">
             <a
               href="/profile/visi-misi"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Visi dan Misi
             </a>
             <a
               href="/profile/sejarah"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Sejarah
             </a>
             <a
               href="/profile/manajemen"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Manajemen
             </a>
             <a
               href="/profile/fasilitas"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Fasilitas
             </a>
@@ -114,25 +112,25 @@ const Navbar: React.FC = () => {
           <Dropdown title="MTsS">
             <a
               href="/mts/profil"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Profil
             </a>
             <a
               href="/mts/tendik"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Tendik
             </a>
             <a
               href="/mts/struktur-org"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Struktur Organisasi
             </a>
             <a
               href="/mts/alumni"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Alumni
             </a>
@@ -141,25 +139,25 @@ const Navbar: React.FC = () => {
           <Dropdown title="MAS">
             <a
               href="/ma/profil"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Profil
             </a>
             <a
               href="/ma/tendik"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Tendik
             </a>
             <a
               href="/ma/struktur-org"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Struktur Organisasi
             </a>
             <a
               href="/ma/alumni"
-              className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
+              className="block px-6 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors duration-300"
             >
               Alumni
             </a>
@@ -167,46 +165,43 @@ const Navbar: React.FC = () => {
 
           <a
             href="/berita"
-            className="text-slate-300 hover:text-white transition-colors relative group"
+            className="text-[#DCF2F1] hover:text-[#7FC7D9] transition-colors relative group"
           >
             Berita
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#7FC7D9] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
           </a>
 
           <a
             href="/galeri"
-            className="text-slate-300 hover:text-white transition-colors relative group"
+            className="text-[#DCF2F1] hover:text-[#7FC7D9] transition-colors relative group"
           >
             Galeri
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#7FC7D9] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
           </a>
 
           <a
             href="/kontak"
-            className="text-slate-300 hover:text-white transition-colors relative group"
+            className="text-[#DCF2F1] hover:text-[#7FC7D9] transition-colors relative group"
           >
             Kontak
-            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-400 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
+            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-[#7FC7D9] transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300"></span>
           </a>
         </div>
 
-        {/* Mobile menu button (hamburger icon) */}
+        {/* Tombol Menu Mobile */}
         <div className="md:hidden">
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="text-slate-300 hover:text-white focus:outline-none p-2 rounded-md transition-colors hover:bg-slate-700"
+            className="text-[#DCF2F1] hover:text-[#7FC7D9] focus:outline-none p-2 rounded-md transition-colors hover:bg-[#365486]"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="24"
               height="24"
-              viewBox="0 0 24 24"
               fill="none"
+              viewBox="0 0 24 24"
               stroke="currentColor"
               strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              className="lucide lucide-menu"
             >
               <line x1="4" x2="20" y1="12" y2="12" />
               <line x1="4" x2="20" y1="6" y2="6" />
@@ -216,114 +211,112 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu Content (conditionally rendered) */}
+      {/* Menu Mobile */}
       {isMobileMenuOpen && (
-        <div className="md:hidden mt-4 bg-slate-800 rounded-xl shadow-lg p-4 space-y-2">
+        <div className="md:hidden mt-4 bg-[#365486] rounded-xl shadow-lg p-4 space-y-2">
           <a
             href="/"
-            className="block px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
+            className="block px-4 py-2 rounded-lg hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
           >
             Beranda
           </a>
-          <div className="border-t border-slate-700 pt-2">
-            <Dropdown title="Profil">
-              <a
-                href="/profile/visi-misi"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Visi dan Misi
-              </a>
-              <a
-                href="/profile/sejarah"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Sejarah
-              </a>
-              <a
-                href="/profile/manajemen"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Manajemen
-              </a>
-              <a
-                href="/profile/fasilitas"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Fasilitas
-              </a>
-            </Dropdown>
-          </div>
-          <div className="border-t border-slate-700 pt-2">
-            <Dropdown title="MTsS">
-              <a
-                href="/mts/profil"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Profil
-              </a>
-              <a
-                href="/mts/tendik"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Tendik
-              </a>
-              <a
-                href="/mts/struktur-org"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Struktur Organisasi
-              </a>
-              <a
-                href="/mts/alumni"
-                className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
-              >
-                Alumni
-              </a>
-            </Dropdown>
-          </div>
-          <div className="border-t border-slate-700 pt-2">
-            <Dropdown title="MAS">
-              <a
-                href="/ma/profil"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Profil
-              </a>
-              <a
-                href="/ma/tendik"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Tendik
-              </a>
-              <a
-                href="/ma/struktur-org"
-                className="block px-4 py-2 hover:bg-blue-600 hover:text-white transition-colors"
-              >
-                Struktur Organisasi
-              </a>
-              <a
-                href="/ma/alumni"
-                className="block px-6 py-2 hover:bg-blue-600 hover:text-white transition-colors duration-300"
-              >
-                Alumni
-              </a>
-            </Dropdown>
-          </div>
+          {/* Profil */}
+          <Dropdown title="Profil">
+            <a
+              href="/profile/visi-misi"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Visi dan Misi
+            </a>
+            <a
+              href="/profile/sejarah"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Sejarah
+            </a>
+            <a
+              href="/profile/manajemen"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Manajemen
+            </a>
+            <a
+              href="/profile/fasilitas"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Fasilitas
+            </a>
+          </Dropdown>
+          {/* MTsS */}
+          <Dropdown title="MTsS">
+            <a
+              href="/mts/profil"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Profil
+            </a>
+            <a
+              href="/mts/tendik"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Tendik
+            </a>
+            <a
+              href="/mts/struktur-org"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Struktur Organisasi
+            </a>
+            <a
+              href="/mts/alumni"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Alumni
+            </a>
+          </Dropdown>
+          {/* MAS */}
+          <Dropdown title="MAS">
+            <a
+              href="/ma/profil"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Profil
+            </a>
+            <a
+              href="/ma/tendik"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Tendik
+            </a>
+            <a
+              href="/ma/struktur-org"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Struktur Organisasi
+            </a>
+            <a
+              href="/ma/alumni"
+              className="block px-4 py-2 hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
+            >
+              Alumni
+            </a>
+          </Dropdown>
+
           <a
-            href="/berita/[slug]"
-            className="block px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
+            href="/berita"
+            className="block px-4 py-2 rounded-lg hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
           >
             Berita
           </a>
           <a
             href="/galeri"
-            className="block px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
+            className="block px-4 py-2 rounded-lg hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
           >
             Galeri
           </a>
           <a
             href="/kontak"
-            className="block px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition-colors"
+            className="block px-4 py-2 rounded-lg hover:bg-[#7FC7D9] hover:text-[#0F1035] transition-colors"
           >
             Kontak
           </a>
