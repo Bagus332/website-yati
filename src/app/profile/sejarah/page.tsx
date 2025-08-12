@@ -256,7 +256,7 @@ export default function Home() {
                   name: "Welli Okmira, S.Pd.I",
                   role: "Pimpinan",
                   period: "2018 - 2020",
-                  image: "/placeholder-leader.jpg",
+                  image: "/public/foto/Welli Okmira.jpg",
                 },
                 {
                   name: "Drs. H. Chairul Huda",

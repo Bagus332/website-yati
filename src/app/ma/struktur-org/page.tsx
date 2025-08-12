@@ -1,113 +1,256 @@
-import Navbar from "@/components/Navbar";
-import { 
-  FaUserTie, 
-  FaUsers, 
-  FaBook, 
-  FaUserGraduate, 
-  FaTools, 
-  FaMoneyBillWave, 
-  FaHandshake,
-  FaRunning,
-  FaShieldAlt 
-} from "react-icons/fa";
+"use client";
 
-export default function Home() {
-  const organizationStructure = [
+import { JSX, useState } from "react";
+import Navbar from "@/components/Navbar";
+import { FaUserTie, FaUsers, FaBook, FaMoneyBillWave, FaChalkboardTeacher, FaGraduationCap, FaChevronDown } from "react-icons/fa";
+
+type StaffItem = {
+  title: string;
+  icon: JSX.Element;
+  description: string;
+  details?: string;
+  photo: string;
+  subItems?: string[]; // untuk guru per mapel
+};
+
+export default function StrukturAliyah() {
+  const [selected, setSelected] = useState<StaffItem | null>(null);
+  const [accordionOpen, setAccordionOpen] = useState<number | null>(null);
+
+  const toggleAccordion = (index: number) => {
+    setAccordionOpen(accordionOpen === index ? null : index);
+  };
+  const aliyahStructure: StaffItem[] = [
+    // Pimpinan
     {
-      title: "Pimpinan Pondok Pesantren",
+      title: "Kepala Madrasah Aliyah - Delvianti, M.Pd",
       icon: <FaUserTie />,
-      description: "Memimpin dan mengarahkan penyelenggaraan pendidikan pesantren"
+      description: "Memimpin dan mengatur jalannya pendidikan di Madrasah Aliyah",
+      details: "Bertanggung jawab penuh atas jalannya pendidikan, pembinaan guru, dan pengelolaan administrasi Madrasah Aliyah.",
+      photo: "/foto/kepala MAS YATI KAMANG MUDIK.jpg"
     },
     {
-      title: "Wakil Pimpinan",
-      icon: <FaUsers />,
-      description: "Membantu pimpinan dalam pelaksanaan program pesantren"
-    },
-    {
-      title: "Bagian Pendidikan dan Kurikulum",
+      title: "Waka Kurikulum - Yenni Firda, S.Pd",
       icon: <FaBook />,
-      description: "Mengelola program pembelajaran dan pengembangan kurikulum"
+      description: "Mengatur dan mengembangkan kurikulum",
+      details: "Menyusun, mengembangkan, dan mengevaluasi kurikulum agar sesuai standar pendidikan nasional dan visi sekolah.",
+      photo: "/foto/yeni firda.jpg"
     },
     {
-      title: "Bagian Kesantrian dan Pembinaan",
-      icon: <FaUserGraduate />,
-      description: "Mengelola pembinaan dan kesejahteraan santri"
+      title: "Waka Kesiswaan - Mhd. Sabri, SH",
+      icon: <FaUsers />,
+      description: "Mengatur kegiatan kesiswaan dan pembinaan karakter",
+      details: "Bertanggung jawab atas pembinaan siswa, kedisiplinan, dan kegiatan ekstrakurikuler.",
+      photo: "/foto/Muhammad Sabri.jpg"
     },
     {
-      title: "Bagian Sarana dan Prasarana",
-      icon: <FaTools />,
-      description: "Mengelola fasilitas dan infrastruktur pesantren"
+      title: "Tata Usaha - Yufita Indriani, S.Pd",
+      icon: <FaUsers />,
+      description: "Mengelola administrasi sekolah",
+      details: "Mengurus dokumen, surat menyurat, arsip, dan administrasi pendidikan di Madrasah Aliyah.",
+      photo: "/vorg.jpg"
     },
     {
-      title: "Bagian Keuangan dan Administrasi",
+      title: "Bendahara - Putri Nurhasanah, S.Pd",
       icon: <FaMoneyBillWave />,
-      description: "Mengelola keuangan dan administrasi pesantren"
+      description: "Mengatur keuangan sekolah",
+      details: "Mengelola keuangan, membuat laporan, dan menjaga transparansi anggaran.",
+      photo: "/foto/Putri Nurhasanah.jpg"
     },
     {
-      title: "Bagian Humas dan Kerjasama",
-      icon: <FaHandshake />,
-      description: "Menjalin hubungan dengan masyarakat dan lembaga lain"
+      title: "Kepala Perpustakaan - Asmawati, S.Pd.I",
+      icon: <FaBook />,
+      description: "Mengelola perpustakaan sekolah",
+      details: "Mengatur koleksi buku, pelayanan perpustakaan, dan kegiatan literasi siswa.",
+      photo: "/foto/asmawati ok.jpg"
+    },
+
+    // Wali Kelas
+    {
+      title: "Wali Kelas 10 - Nurrahmi Lathifa, M.Pd",
+      icon: <FaChalkboardTeacher />,
+      description: "Membimbing siswa kelas 10",
+      details: "Bertanggung jawab atas pembinaan siswa kelas 10 dan menjadi penghubung antara siswa, guru, dan orang tua.",
+      photo: "/vorg.jpg"
     },
     {
-      title: "Koordinator Ekstrakurikuler",
-      icon: <FaRunning />,
-      description: "Mengkoordinir kegiatan pengembangan bakat santri"
+      title: "Wali Kelas 11 - Yusnetti, SH",
+      icon: <FaChalkboardTeacher />,
+      description: "Membimbing siswa kelas 11",
+      details: "Bertanggung jawab atas pembinaan siswa kelas 11 dan menjadi penghubung antara siswa, guru, dan orang tua.",
+      photo: "/foto/yusnetti oke.jpg"
     },
     {
-      title: "Koordinator Keamanan dan Ketertiban",
-      icon: <FaShieldAlt />,
-      description: "Menjaga keamanan dan ketertiban lingkungan pesantren"
+      title: "Wali Kelas 12 - Aufi Afifah Rifki TM, S.Pd",
+      icon: <FaChalkboardTeacher />,
+      description: "Membimbing siswa kelas 12",
+      details: "Bertanggung jawab atas pembinaan siswa kelas 12 dan menjadi penghubung antara siswa, guru, dan orang tua.",
+      photo: "/foto/aufi afifa rifki.jpg"
+    },
+  // Guru IPS & PKN
+    {
+      title: "Guru Mapel IPS & PKN",
+      icon: <FaChalkboardTeacher />,
+      description: "Pengajar mata pelajaran IPS dan PKN",
+      subItems: [
+        "Asmawati, S.Pd.I",
+        "Refda Yetti, S.Pd.I", 
+        "Lisa Yunita, S.Pd.I", 
+        "Debi Amanda, S.Pd"
+      ],
+      photo: "/vorg.jpg"
+    },
+    {
+      title: "Guru Mapel IPA dan Matematika",
+      icon: <FaChalkboardTeacher />,
+      description: "Pengajar mata pelajaran IPS dan PKN",
+      subItems: [
+        "Weni Anggraini, S.Pd", 
+        "Arbaisyah, S.Pd", 
+        "Nur Faizi, S.Pd"
+      ],
+      photo: "/vorg.jpg"
+    },
+    {
+      title: "Guru Mapel Agama",
+      icon: <FaChalkboardTeacher />,
+      description: "Pengajar mata pelajaran IPS dan PKN",
+      subItems: [
+        "Silhen, S.Pd",
+        "Aufi Afifah Rifki TM, S.Pd",
+        "Yusnetti, SH",
+        "Hevi Murnialis, S.Pd",
+        "Elfi Yusmanizar, S.Pd"
+      ],
+      photo: "/vorg.jpg"
+    },
+
+    // Guru Bahasa
+    {
+      title: "Guru Mapel Bahasa",
+      icon: <FaChalkboardTeacher />,
+      description: "Pengajar mata pelajaran Bahasa Indonesia & Inggris",
+      subItems: [
+        "Marlina, S.Pd",
+        "Putri Rahmadhani, S.Pd",
+        "Lilvia, S.Pd",
+        "Gusti Ayu, S.Pd",
+        "Fahmi Hafizha O, S.Pd"
+      ],
+      photo: "/vorg.jpg"
+    },
+    {
+      title: "Guru Mapel Pondok",
+      icon: <FaChalkboardTeacher />,
+      description: "Pengajar mata pelajaran kepondokan",
+      subItems: [
+       "Nini Arianti, S.Ag", 
+       "M. Irfan, S.Pd", 
+       "Azkia Rahmi, S.Ag", 
+       "Nurrahmi Lathifa, M.Pd"
+      ],
+      photo: "/vorg.jpg"
+    },
+
+    // Siswa
+    {
+      title: "Siswa Aliyah",
+      icon: <FaGraduationCap />,
+      description: "Peserta didik Madrasah Aliyah",
+      details: "Siswa-siswi yang sedang menempuh pendidikan menengah berbasis Islam.",
+      photo: "/vorg.jpg"
     }
   ];
 
   return (
     <>
       <Navbar />
-      <main className="container mx-auto py-8 px-4">
+      <main className="container mx-auto py-12 px-4">
         <div className="max-w-6xl mx-auto">
-          <h1 className="text-3xl md:text-4xl font-bold mb-6 text-center">
-            Struktur Organisasi Pondok Pesantren YATI
+          <h1 className="text-4xl font-bold mb-10 text-center text-emerald-700">
+            Struktur Organisasi Madrasah Aliyah
           </h1>
-          
-          <div className="bg-white p-6 rounded-lg shadow-md mb-8">
-            <p className="text-gray-600 text-lg leading-relaxed text-center max-w-3xl mx-auto">
-              Struktur organisasi Pondok Pesantren YATI dirancang untuk mendukung
-              kelancaran operasional dan pembinaan santri secara optimal. Setiap bagian
-              memiliki peran dan tanggung jawab yang terkoordinasi dengan baik.
-            </p>
-          </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {organizationStructure.map((item, index) => (
-              <div 
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {aliyahStructure.map((item, index) => (
+              <div
                 key={index}
-                className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
+                className="bg-white rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col items-center text-center p-6 border border-gray-100 hover:border-emerald-400 cursor-pointer"
+                onClick={() => {
+                  setSelected(item);
+                  setAccordionOpen(null);
+                }}
               >
-                <div className="text-3xl text-emerald-500 mb-4">
+                <img
+                  src={item.photo}
+                  alt={item.title}
+                  className="w-32 h-32 object-cover rounded-full border-4 border-emerald-500 shadow-md hover:scale-105 transition-transform duration-300"
+                  onError={(e) => (e.currentTarget.src = "/images/aliyah/default.jpg")}
+                />
+                <div className="text-3xl text-emerald-500 mt-3 mb-1">
                   {item.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3 text-gray-800">
+                <h3 className="text-lg font-semibold text-gray-800 leading-tight mb-2">
                   {item.title}
                 </h3>
-                <p className="text-gray-600">
-                  {item.description}
-                </p>
+                <p className="text-gray-600 text-sm">{item.description}</p>
               </div>
             ))}
           </div>
-
-          <div className="mt-8 bg-white p-6 rounded-lg shadow-md">
-            <h2 className="text-2xl font-semibold mb-4 text-center text-gray-800">
-              Tata Kelola
-            </h2>
-            <p className="text-gray-600 leading-relaxed text-center max-w-3xl mx-auto">
-              Setiap bagian dalam struktur organisasi bekerja secara sinergis untuk
-              memastikan tercapainya visi dan misi pesantren. Koordinasi antar bagian
-              dilakukan secara rutin melalui rapat evaluasi dan perencanaan program.
-            </p>
-          </div>
         </div>
       </main>
+
+      {/* Modal Detail */}
+      {selected && (
+        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
+          <div className="bg-white rounded-lg shadow-xl p-6 max-w-lg w-full relative animate-fadeIn">
+            <button
+              className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl"
+              onClick={() => setSelected(null)}
+            >
+              ✕
+            </button>
+
+            <img
+              src={selected.photo}
+              alt={selected.title}
+              className="w-40 h-40 object-cover rounded-full border-4 border-emerald-500 mx-auto mb-4"
+              onError={(e) => (e.currentTarget.src = "/images/aliyah/default.jpg")}
+            />
+
+            <h2 className="text-2xl font-semibold text-center text-emerald-700 mb-4">
+              {selected.title}
+            </h2>
+
+            {selected.subItems ? (
+              <div>
+                <div
+                  className="flex justify-between items-center cursor-pointer p-3 bg-emerald-100 rounded-lg"
+                  onClick={() => toggleAccordion(0)}
+                >
+                  <span className="font-semibold text-emerald-700">Daftar Guru</span>
+                  <FaChevronDown
+                    className={`transition-transform duration-300 ${
+                      accordionOpen === 0 ? "rotate-180" : ""
+                    }`}
+                  />
+                </div>
+                {accordionOpen === 0 && (
+                  <ul className="mt-3 space-y-2 pl-5 list-disc text-gray-700">
+                    {selected.subItems.map((name, idx) => (
+                      <li key={idx}>{name}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            ) : (
+              <p className="text-gray-700 text-center leading-relaxed">
+                {selected.details}
+              </p>
+            )}
+          </div>
+        </div>
+      )}
     </>
   );
 }
