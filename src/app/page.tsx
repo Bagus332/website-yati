@@ -54,12 +54,14 @@ export default function Home() {
     fetchArticles();
   }, []);
 
+  // Animasi untuk fade in dari bawah
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.8, ease: "easeOut" },
   };
 
+  // Animasi stagger untuk menampilkan children secara berurutan
   const staggerContainer = {
     animate: {
       transition: {
@@ -68,6 +70,7 @@ export default function Home() {
     },
   };
 
+  // Fungsi untuk membuat slug dari judul
   const createSlug = (title: string) => {
     return title
       .toLowerCase()
@@ -76,33 +79,31 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-screen bg-gradient-to-b from-slate-50 to-white">
-      {/* Enhanced Background Pattern */}
+    <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white font-sans">
       <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_theme(colors.emerald.500)_0%,_transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,_theme(colors.emerald.500)_0%,_transparent_50%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_75%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,_theme(colors.cyan.500)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_25%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_75%,_theme(colors.cyan.500)_0%,_transparent_50%)]" />
       </div>
 
       <Navbar />
 
-      {/* Enhanced Hero Section */}
+      {/* Hero Section dengan gambar yang lebih terang */}
       <section className="relative h-screen overflow-hidden">
         <Image
           src="/hero.webp"
           alt="Pondok Pesantren YATI"
           fill
-          className="object-cover brightness-[0.3] scale-105"
+          className="object-cover brightness-[0.6] scale-105"
           priority
         />
+        
+        {/* Gradien overlay disesuaikan agar teks tetap terbaca */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-400/30 via-transparent to-cyan-400/30" />
 
-        {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/40 to-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-r from-emerald-900/30 via-transparent to-blue-900/30" />
-
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-2 h-2 bg-emerald-400 rounded-full animate-pulse opacity-60" />
+        <div className="absolute top-20 left-10 w-2 h-2 bg-cyan-400 rounded-full animate-pulse opacity-60" />
         <div className="absolute top-32 right-20 w-1 h-1 bg-blue-400 rounded-full animate-pulse opacity-60" />
         <div className="absolute bottom-40 left-20 w-1.5 h-1.5 bg-white rounded-full animate-pulse opacity-40" />
 
@@ -113,32 +114,30 @@ export default function Home() {
           className="absolute inset-0 flex flex-col items-center justify-center text-white px-4"
         >
           <div className="relative max-w-5xl mx-auto text-center">
-            {/* Decorative Elements */}
             <motion.div
               initial={{ scale: 0, rotate: -180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 0.5, duration: 0.8 }}
-              className="absolute -left-16 -top-16 w-32 h-32 bg-gradient-to-br from-emerald-500/20 to-transparent rounded-full blur-2xl"
+              className="absolute -left-16 -top-16 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-2xl"
             />
             <motion.div
               initial={{ scale: 0, rotate: 180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 0.7, duration: 0.8 }}
-              className="absolute -right-16 -bottom-16 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-transparent rounded-full blur-2xl"
+              className="absolute -right-16 -bottom-16 w-32 h-32 bg-gradient-to-br from-cyan-500/20 to-transparent rounded-full blur-2xl"
             />
 
-            {/* Title with Enhanced Typography */}
             <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 0.8 }}
               className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight"
             >
-              <span className="bg-gradient-to-r from-white via-emerald-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
+              <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
                 Pondok Pesantren
               </span>
               <br />
-              <span className="bg-gradient-to-r from-emerald-300 via-blue-200 to-emerald-300 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-blue-300 bg-clip-text text-transparent">
                 YATI
               </span>
             </motion.h1>
@@ -147,18 +146,18 @@ export default function Home() {
               initial={{ width: 0 }}
               animate={{ width: "12rem" }}
               transition={{ delay: 0.8, duration: 0.6 }}
-              className="h-1 bg-gradient-to-r from-emerald-400 to-blue-400 mx-auto mb-8 rounded-full"
+              className="h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto mb-8 rounded-full"
             />
 
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.8 }}
-              className="text-xl md:text-3xl lg:text-4xl font-light mb-8 text-emerald-100 max-w-4xl mx-auto leading-relaxed"
+              className="text-xl md:text-3xl lg:text-4xl font-light mb-8 text-blue-100 max-w-4xl mx-auto leading-relaxed"
             >
               Yayasan Tarbiyah Islamiyah
               <br />
-              <span className="text-blue-200">Buya H. Mansur</span>
+              <span className="text-cyan-200">Buya H. Mansur</span>
             </motion.p>
 
             <motion.div
@@ -172,7 +171,6 @@ export default function Home() {
           </div>
         </motion.div>
 
-        {/* Scroll Indicator */}
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -185,14 +183,12 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Enhanced About Section */}
       <section
         className="py-24 px-6 lg:px-14 relative overflow-hidden"
         ref={aboutRef}
       >
-        {/* Background Elements */}
-        <div className="absolute -right-32 -top-32 w-64 h-64 bg-gradient-to-br from-emerald-100/40 to-transparent rounded-full blur-3xl" />
-        <div className="absolute -left-32 -bottom-32 w-64 h-64 bg-gradient-to-br from-blue-100/40 to-transparent rounded-full blur-3xl" />
+        <div className="absolute -right-32 -top-32 w-64 h-64 bg-gradient-to-br from-blue-100/40 to-transparent rounded-full blur-3xl" />
+        <div className="absolute -left-32 -bottom-32 w-64 h-64 bg-gradient-to-br from-cyan-100/40 to-transparent rounded-full blur-3xl" />
 
         <motion.div
           variants={staggerContainer}
@@ -200,22 +196,20 @@ export default function Home() {
           animate={isAboutInView ? "animate" : "initial"}
           className="max-w-7xl mx-auto relative"
         >
-          {/* Section Header */}
           <motion.div variants={fadeInUp} className="text-center mb-20">
-            <span className="inline-block bg-gradient-to-r from-emerald-100 to-blue-100 text-emerald-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
+            <span className="inline-block bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
               Profil Pesantren
             </span>
-            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
               Tentang Kami
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
           </motion.div>
 
           <div className="grid lg:grid-cols-2 gap-16 items-center">
-            {/* Content */}
             <motion.div variants={fadeInUp} className="space-y-8">
               <div className="flex items-start space-x-4 mb-8">
-                <div className="w-2 h-20 bg-gradient-to-b from-emerald-500 to-blue-500 rounded-full flex-shrink-0" />
+                <div className="w-2 h-20 bg-gradient-to-b from-blue-500 to-cyan-500 rounded-full flex-shrink-0" />
                 <div>
                   <h3 className="text-3xl font-bold text-gray-800 mb-4">
                     Lembaga Pendidikan Islam Terpadu
@@ -230,8 +224,7 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Enhanced Contact Info */}
-              <div className="bg-gradient-to-r from-gray-50 to-emerald-50/30 p-8 rounded-2xl border border-gray-100">
+              <div className="bg-gradient-to-r from-gray-50 to-blue-50/30 p-8 rounded-2xl border border-gray-100">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div className="space-y-4">
                     <div>
@@ -258,7 +251,7 @@ export default function Home() {
                       <h4 className="font-semibold text-gray-800 mb-2">
                         📧 Email
                       </h4>
-                      <p className="text-emerald-600 font-medium">
+                      <p className="text-blue-600 font-medium">
                         mti.yati@yahoo.com
                       </p>
                     </div>
@@ -266,7 +259,7 @@ export default function Home() {
                       <h4 className="font-semibold text-gray-800 mb-2">
                         📞 Telepon
                       </h4>
-                      <p className="text-emerald-600 font-medium">
+                      <p className="text-blue-600 font-medium">
                         081374549687
                       </p>
                     </div>
@@ -274,11 +267,10 @@ export default function Home() {
                 </div>
               </div>
 
-              {/* Enhanced Stats */}
               <div className="grid grid-cols-2 gap-6">
                 <motion.div
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="bg-gradient-to-br from-emerald-500 to-emerald-600 p-6 rounded-2xl text-white shadow-xl hover:shadow-emerald-200 transition-all duration-300"
+                  className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl text-white shadow-xl hover:shadow-blue-200 transition-all duration-300"
                 >
                   <div className="text-3xl mb-2">🏫</div>
                   <h4 className="font-bold mb-2">Luas Tanah</h4>
@@ -286,7 +278,7 @@ export default function Home() {
                 </motion.div>
                 <motion.div
                   whileHover={{ scale: 1.05, y: -2 }}
-                  className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl text-white shadow-xl hover:shadow-blue-200 transition-all duration-300"
+                  className="bg-gradient-to-br from-cyan-500 to-cyan-600 p-6 rounded-2xl text-white shadow-xl hover:shadow-cyan-200 transition-all duration-300"
                 >
                   <div className="text-3xl mb-2">🏢</div>
                   <h4 className="font-bold mb-2">Luas Bangunan</h4>
@@ -295,7 +287,6 @@ export default function Home() {
               </div>
             </motion.div>
 
-            {/* Enhanced Image */}
             <motion.div variants={fadeInUp} className="relative">
               <div className="relative h-96 lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
                 <Image
@@ -306,7 +297,6 @@ export default function Home() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
               </div>
-              {/* Floating Card */}
               <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={
@@ -316,7 +306,7 @@ export default function Home() {
                 className="absolute -bottom-6 -right-6 bg-white p-6 rounded-2xl shadow-xl border border-gray-100"
               >
                 <div className="flex items-center space-x-3">
-                  <div className="w-12 h-12 bg-gradient-to-br from-emerald-500 to-blue-500 rounded-full flex items-center justify-center">
+                  <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
                     <FaGraduationCap className="text-white text-xl" />
                   </div>
                   <div>
@@ -332,13 +322,11 @@ export default function Home() {
         </motion.div>
       </section>
 
-      {/* Enhanced Programs Section */}
       <section
         className="py-24 px-6 lg:px-14 bg-gradient-to-b from-gray-50 to-white relative"
         ref={programsRef}
       >
-        {/* Background Elements */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_theme(colors.emerald.100)_0%,_transparent_50%)] opacity-30" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_theme(colors.blue.100)_0%,_transparent_50%)] opacity-30" />
 
         <motion.div
           variants={staggerContainer}
@@ -346,18 +334,16 @@ export default function Home() {
           animate={isProgramsInView ? "animate" : "initial"}
           className="max-w-7xl mx-auto relative"
         >
-          {/* Section Header */}
           <motion.div variants={fadeInUp} className="text-center mb-20">
-            <span className="inline-block bg-gradient-to-r from-emerald-100 to-blue-100 text-emerald-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
+            <span className="inline-block bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
               Program Unggulan
             </span>
-            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
               Program dan Kegiatan
             </h2>
-            <div className="w-32 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+            <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
           </motion.div>
 
-          {/* Enhanced Kurikulum */}
           <motion.div variants={fadeInUp} className="mb-20">
             <h3 className="text-3xl font-bold text-center mb-12 text-gray-800">
               Sistem Kurikulum Terintegrasi
@@ -365,11 +351,11 @@ export default function Home() {
             <div className="grid lg:grid-cols-2 gap-8">
               <motion.div
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-emerald-100 relative overflow-hidden"
+                className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-blue-100 relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-emerald-400/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
                     <FaBook className="text-2xl text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-800">
@@ -387,7 +373,7 @@ export default function Home() {
                     "Sistem klasikal dalam PBM umum",
                   ].map((item, index) => (
                     <div key={index} className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-emerald-500 rounded-full flex-shrink-0" />
+                      <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
                       <span className="text-gray-700">{item}</span>
                     </div>
                   ))}
@@ -396,11 +382,11 @@ export default function Home() {
 
               <motion.div
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-blue-100 relative overflow-hidden"
+                className="group bg-white p-10 rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-cyan-100 relative overflow-hidden"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-400/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
+                <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-cyan-400/10 to-transparent rounded-full blur-2xl group-hover:scale-150 transition-transform duration-500" />
                 <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
+                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl flex items-center justify-center group-hover:rotate-6 transition-transform duration-300">
                     <FaLanguage className="text-2xl text-white" />
                   </div>
                   <h3 className="text-2xl font-bold text-gray-800">
@@ -418,7 +404,7 @@ export default function Home() {
                     "Pembelajaran berbasis karakter",
                   ].map((item, index) => (
                     <div key={index} className="flex items-center space-x-3">
-                      <div className="w-2 h-2 bg-blue-500 rounded-full flex-shrink-0" />
+                      <div className="w-2 h-2 bg-cyan-500 rounded-full flex-shrink-0" />
                       <span className="text-gray-700">{item}</span>
                     </div>
                   ))}
@@ -427,10 +413,9 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Enhanced Ekstrakurikuler */}
           <motion.div variants={fadeInUp} className="mb-20">
             <div className="text-center mb-16">
-              <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-4">
+              <h3 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-4">
                 Program Ekstrakurikuler
               </h3>
               <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -446,30 +431,30 @@ export default function Home() {
                   title: "Tahfizhul Qur'an",
                   description:
                     "Program hafalan Al-Qur'an terintegrasi dalam pembelajaran dengan target juz tertentu untuk setiap tingkatan kelas.",
-                  gradient: "from-emerald-500 to-teal-500",
-                  bgGradient: "from-white to-emerald-50",
-                  borderColor: "border-emerald-100",
-                  shadowColor: "hover:shadow-emerald-200/60",
+                  gradient: "from-blue-500 to-cyan-500",
+                  bgGradient: "from-white to-blue-50",
+                  borderColor: "border-blue-100",
+                  shadowColor: "hover:shadow-blue-200/60",
                 },
                 {
                   icon: FaMicrophone,
                   title: "Muhadharah",
                   description:
                     "Pelatihan pidato dan khutbah dengan jadwal rutin setiap Selasa malam dan Senin ke-4, mengombinasikan teori dan praktik.",
-                  gradient: "from-blue-500 to-purple-500",
-                  bgGradient: "from-white to-blue-50",
-                  borderColor: "border-blue-100",
-                  shadowColor: "hover:shadow-blue-200/60",
+                  gradient: "from-cyan-500 to-blue-500",
+                  bgGradient: "from-white to-cyan-50",
+                  borderColor: "border-cyan-100",
+                  shadowColor: "hover:shadow-cyan-200/60",
                 },
                 {
                   icon: FaCampground,
                   title: "Pramuka",
                   description:
                     "Kegiatan kepramukaan wajib untuk kelas VII-IX MTs dan X-XII MA, sesuai dengan implementasi Kurikulum 2013.",
-                  gradient: "from-teal-500 to-emerald-500",
-                  bgGradient: "from-white to-teal-50",
-                  borderColor: "border-teal-100",
-                  shadowColor: "hover:shadow-teal-200/60",
+                  gradient: "from-blue-500 to-cyan-500",
+                  bgGradient: "from-white to-blue-50",
+                  borderColor: "border-blue-100",
+                  shadowColor: "hover:shadow-blue-200/60",
                 },
               ].map((program, index) => (
                 <motion.div
@@ -515,7 +500,6 @@ export default function Home() {
             </div>
           </motion.div>
 
-          {/* Enhanced Kegiatan Eksternal */}
           <motion.div variants={fadeInUp}>
             <div className="text-center mb-12">
               <h3 className="text-3xl font-bold text-gray-800 mb-4">
@@ -528,17 +512,15 @@ export default function Home() {
             </div>
 
             <div className="grid md:grid-cols-2 gap-8">
-              {/* Sosial Kemasyarakatan Card */}
               <motion.div
                 whileHover={{ scale: 1.06, y: -10, rotate: -1 }}
-                className="relative bg-white/70 backdrop-blur-lg p-10 rounded-[2.5rem] shadow-2xl border-2 border-transparent group transition-all duration-500 overflow-visible hover:border-emerald-400/60 hover:shadow-emerald-200/60"
+                className="relative bg-white/70 backdrop-blur-lg p-10 rounded-[2.5rem] shadow-2xl border-2 border-transparent group transition-all duration-500 overflow-visible hover:border-blue-400/60 hover:shadow-blue-200/60"
               >
-                {/* Floating Icon */}
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 bg-gradient-to-br from-emerald-400 to-emerald-600 rounded-full flex items-center justify-center shadow-lg border-4 border-white/60 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 z-20">
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 bg-gradient-to-br from-blue-400 to-blue-600 rounded-full flex items-center justify-center shadow-lg border-4 border-white/60 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 z-20">
                   <FaPeopleCarry className="text-3xl text-white drop-shadow" />
                 </div>
                 <div className="pt-16 text-center">
-                  <h3 className="text-2xl font-extrabold text-emerald-700 mb-3 tracking-tight group-hover:text-emerald-800 transition-colors">
+                  <h3 className="text-2xl font-extrabold text-blue-700 mb-3 tracking-tight group-hover:text-blue-800 transition-colors">
                     Sosial Kemasyarakatan
                   </h3>
                   <p className="text-gray-700 leading-relaxed mb-2">
@@ -547,26 +529,23 @@ export default function Home() {
                     peduli sosial.
                   </p>
                   <div className="mt-4 flex justify-center">
-                    <span className="inline-block bg-gradient-to-r from-emerald-100 to-blue-100 text-emerald-700 px-4 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
+                    <span className="inline-block bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-700 px-4 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
                       Peduli Sosial
                     </span>
                   </div>
                 </div>
-                {/* Decorative Gradient Border */}
-                <div className="absolute -inset-1 rounded-[2.7rem] bg-gradient-to-br from-emerald-200/40 via-white/0 to-blue-200/40 blur-[2px] -z-10" />
+                <div className="absolute -inset-1 rounded-[2.7rem] bg-gradient-to-br from-blue-200/40 via-white/0 to-cyan-200/40 blur-[2px] -z-10" />
               </motion.div>
 
-              {/* Program Dakwah Card */}
               <motion.div
                 whileHover={{ scale: 1.06, y: -10, rotate: 1 }}
-                className="relative bg-white/70 backdrop-blur-lg p-10 rounded-[2.5rem] shadow-2xl border-2 border-transparent group transition-all duration-500 overflow-visible hover:border-blue-400/60 hover:shadow-blue-200/60"
+                className="relative bg-white/70 backdrop-blur-lg p-10 rounded-[2.5rem] shadow-2xl border-2 border-transparent group transition-all duration-500 overflow-visible hover:border-cyan-400/60 hover:shadow-cyan-200/60"
               >
-                {/* Floating Icon */}
-                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center shadow-lg border-4 border-white/60 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 z-20">
+                <div className="absolute -top-8 left-1/2 -translate-x-1/2 w-20 h-20 bg-gradient-to-br from-cyan-500 to-cyan-700 rounded-full flex items-center justify-center shadow-lg border-4 border-white/60 group-hover:scale-110 group-hover:rotate-12 transition-transform duration-300 z-20">
                   <FaMosque className="text-3xl text-white drop-shadow" />
                 </div>
                 <div className="pt-16 text-center">
-                  <h3 className="text-2xl font-extrabold text-blue-700 mb-3 tracking-tight group-hover:text-blue-800 transition-colors">
+                  <h3 className="text-2xl font-extrabold text-cyan-700 mb-3 tracking-tight group-hover:text-cyan-800 transition-colors">
                     Program Dakwah
                   </h3>
                   <p className="text-gray-700 leading-relaxed mb-2">
@@ -575,47 +554,43 @@ export default function Home() {
                     pengabdian kepada masyarakat.
                   </p>
                   <div className="mt-4 flex justify-center">
-                    <span className="inline-block bg-gradient-to-r from-blue-100 to-emerald-100 text-blue-700 px-4 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
+                    <span className="inline-block bg-gradient-to-r from-cyan-100 to-blue-100 text-cyan-700 px-4 py-1 rounded-full text-xs font-semibold tracking-wide shadow-sm">
                       Pengabdian Umat
                     </span>
                   </div>
                 </div>
-                {/* Decorative Gradient Border */}
-                <div className="absolute -inset-1 rounded-[2.7rem] bg-gradient-to-br from-blue-200/40 via-white/0 to-emerald-200/40 blur-[2px] -z-10" />
+                <div className="absolute -inset-1 rounded-[2.7rem] bg-gradient-to-br from-cyan-200/40 via-white/0 to-blue-200/40 blur-[2px] -z-10" />
               </motion.div>
             </div>
           </motion.div>
         </motion.div>
       </section>
 
-      {/* Enhanced News Section */}
+      {/* News Section dengan gradien biru yang lebih lembut */}
       <section className="py-24 px-6 lg:px-14 relative overflow-hidden bg-gradient-to-b from-white to-gray-50">
-        {/* Decorative Background */}
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-50/50 via-white to-blue-50/50" />
-        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-emerald-100/20 to-transparent rounded-full blur-3xl" />
-        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-blue-100/20 to-transparent rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-50/50 via-white to-cyan-50/50" />
+        <div className="absolute top-0 right-0 w-96 h-96 bg-gradient-to-br from-blue-100/20 to-transparent rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-0 w-96 h-96 bg-gradient-to-tr from-cyan-100/20 to-transparent rounded-full blur-3xl" />
 
         <div className="max-w-7xl mx-auto relative">
-          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <span className="inline-block bg-gradient-to-r from-emerald-100 to-blue-100 text-emerald-800 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
+            <span className="inline-block bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider mb-4">
               Updates & Informasi
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
               Berita Terbaru
             </h2>
-            <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full" />
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
             <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
               Ikuti perkembangan terbaru dari Pondok Pesantren YATI Kamang Mudik
             </p>
           </motion.div>
 
-          {/* News Grid */}
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {articles.map((article, index) => {
               const slug = createSlug(article.title);
@@ -628,20 +603,21 @@ export default function Home() {
                   whileHover={{ y: -8, scale: 1.02 }}
                   className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
                 >
-                  {/* Image Container */}
                   <div className="relative h-56 overflow-hidden">
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent z-10" />
-                    <img
+                    <Image
                       src={article.image_url}
                       alt={article.title}
-                      className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                      fill
+                      className="object-cover transform group-hover:scale-110 transition-transform duration-700"
+                      unoptimized
                     />
+                    {/* Mengubah gradien overlay menjadi lebih lembut */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-blue-500/20 via-transparent to-transparent z-10" />
                   </div>
 
-                  {/* Content */}
                   <div className="p-6">
                     <div className="mb-4">
-                      <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-emerald-600 transition-colors">
+                      <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
                         {article.title}
                       </h3>
                       <p className="text-gray-600 line-clamp-3">
@@ -649,11 +625,10 @@ export default function Home() {
                       </p>
                     </div>
 
-                    {/* Read More Link */}
                     <div className="mt-6 flex items-center justify-between">
                       <a
                         href={`/berita/${slug}`}
-                        className="inline-flex items-center space-x-2 text-emerald-600 font-medium group-hover:text-emerald-700 transition-colors"
+                        className="inline-flex items-center space-x-2 text-blue-600 font-medium group-hover:text-blue-700 transition-colors"
                       >
                         <span>Baca Selengkapnya</span>
                         <svg

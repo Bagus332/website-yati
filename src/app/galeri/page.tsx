@@ -11,12 +11,13 @@ interface GalleryImage {
 }
 
 const GallerySkeleton = () => (
-    <div className="w-full h-64 bg-gray-300 rounded-lg animate-pulse"></div>
+  <div className="w-full h-64 bg-gray-300 rounded-lg animate-pulse"></div>
 );
 
 export default function GaleriPage() {
   const [images, setImages] = useState<GalleryImage[]>([]);
   const [loading, setLoading] = useState(true);
+  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
 
   useEffect(() => {
     const fetchImages = async () => {
@@ -27,6 +28,14 @@ export default function GaleriPage() {
     };
     fetchImages();
   }, []);
+
+  const handleImageClick = (image: GalleryImage) => {
+    setSelectedImage(image);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
 
   return (
     <main className="min-h-screen bg-gray-50">
@@ -44,12 +53,27 @@ export default function GaleriPage() {
           ) : (
             images.map((image) => (
               <div key={image.id} className="overflow-hidden rounded-lg shadow-md transform hover:scale-105 transition-transform duration-300">
-                <img src={image.image_url} alt={image.alt_text} className="w-full h-full object-cover" />
+                <img 
+                  src={image.image_url} 
+                  alt={image.alt_text} 
+                  className="w-full h-full object-cover cursor-pointer" 
+                  onClick={() => handleImageClick(image)} 
+                />
               </div>
             ))
           )}
         </div>
       </div>
+
+      {selectedImage && (
+        <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50" onClick={closeModal}>
+          <img 
+            src={selectedImage.image_url} 
+            alt={selectedImage.alt_text} 
+            className="max-w-full max-h-full object-contain" 
+          />
+        </div>
+      )}
     </main>
   );
 }
