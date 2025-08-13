@@ -221,6 +221,12 @@ const Navbar: React.FC = () => {
                 Struktur Organisasi
               </a>
               <a
+              href="/mts/tendik"
+              className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
+            >
+              Tendik
+            </a>
+              <a
                 href="/mts/alumni"
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
               >
@@ -245,6 +251,12 @@ const Navbar: React.FC = () => {
               >
                 Struktur Organisasi
               </a>
+              <a
+              href="/ma/tendik"
+              className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
+            >
+              Tendik
+            </a>
               <a
                 href="/ma/alumni"
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
@@ -348,6 +360,12 @@ const Navbar: React.FC = () => {
                   Struktur Organisasi
                 </a>
                 <a
+              href="/mts/tendik"
+              className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
+            >
+              Tendik
+            </a>
+                <a
                   href="/mts/alumni"
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
@@ -372,6 +390,12 @@ const Navbar: React.FC = () => {
                 >
                   Struktur Organisasi
                 </a>
+                <a
+                  href="/ma/tendik"
+                  className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
+                >
+                  Tendik
+            </a>
                 <a
                   href="/ma/alumni"
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"

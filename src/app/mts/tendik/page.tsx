@@ -3,7 +3,7 @@
 import { JSX, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { FaUserTie, FaUsers, FaBook, FaMoneyBillWave, FaChalkboardTeacher, FaGraduationCap, FaChevronDown } from "react-icons/fa";
+import { FaUserTie, FaChalkboardTeacher, FaUserCog, FaBook, FaUsers, FaMoneyBillWave, FaChevronDown } from "react-icons/fa";
 
 type StaffItem = {
   title: string;
@@ -16,7 +16,7 @@ type StaffItem = {
   parent?: string;
 };
 
-export default function StrukturAliyah() {
+export default function TendikTsanawiyah() {
   const [selected, setSelected] = useState<StaffItem | null>(null);
   const [accordionOpen, setAccordionOpen] = useState<number | null>(null);
 
@@ -24,14 +24,14 @@ export default function StrukturAliyah() {
     setAccordionOpen(accordionOpen === index ? null : index);
   };
 
-  const aliyahStructure: StaffItem[] = [
+  const tsanawiyahTendik: StaffItem[] = [
     // Level 1 - Kepala Madrasah
     {
-      title: "Kepala Madrasah Aliyah - Delvianti, M.Pd",
+      title: "Kepala Madrasah Tsanawiyah - Welli Okmira, M.Pd",
       icon: <FaUserTie />,
-      description: "Memimpin dan mengatur jalannya pendidikan di Madrasah Aliyah",
-      details: "Bertanggung jawab penuh atas jalannya pendidikan, pembinaan guru, dan pengelolaan administrasi Madrasah Aliyah.",
-      photo: "/foto/kepala MAS YATI KAMANG MUDIK.jpg",
+      description: "Memimpin Madrasah Tsanawiyah",
+      details: "Bertanggung jawab penuh atas jalannya pendidikan, pembinaan guru, dan pengelolaan administrasi Madrasah Tsanawiyah.",
+      photo: "/foto/Welli Okmira.jpg",
       level: 1
     },
     
@@ -40,28 +40,37 @@ export default function StrukturAliyah() {
       title: "Waka Kurikulum - Yenni Firda, S.Pd",
       icon: <FaBook />,
       description: "Mengatur dan mengembangkan kurikulum",
-      details: "Menyusun, mengembangkan, dan mengevaluasi kurikulum agar sesuai standar pendidikan nasional dan visi sekolah.",
+      details: "Menyusun, mengembangkan, dan mengevaluasi kurikulum sesuai standar pendidikan nasional dan visi sekolah.",
       photo: "/foto/yeni firda.jpg",
       level: 2,
-      parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
+      parent: "Kepala Madrasah Tsanawiyah - Welli Okmira, M.Pd"
     },
     {
-      title: "Waka Kesiswaan - Mhd. Sabri, SH",
+      title: "Waka Kesiswaan - Putri Nurhasanah, S.Pd",
       icon: <FaUsers />,
       description: "Mengatur kegiatan kesiswaan dan pembinaan karakter",
       details: "Bertanggung jawab atas pembinaan siswa, kedisiplinan, dan kegiatan ekstrakurikuler.",
-      photo: "/foto/Muhammad Sabri.jpg",
+      photo: "/foto/Putri Nurhasanah.jpg",
       level: 2,
-      parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
+      parent: "Kepala Madrasah Tsanawiyah - Welli Okmira, M.Pd"
     },
     {
-      title: "Tata Usaha - Yufita Indriani, S.Pd",
-      icon: <FaUsers />,
+      title: "Tata Usaha - Gito Prabowo, S.Pd",
+      icon: <FaUserCog />,
       description: "Mengelola administrasi sekolah",
-      details: "Mengurus dokumen, surat menyurat, arsip, dan administrasi pendidikan di Madrasah Aliyah.",
-      photo: "/vorg.jpg",
+      details: "Mengurus dokumen, surat menyurat, arsip, dan administrasi pendidikan di Madrasah Tsanawiyah.",
+      photo: "/foto/Gito Prabowo.jpg",
       level: 2,
-      parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
+      parent: "Kepala Madrasah Tsanawiyah - Welli Okmira, M.Pd"
+    },
+    {
+      title: "Kepala Perpustakaan - Meldawati, S.Pd.I",
+      icon: <FaBook />,
+      description: "Mengelola perpustakaan sekolah",
+      details: "Mengatur koleksi buku, pelayanan perpustakaan, dan kegiatan literasi siswa.",
+      photo: "/foto/Meldawati.jpg",
+      level: 2,
+      parent: "Kepala Madrasah Tsanawiyah - Welli Okmira, M.Pd"
     },
     {
       title: "Bendahara - Putri Nurhasanah, S.Pd",
@@ -70,45 +79,36 @@ export default function StrukturAliyah() {
       details: "Mengelola keuangan, membuat laporan, dan menjaga transparansi anggaran.",
       photo: "/foto/Putri Nurhasanah.jpg",
       level: 2,
-      parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
-    },
-    {
-      title: "Kepala Perpustakaan - Asmawati, S.Pd.I",
-      icon: <FaBook />,
-      description: "Mengelola perpustakaan sekolah",
-      details: "Mengatur koleksi buku, pelayanan perpustakaan, dan kegiatan literasi siswa.",
-      photo: "/foto/asmawati ok.jpg",
-      level: 2,
-      parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
+      parent: "Kepala Madrasah Tsanawiyah - Welli Okmira, M.Pd"
     },
 
     // Level 3 - Wali Kelas
     {
-      title: "Wali Kelas 10 - Nurrahmi Lathifa, M.Pd",
+      title: "Wali Kelas 7 - Azkia Rahmi, S.Ag",
       icon: <FaChalkboardTeacher />,
-      description: "Membimbing siswa kelas 10",
-      details: "Bertanggung jawab atas pembinaan siswa kelas 10 dan menjadi penghubung antara siswa, guru, dan orang tua.",
+      description: "Membimbing siswa kelas 7",
+      details: "Bertanggung jawab atas pembinaan siswa kelas 7 dan menjadi penghubung antara siswa, guru, dan orang tua.",
       photo: "/vorg.jpg",
       level: 3,
-      parent: "Waka Kesiswaan - Mhd. Sabri, SH"
+      parent: "Waka Kesiswaan - Putri Nurhasanah, S.Pd"
     },
     {
-      title: "Wali Kelas 11 - Yusnetti, SH",
+      title: "Wali Kelas 8 - Putri Rahmadhani, S.Pd",
       icon: <FaChalkboardTeacher />,
-      description: "Membimbing siswa kelas 11",
-      details: "Bertanggung jawab atas pembinaan siswa kelas 11 dan menjadi penghubung antara siswa, guru, dan orang tua.",
-      photo: "/foto/yusnetti oke.jpg",
+      description: "Membimbing siswa kelas 8",
+      details: "Bertanggung jawab atas pembinaan siswa kelas 8 dan menjadi penghubung antara siswa, guru, dan orang tua.",
+      photo: "/foto/Putri Ramadhani.jpg",
       level: 3,
-      parent: "Waka Kesiswaan - Mhd. Sabri, SH"
+      parent: "Waka Kesiswaan - Putri Nurhasanah, S.Pd"
     },
     {
-      title: "Wali Kelas 12 - Aufi Afifah Rifki TM, S.Pd",
+      title: "Wali Kelas 9 - Lilvia, S.Pd",
       icon: <FaChalkboardTeacher />,
-      description: "Membimbing siswa kelas 12",
-      details: "Bertanggung jawab atas pembinaan siswa kelas 12 dan menjadi penghubung antara siswa, guru, dan orang tua.",
-      photo: "/foto/aufi afifa rifki.jpg",
+      description: "Membimbing siswa kelas 9",
+      details: "Bertanggung jawab atas pembinaan siswa kelas 9 dan menjadi penghubung antara siswa, guru, dan orang tua.",
+      photo: "/foto/Lilvia.jpg",
       level: 3,
-      parent: "Waka Kesiswaan - Mhd. Sabri, SH"
+      parent: "Waka Kesiswaan - Putri Nurhasanah, S.Pd"
     },
 
     // Level 3 - Guru Mapel
@@ -116,33 +116,6 @@ export default function StrukturAliyah() {
       title: "Guru Mapel IPS & PKN",
       icon: <FaChalkboardTeacher />,
       description: "Pengajar mata pelajaran IPS dan PKN",
-      subItems: [
-        "Asmawati, S.Pd.I",
-        "Refda Yetti, S.Pd.I", 
-        "Lisa Yunita, S.Pd.I", 
-        "Debi Amanda, S.Pd"
-      ],
-      photo: "/vorg.jpg",
-      level: 3,
-      parent: "Waka Kurikulum - Yenni Firda, S.Pd"
-    },
-    {
-      title: "Guru Mapel IPA dan Matematika",
-      icon: <FaChalkboardTeacher />,
-      description: "Pengajar mata pelajaran IPA dan Matematika",
-      subItems: [
-        "Weni Anggraini, S.Pd", 
-        "Arbaisyah, S.Pd", 
-        "Nur Faizi, S.Pd"
-      ],
-      photo: "/vorg.jpg",
-      level: 3,
-      parent: "Waka Kurikulum - Yenni Firda, S.Pd"
-    },
-    {
-      title: "Guru Mapel Agama",
-      icon: <FaChalkboardTeacher />,
-      description: "Pengajar mata pelajaran Agama",
       subItems: [
         "Silhen, S.Pd",
         "Aufi Afifah Rifki TM, S.Pd",
@@ -170,38 +143,50 @@ export default function StrukturAliyah() {
       parent: "Waka Kurikulum - Yenni Firda, S.Pd"
     },
     {
-      title: "Guru Mapel Pondok",
-      icon: <FaChalkboardTeacher />,
-      description: "Pengajar mata pelajaran kepondokan",
+      title: "Guru Mapel Agama",
+      icon: <FaBook />,
+      description: "Pengajar mata pelajaran Pendidikan Agama Islam",
       subItems: [
-       "Nini Arianti, S.Ag", 
-       "M. Irfan, S.Pd", 
-       "Azkia Rahmi, S.Ag", 
-       "Nurrahmi Lathifa, M.Pd"
+        "Asmawati, S.Pd.I",
+        "Refda Yetti, S.Pd.I",
+        "Lisa Yunita, S.Pd.I",
+        "Debi Amanda, S.Pd"
       ],
       photo: "/vorg.jpg",
       level: 3,
       parent: "Waka Kurikulum - Yenni Firda, S.Pd"
     },
-
-    // Level 4 - Siswa
     {
-      title: "Siswa Aliyah",
-      icon: <FaGraduationCap />,
-      description: "Peserta didik Madrasah Aliyah",
-      details: "Siswa-siswi yang sedang menempuh pendidikan menengah berbasis Islam.",
+      title: "Guru Mapel IPA & Matematika",
+      icon: <FaBook />,
+      description: "Pengajar mata pelajaran IPA dan Matematika",
+      subItems: [
+        "Weni Anggraini, S.Pd",
+        "Arbaisyah, S.Pd",
+        "Nur Faizi, S.Pd"
+      ],
       photo: "/vorg.jpg",
-      level: 4,
-      parent: "Wali Kelas"
+      level: 3,
+      parent: "Waka Kurikulum - Yenni Firda, S.Pd"
+    },
+    {
+      title: "Guru Mapel Pondok",
+      icon: <FaBook />,
+      description: "Pengajar mata pelajaran kepondokan",
+      subItems: [
+        "Nini Arianti, S.Ag",
+        "M. Irfan, S.Pd",
+        "Azkia Rahmi, S.Ag",
+        "Nurrahmi Lathifa, M.Pd"
+      ],
+      photo: "/vorg.jpg",
+      level: 3,
+      parent: "Waka Kurikulum - Yenni Firda, S.Pd"
     }
   ];
 
   const getLevelItems = (level: number) => {
-    return aliyahStructure.filter(item => item.level === level);
-  };
-
-  const getChildren = (parentTitle: string) => {
-    return aliyahStructure.filter(item => item.parent === parentTitle);
+    return tsanawiyahTendik.filter(item => item.level === level);
   };
 
   return (
@@ -210,8 +195,18 @@ export default function StrukturAliyah() {
       <main className="container mx-auto py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold mb-10 text-center text-emerald-700">
-            Struktur Organisasi Madrasah Aliyah
+            Tenaga Kependidikan Madrasah Tsanawiyah
           </h1>
+
+          {/* Overview Section */}
+          <div className="bg-gradient-to-r from-emerald-50 to-white p-6 rounded-xl shadow-lg mb-10">
+            <p className="text-gray-700 text-lg leading-relaxed text-center max-w-3xl mx-auto">
+              Tenaga kependidikan di MTs YATI terdiri dari para profesional yang
+              berdedikasi dalam membina dan mendidik para santri. Dengan kompetensi
+              yang mumpuni dan pengalaman yang luas, mereka berkomitmen dalam
+              mengembangkan potensi akademik dan karakter islami para santri.
+            </p>
+          </div>
 
           {/* Organizational Chart */}
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -220,11 +215,11 @@ export default function StrukturAliyah() {
               <div className="text-center">
                 <div 
                   className="inline-block p-6 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                  onClick={() => setSelected(aliyahStructure[0])}
+                  onClick={() => setSelected(tsanawiyahTendik[0])}
                 >
-                  <div className="text-4xl mb-3">{aliyahStructure[0].icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{aliyahStructure[0].title}</h3>
-                  <p className="text-sm opacity-90">{aliyahStructure[0].description}</p>
+                  <div className="text-4xl mb-3">{tsanawiyahTendik[0].icon}</div>
+                  <h3 className="text-lg font-semibold mb-2">{tsanawiyahTendik[0].title}</h3>
+                  <p className="text-sm opacity-90">{tsanawiyahTendik[0].description}</p>
                 </div>
               </div>
             </div>
@@ -282,25 +277,6 @@ export default function StrukturAliyah() {
                 ))}
               </div>
             </div>
-
-            {/* Connecting Lines */}
-            <div className="flex justify-center mb-8">
-              <div className="w-px h-8 bg-cyan-300"></div>
-            </div>
-
-            {/* Level 4 - Siswa */}
-            <div className="flex justify-center">
-              <div className="text-center">
-                <div 
-                  className="inline-block p-6 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                  onClick={() => setSelected(aliyahStructure[aliyahStructure.length - 1])}
-                >
-                  <div className="text-4xl mb-3">{aliyahStructure[aliyahStructure.length - 1].icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{aliyahStructure[aliyahStructure.length - 1].title}</h3>
-                  <p className="text-sm opacity-90">{aliyahStructure[aliyahStructure.length - 1].description}</p>
-                </div>
-              </div>
-            </div>
           </div>
         </div>
       </main>
@@ -321,7 +297,7 @@ export default function StrukturAliyah() {
               src={selected.photo}
               alt={selected.title}
               className="w-40 h-40 object-cover rounded-full border-4 border-emerald-500 mx-auto mb-4"
-              onError={(e) => (e.currentTarget.src = "/images/aliyah/default.jpg")}
+              onError={(e) => (e.currentTarget.src = "/images/tsanawiyah/default.jpg")}
             />
 
             <h2 className="text-2xl font-semibold text-center text-emerald-700 mb-4">
@@ -336,9 +312,7 @@ export default function StrukturAliyah() {
                 >
                   <span className="font-semibold text-emerald-700">Daftar Guru</span>
                   <FaChevronDown
-                    className={`transition-transform duration-300 ${
-                      accordionOpen === 0 ? "rotate-180" : ""
-                    }`}
+                    className={`transition-transform duration-300 ${accordionOpen === 0 ? "rotate-180" : ""}`}
                   />
                 </div>
                 {accordionOpen === 0 && (
@@ -350,9 +324,7 @@ export default function StrukturAliyah() {
                 )}
               </div>
             ) : (
-              <p className="text-gray-700 text-center leading-relaxed">
-                {selected.details}
-              </p>
+              <p className="text-gray-700 text-center leading-relaxed">{selected.details}</p>
             )}
           </div>
         </div>

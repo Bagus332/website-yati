@@ -3,7 +3,7 @@
 import { JSX, useState } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { FaUserTie, FaUsers, FaBook, FaMoneyBillWave, FaChalkboardTeacher, FaGraduationCap, FaChevronDown } from "react-icons/fa";
+import { FaUserTie, FaChalkboardTeacher, FaUserCog, FaBook, FaUsers, FaMoneyBillWave, FaChevronDown } from "react-icons/fa";
 
 type StaffItem = {
   title: string;
@@ -16,7 +16,7 @@ type StaffItem = {
   parent?: string;
 };
 
-export default function StrukturAliyah() {
+export default function TendikAliyah() {
   const [selected, setSelected] = useState<StaffItem | null>(null);
   const [accordionOpen, setAccordionOpen] = useState<number | null>(null);
 
@@ -24,7 +24,7 @@ export default function StrukturAliyah() {
     setAccordionOpen(accordionOpen === index ? null : index);
   };
 
-  const aliyahStructure: StaffItem[] = [
+  const aliyahTendik: StaffItem[] = [
     // Level 1 - Kepala Madrasah
     {
       title: "Kepala Madrasah Aliyah - Delvianti, M.Pd",
@@ -56,7 +56,7 @@ export default function StrukturAliyah() {
     },
     {
       title: "Tata Usaha - Yufita Indriani, S.Pd",
-      icon: <FaUsers />,
+      icon: <FaUserCog />,
       description: "Mengelola administrasi sekolah",
       details: "Mengurus dokumen, surat menyurat, arsip, dan administrasi pendidikan di Madrasah Aliyah.",
       photo: "/vorg.jpg",
@@ -182,26 +182,11 @@ export default function StrukturAliyah() {
       photo: "/vorg.jpg",
       level: 3,
       parent: "Waka Kurikulum - Yenni Firda, S.Pd"
-    },
-
-    // Level 4 - Siswa
-    {
-      title: "Siswa Aliyah",
-      icon: <FaGraduationCap />,
-      description: "Peserta didik Madrasah Aliyah",
-      details: "Siswa-siswi yang sedang menempuh pendidikan menengah berbasis Islam.",
-      photo: "/vorg.jpg",
-      level: 4,
-      parent: "Wali Kelas"
     }
   ];
 
   const getLevelItems = (level: number) => {
-    return aliyahStructure.filter(item => item.level === level);
-  };
-
-  const getChildren = (parentTitle: string) => {
-    return aliyahStructure.filter(item => item.parent === parentTitle);
+    return aliyahTendik.filter(item => item.level === level);
   };
 
   return (
@@ -210,8 +195,18 @@ export default function StrukturAliyah() {
       <main className="container mx-auto py-12 px-4">
         <div className="max-w-7xl mx-auto">
           <h1 className="text-4xl font-bold mb-10 text-center text-emerald-700">
-            Struktur Organisasi Madrasah Aliyah
+            Tenaga Kependidikan Madrasah Aliyah
           </h1>
+
+          {/* Overview Section */}
+          <div className="bg-gradient-to-r from-emerald-50 to-white p-6 rounded-xl shadow-lg mb-10">
+            <p className="text-gray-700 text-lg leading-relaxed text-center max-w-3xl mx-auto">
+              Tenaga kependidikan di MA YATI terdiri dari para profesional yang
+              berdedikasi dalam membina dan mendidik para santri. Dengan kompetensi
+              yang mumpuni dan pengalaman yang luas, mereka berkomitmen dalam
+              mengembangkan potensi akademik dan karakter islami para santri.
+            </p>
+          </div>
 
           {/* Organizational Chart */}
           <div className="bg-white rounded-lg shadow-lg p-8">
@@ -220,11 +215,11 @@ export default function StrukturAliyah() {
               <div className="text-center">
                 <div 
                   className="inline-block p-6 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                  onClick={() => setSelected(aliyahStructure[0])}
+                  onClick={() => setSelected(aliyahTendik[0])}
                 >
-                  <div className="text-4xl mb-3">{aliyahStructure[0].icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{aliyahStructure[0].title}</h3>
-                  <p className="text-sm opacity-90">{aliyahStructure[0].description}</p>
+                  <div className="text-4xl mb-3">{aliyahTendik[0].icon}</div>
+                  <h3 className="text-lg font-semibold mb-2">{aliyahTendik[0].title}</h3>
+                  <p className="text-sm opacity-90">{aliyahTendik[0].description}</p>
                 </div>
               </div>
             </div>
@@ -280,25 +275,6 @@ export default function StrukturAliyah() {
                     </div>
                   </div>
                 ))}
-              </div>
-            </div>
-
-            {/* Connecting Lines */}
-            <div className="flex justify-center mb-8">
-              <div className="w-px h-8 bg-cyan-300"></div>
-            </div>
-
-            {/* Level 4 - Siswa */}
-            <div className="flex justify-center">
-              <div className="text-center">
-                <div 
-                  className="inline-block p-6 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                  onClick={() => setSelected(aliyahStructure[aliyahStructure.length - 1])}
-                >
-                  <div className="text-4xl mb-3">{aliyahStructure[aliyahStructure.length - 1].icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{aliyahStructure[aliyahStructure.length - 1].title}</h3>
-                  <p className="text-sm opacity-90">{aliyahStructure[aliyahStructure.length - 1].description}</p>
-                </div>
               </div>
             </div>
           </div>
