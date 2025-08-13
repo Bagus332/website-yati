@@ -44,10 +44,16 @@ export default function GaleriPage() {
       <Navbar />
       <div className="container mx-auto p-4 py-12">
         <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-emerald-600 to-blue-600 bg-clip-text text-transparent">
+          <span className="inline-block bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
             Galeri Kegiatan
+          </span>
+          <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
+            Momen Berkesan
           </h1>
-          <p className="text-gray-600 mt-2">Momen-momen berharga di Pondok Pesantren YATI.</p>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
+          <p className="text-gray-600 mt-6 text-lg">
+            Dokumentasi kegiatan di Pondok Pesantren YATI Kamang Mudik
+          </p>
         </div>
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {loading ? (

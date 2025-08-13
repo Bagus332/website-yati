@@ -479,23 +479,6 @@ export default function Home() {
                     <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors">
                       {program.description}
                     </p>
-
-                    <div className="mt-6 flex items-center text-sm font-medium text-gray-500 group-hover:text-gray-600 transition-colors">
-                      <span>Pelajari lebih lanjut</span>
-                      <svg
-                        className="w-4 h-4 ml-2 group-hover:translate-x-1 transition-transform"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M9 5l7 7-7 7"
-                        />
-                      </svg>
-                    </div>
                   </motion.div>
                 ))}
               </div>
@@ -602,7 +585,7 @@ export default function Home() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                     whileHover={{ y: -8, scale: 1.02 }}
-                    className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100"
+                    className="group bg-white rounded-2xl shadow-xl hover:shadow-2xl transition-all duration-500 overflow-hidden border border-gray-100 flex flex-col h-full"
                   >
                     <div className="relative h-56 overflow-hidden">
                       <Image
@@ -612,12 +595,11 @@ export default function Home() {
                         className="object-cover transform group-hover:scale-110 transition-transform duration-700"
                         unoptimized
                       />
-                      {/* Mengubah gradien overlay menjadi lebih lembut */}
                       <div className="absolute inset-0 bg-gradient-to-t from-blue-500/20 via-transparent to-transparent z-10" />
                     </div>
 
-                    <div className="p-6">
-                      <div className="mb-4">
+                    <div className="p-6 flex flex-col flex-grow">
+                      <div className="flex-grow">
                         <h3 className="text-xl font-bold text-gray-800 mb-2 line-clamp-2 group-hover:text-blue-600 transition-colors">
                           {article.title}
                         </h3>
@@ -626,7 +608,7 @@ export default function Home() {
                         </p>
                       </div>
 
-                      <div className="mt-6 flex items-center justify-between">
+                      <div className="mt-6 flex items-center justify-between pt-4 border-t border-gray-100">
                         <a
                           href={`/berita/${slug}`}
                           className="inline-flex items-center space-x-2 text-blue-600 font-medium group-hover:text-blue-700 transition-colors"

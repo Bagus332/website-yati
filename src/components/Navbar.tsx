@@ -2,22 +2,32 @@
 
 import React, { useState, ReactNode } from "react";
 import Image from "next/image";
+import { usePathname } from "next/navigation"; // Add this import
 
 interface DropdownProps {
   title: string;
   children: ReactNode;
+  isOpen: boolean;
+  onToggle: () => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDropdown = () => setIsOpen(!isOpen);
+const Dropdown: React.FC<DropdownProps> = ({ title, children, isOpen, onToggle }) => {
+  const pathname = usePathname();
+  
+  const isActive = pathname.startsWith(`/${title.toLowerCase()}`) || 
+    (title === "MTsS" && pathname.startsWith("/mts")) ||
+    (title === "MAS" && pathname.startsWith("/ma"));
 
   return (
     <div className="relative">
       {/* Tombol Dropdown */}
       <button
-        onClick={toggleDropdown}
-        className="flex items-center gap-2 px-4 py-2 rounded-lg text-[#0F1035] hover:text-white hover:bg-[#7FC7D9] transition-all duration-300 font-medium relative group"
+        onClick={onToggle}
+        className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium relative group
+          ${isActive
+            ? "text-white bg-[#7FC7D9]"
+            : "text-[#0F1035] hover:text-white hover:bg-[#7FC7D9]"
+          }`}
       >
         <span>{title}</span>
         {/* Ikon Chevron */}
@@ -55,6 +65,19 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
 
 const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
+  const pathname = usePathname();
+
+  // Helper function to toggle dropdown
+  const handleDropdownToggle = (dropdownName: string) => {
+    setActiveDropdown(activeDropdown === dropdownName ? null : dropdownName);
+  };
+
+  // Helper function to check if path is active
+  const isPathActive = (path: string) => {
+    if (path === "/") return pathname === "/";
+    return pathname.startsWith(path);
+  };
 
   const navLinks = [
     { href: "/", label: "Beranda" },
@@ -96,14 +119,24 @@ const Navbar: React.FC = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="px-4 py-2 rounded-lg text-[#0F1035] hover:text-white hover:bg-[#7FC7D9] transition-all duration-300 relative group font-medium"
+                className={`px-4 py-2 rounded-lg transition-all duration-300 relative group font-medium
+                  ${isPathActive(link.href)
+                    ? "text-white bg-[#7FC7D9]"
+                    : "text-[#0F1035] hover:text-white hover:bg-[#7FC7D9]"
+                  }`}
               >
                 {link.label}
-                <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-[#7FC7D9] to-[#365486] group-hover:w-full transition-all duration-300 rounded-full"></span>
+                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-[#7FC7D9] to-[#365486] transition-all duration-300 rounded-full
+                  ${isPathActive(link.href) ? "w-full" : "w-0 group-hover:w-full"}`}>
+                </span>
               </a>
             ))}
 
-            <Dropdown title="Profil">
+            <Dropdown 
+              title="Profil" 
+              isOpen={activeDropdown === 'profil'}
+              onToggle={() => handleDropdownToggle('profil')}
+            >
               <a
                 href="/profile/visi-misi"
                 className="block px-6 py-3 hover:bg-[#7FC7D9] hover:text-white transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
@@ -170,7 +203,11 @@ const Navbar: React.FC = () => {
               </a>
             </Dropdown>
 
-            <Dropdown title="MTsS">
+            <Dropdown 
+              title="MTsS" 
+              isOpen={activeDropdown === 'mts'}
+              onToggle={() => handleDropdownToggle('mts')}
+            >
               <a
                 href="/mts/profil"
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
@@ -191,7 +228,11 @@ const Navbar: React.FC = () => {
               </a>
             </Dropdown>
 
-            <Dropdown title="MAS">
+            <Dropdown 
+              title="MAS" 
+              isOpen={activeDropdown === 'mas'}
+              onToggle={() => handleDropdownToggle('mas')}
+            >
               <a
                 href="/ma/profil"
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
@@ -246,7 +287,11 @@ const Navbar: React.FC = () => {
               <a
                 key={link.href}
                 href={link.href}
-                className="block px-5 py-3 rounded-xl hover:bg-[#7FC7D9] hover:text-white text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486] hover:shadow-lg"
+                className={`block px-5 py-3 rounded-xl transition-all duration-300 font-medium border-l-4
+                  ${isPathActive(link.href)
+                    ? "bg-[#7FC7D9] text-white border-[#365486]"
+                    : "text-[#0F1035] hover:bg-[#7FC7D9] hover:text-white border-transparent hover:border-[#365486]"
+                  } hover:shadow-lg`}
               >
                 {link.label}
               </a>
@@ -254,7 +299,11 @@ const Navbar: React.FC = () => {
 
             {/* Mobile Dropdowns */}
             <div className="space-y-2 pt-4 border-t-2 border-[#7FC7D9]">
-              <Dropdown title="Profil">
+              <Dropdown 
+                title="Profil" 
+                isOpen={activeDropdown === 'profil-mobile'}
+                onToggle={() => handleDropdownToggle('profil-mobile')}
+              >
                 <a
                   href="/profile/visi-misi"
                   className="block px-5 py-2 hover:bg-[#7FC7D9] hover:text-white transition-all duration-300 font-medium"
@@ -281,7 +330,11 @@ const Navbar: React.FC = () => {
                 </a>
               </Dropdown>
 
-              <Dropdown title="MTsS">
+              <Dropdown 
+                title="MTsS" 
+                isOpen={activeDropdown === 'mts-mobile'}
+                onToggle={() => handleDropdownToggle('mts-mobile')}
+              >
                 <a
                   href="/mts/profil"
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
@@ -302,7 +355,11 @@ const Navbar: React.FC = () => {
                 </a>
               </Dropdown>
 
-              <Dropdown title="MAS">
+              <Dropdown 
+                title="MAS" 
+                isOpen={activeDropdown === 'mas-mobile'}
+                onToggle={() => handleDropdownToggle('mas-mobile')}
+              >
                 <a
                   href="/ma/profil"
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"

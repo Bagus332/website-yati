@@ -3,21 +3,61 @@
 import * as React from "react"
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu"
 import { CheckIcon, ChevronRightIcon, CircleIcon } from "lucide-react"
-
 import { cn } from "@/lib/utils"
 
-function DropdownMenu({
-  ...props
-}: React.ComponentProps<typeof DropdownMenuPrimitive.Root>) {
-  return <DropdownMenuPrimitive.Root data-slot="dropdown-menu" {...props} />
+// Define props interface
+interface DropdownMenuProps extends React.ComponentProps<typeof DropdownMenuPrimitive.Root> {
+  id: string; // Explicitly define the id prop type
 }
+
+function DropdownMenu({ id, ...props }: DropdownMenuProps) {
+  // Create a shared state for open dropdown
+  const { openId, setOpenId } = useDropdownContext();
+
+  const handleOpenChange = (isOpen: boolean) => {
+    if (isOpen) {
+      setOpenId(id);
+    } else if (openId === id) {
+      setOpenId(null);
+    }
+  };
+
+  return (
+    <DropdownMenuPrimitive.Root
+      data-slot="dropdown-menu"
+      onOpenChange={handleOpenChange}
+      {...props}
+    />
+  );
+}
+
+// Create a context to manage dropdown state globally
+const DropdownContext = React.createContext<{ openId: string | null; setOpenId: React.Dispatch<React.SetStateAction<string | null>> } | undefined>(undefined);
+
+export const DropdownProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
+  const [openId, setOpenId] = React.useState<string | null>(null);
+  return (
+    <DropdownContext.Provider value={{ openId, setOpenId }}>
+      {children}
+    </DropdownContext.Provider>
+  );
+};
+
+// Custom hook to access the dropdown context
+const useDropdownContext = () => {
+  const context = React.useContext(DropdownContext);
+  if (!context) {
+    throw new Error("useDropdownContext must be used within a DropdownProvider");
+  }
+  return context;
+};
 
 function DropdownMenuPortal({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Portal>) {
   return (
     <DropdownMenuPrimitive.Portal data-slot="dropdown-menu-portal" {...props} />
-  )
+  );
 }
 
 function DropdownMenuTrigger({
@@ -28,7 +68,7 @@ function DropdownMenuTrigger({
       data-slot="dropdown-menu-trigger"
       {...props}
     />
-  )
+  );
 }
 
 function DropdownMenuContent({
@@ -48,7 +88,7 @@ function DropdownMenuContent({
         {...props}
       />
     </DropdownMenuPrimitive.Portal>
-  )
+  );
 }
 
 function DropdownMenuGroup({
@@ -56,7 +96,7 @@ function DropdownMenuGroup({
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Group>) {
   return (
     <DropdownMenuPrimitive.Group data-slot="dropdown-menu-group" {...props} />
-  )
+  );
 }
 
 function DropdownMenuItem({
@@ -79,7 +119,7 @@ function DropdownMenuItem({
       )}
       {...props}
     />
-  )
+  );
 }
 
 function DropdownMenuCheckboxItem({
@@ -105,7 +145,7 @@ function DropdownMenuCheckboxItem({
       </span>
       {children}
     </DropdownMenuPrimitive.CheckboxItem>
-  )
+  );
 }
 
 function DropdownMenuRadioGroup({
@@ -116,7 +156,7 @@ function DropdownMenuRadioGroup({
       data-slot="dropdown-menu-radio-group"
       {...props}
     />
-  )
+  );
 }
 
 function DropdownMenuRadioItem({
@@ -140,7 +180,7 @@ function DropdownMenuRadioItem({
       </span>
       {children}
     </DropdownMenuPrimitive.RadioItem>
-  )
+  );
 }
 
 function DropdownMenuLabel({
@@ -160,7 +200,7 @@ function DropdownMenuLabel({
       )}
       {...props}
     />
-  )
+  );
 }
 
 function DropdownMenuSeparator({
@@ -173,7 +213,7 @@ function DropdownMenuSeparator({
       className={cn("bg-border -mx-1 my-1 h-px", className)}
       {...props}
     />
-  )
+  );
 }
 
 function DropdownMenuShortcut({
@@ -189,13 +229,13 @@ function DropdownMenuShortcut({
       )}
       {...props}
     />
-  )
+  );
 }
 
 function DropdownMenuSub({
   ...props
 }: React.ComponentProps<typeof DropdownMenuPrimitive.Sub>) {
-  return <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />
+  return <DropdownMenuPrimitive.Sub data-slot="dropdown-menu-sub" {...props} />;
 }
 
 function DropdownMenuSubTrigger({
@@ -219,7 +259,7 @@ function DropdownMenuSubTrigger({
       {children}
       <ChevronRightIcon className="ml-auto size-4" />
     </DropdownMenuPrimitive.SubTrigger>
-  )
+  );
 }
 
 function DropdownMenuSubContent({
@@ -235,7 +275,7 @@ function DropdownMenuSubContent({
       )}
       {...props}
     />
-  )
+  );
 }
 
 export {
