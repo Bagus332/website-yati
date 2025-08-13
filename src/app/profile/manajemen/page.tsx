@@ -2,6 +2,7 @@
 
 import { JSX, useState } from "react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { FaUserTie, FaUsers, FaBook, FaMoneyBillWave } from "react-icons/fa";
 
 type ManagementItem = {
@@ -124,6 +125,7 @@ export default function Home() {
           </div>
         </div>
       </main>
+      <Footer />
 
       {/* Modal */}
       {selected && (

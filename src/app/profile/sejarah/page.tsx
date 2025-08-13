@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import {
   FaHistory,
   FaGraduationCap,
@@ -289,6 +290,7 @@ export default function Home() {
           </motion.div>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

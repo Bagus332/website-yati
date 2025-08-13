@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { FaUserGraduate } from 'react-icons/fa';
@@ -38,6 +39,7 @@ export default function AlumniMTSPage() {
   }, []);
 
   return (
+    <>
     <main className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="container mx-auto p-4 py-12">
@@ -66,5 +68,7 @@ export default function AlumniMTSPage() {
         </div>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }

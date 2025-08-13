@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { supabase } from "@/lib/supabase";
 import Link from 'next/link';
 
@@ -65,6 +66,7 @@ export default function BeritaPage() {
   };
 
   return (
+    <>
     <main className="min-h-screen bg-gray-50">
       <Navbar />
       <div className="container mx-auto p-4 py-12">
@@ -126,5 +128,7 @@ export default function BeritaPage() {
         </div>
       </div>
     </main>
+    <Footer />
+    </>
   );
 }

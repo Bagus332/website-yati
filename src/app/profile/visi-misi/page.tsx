@@ -1,6 +1,7 @@
 "use client";
 
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { useRef } from "react";
 import {
   FaEye,
@@ -192,6 +193,7 @@ export default function Home() {
           </section>
         </div>
       </main>
+      <Footer />
     </>
   );
 }

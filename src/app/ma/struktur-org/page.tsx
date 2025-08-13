@@ -2,6 +2,7 @@
 
 import { JSX, useState } from "react";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { FaUserTie, FaUsers, FaBook, FaMoneyBillWave, FaChalkboardTeacher, FaGraduationCap, FaChevronDown } from "react-icons/fa";
 
 type StaffItem = {
@@ -199,6 +200,7 @@ export default function StrukturAliyah() {
           </div>
         </div>
       </main>
+      <Footer />
 
       {/* Modal Detail */}
       {selected && (

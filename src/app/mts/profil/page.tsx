@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
@@ -228,6 +229,7 @@ export default function Home() {
           </motion.div>
         </section>
       </main>
+      <Footer />
     </>
   );
 }
