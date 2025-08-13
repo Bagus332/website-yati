@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState, ReactNode } from "react";
+import React, { useState, ReactNode, useEffect, useRef } from "react";
 import Image from "next/image";
-import { usePathname } from "next/navigation"; // Add this import
+import { usePathname } from "next/navigation";
 
 interface DropdownProps {
   title: string;
@@ -13,13 +13,32 @@ interface DropdownProps {
 
 const Dropdown: React.FC<DropdownProps> = ({ title, children, isOpen, onToggle }) => {
   const pathname = usePathname();
-  
+  const dropdownRef = useRef<HTMLDivElement>(null); // Ref untuk elemen dropdown
+
   const isActive = pathname.startsWith(`/${title.toLowerCase()}`) || 
     (title === "MTsS" && pathname.startsWith("/mts")) ||
     (title === "MAS" && pathname.startsWith("/ma"));
 
+  // Efek untuk menangani klik di luar dropdown
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      // Jika dropdown terbuka dan klik terjadi di luar elemen dropdown, panggil onToggle untuk menutupnya
+      if (isOpen && dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        onToggle();
+      }
+    };
+
+    // Menambahkan event listener saat komponen dimuat
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Membersihkan event listener saat komponen akan di-unmount
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen, onToggle]); // Jalankan kembali efek jika isOpen atau onToggle berubah
+
   return (
-    <div className="relative">
+    <div className="relative" ref={dropdownRef}> {/* Terapkan ref di sini */}
       {/* Tombol Dropdown */}
       <button
         onClick={onToggle}
