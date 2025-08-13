@@ -2,7 +2,7 @@
 
 import { useState, useEffect, FormEvent } from "react";
 import { supabase } from "@/lib/supabase";
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash, FaPen } from 'react-icons/fa';
 
 // Definisikan tipe data untuk Alumni
 interface Alumni {
@@ -14,16 +14,25 @@ interface Alumni {
 }
 
 export default function AlumniManager() {
-  // State untuk form input
-  const [name, setName]               = useState('');
-  const [graduationYear, setGraduationYear] = useState('');
-  const [batchYear, setBatchYear]         = useState('');
-  const [school, setSchool]           = useState<'MTS' | 'MA'>('MTS');
+  // Get current year for default value
+  const currentYear = new Date().getFullYear();
+  const yearOptions = Array.from(
+    { length: currentYear - 2000 + 1 }, 
+    (_, i) => 2000 + i
+  );
+
+  // Modified state for form input
+  const [name, setName] = useState('');
+  const [graduationYear, setGraduationYear] = useState(currentYear.toString());
+  const [batchStart, setBatchStart] = useState('');
+  const [batchEnd, setBatchEnd] = useState('');
+  const [school, setSchool] = useState<'MTS' | 'MA'>('MTS');
   
   // State untuk data dan UI
   const [alumniList, setAlumniList]     = useState<Alumni[]>([]);
   const [isSubmitting, setIsSubmitting]   = useState(false);
   const [message, setMessage]           = useState({ type: '', text: '' });
+  const [editingAlumni, setEditingAlumni] = useState<Alumni | null>(null);
 
   // Mengambil data alumni saat komponen dimuat
   useEffect(() => {
@@ -43,28 +52,49 @@ export default function AlumniManager() {
   // Handler untuk submit form (menambah alumni baru)
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (!name || !graduationYear || !batchYear) {
-        setMessage({ type: 'error', text: 'Semua kolom harus diisi.' });
-        return;
+    if (!name || !graduationYear || !batchStart || !batchEnd) {
+      setMessage({ type: 'error', text: 'Semua kolom harus diisi.' });
+      return;
     }
     setIsSubmitting(true);
     
-    const { error } = await supabase.from('alumni').insert([{ 
-      name, 
-      graduation_year: parseInt(graduationYear), 
+    const batchYear = `${batchStart}-${batchEnd}`;
+    const alumniData = {
+      name,
+      graduation_year: parseInt(graduationYear),
       batch_year: batchYear,
       school
-    }]);
+    };
+
+    let error;
+
+    if (editingAlumni) {
+      // Update existing alumni
+      const { error: updateError } = await supabase
+        .from('alumni')
+        .update(alumniData)
+        .eq('id', editingAlumni.id);
+      error = updateError;
+    } else {
+      // Create new alumni
+      const { error: insertError } = await supabase
+        .from('alumni')
+        .insert([alumniData]);
+      error = insertError;
+    }
 
     if (error) {
-      setMessage({ type: 'error', text: 'Gagal menambah alumni: ' + error.message });
+      setMessage({ 
+        type: 'error', 
+        text: `Gagal ${editingAlumni ? 'memperbarui' : 'menambah'} alumni: ${error.message}` 
+      });
     } else {
-      setMessage({ type: 'success', text: 'Alumni berhasil ditambahkan.' });
-      // Reset form
-      setName('');
-      setGraduationYear('');
-      setBatchYear('');
-      fetchAlumni(); // Muat ulang daftar
+      setMessage({ 
+        type: 'success', 
+        text: `Alumni berhasil ${editingAlumni ? 'diperbarui' : 'ditambahkan'}.` 
+      });
+      resetForm();
+      fetchAlumni();
     }
     setIsSubmitting(false);
   };
@@ -82,13 +112,35 @@ export default function AlumniManager() {
     }
   };
 
+  // Fungsi untuk mengatur mode edit
+  const handleEdit = (alumni: Alumni) => {
+    setEditingAlumni(alumni);
+    setName(alumni.name);
+    setGraduationYear(alumni.graduation_year.toString());
+    // Split batch year into start and end years
+    const [start, end] = alumni.batch_year.split('-');
+    setBatchStart(start);
+    setBatchEnd(end);
+    setSchool(alumni.school);
+  };
+
+  // Reset form
+  const resetForm = () => {
+    setEditingAlumni(null);
+    setName('');
+    setGraduationYear('');
+    setBatchStart('');
+    setBatchEnd('');
+    setSchool('MTS');
+  };
+
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
       {/* Form Section */}
       <div className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60">
         <div className="text-center mb-8">
           <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
-            Tambah Alumni
+            {editingAlumni ? 'Edit Alumni' : 'Tambah Alumni'}
           </h3>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full mt-4" />
         </div>
@@ -114,23 +166,48 @@ export default function AlumniManager() {
               required 
             />
             
+            <select 
+              value={graduationYear}
+              onChange={e => setGraduationYear(e.target.value)}
+              className="w-full p-4 bg-white/80 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-400 transition-all"
+              required
+            >
+              <option value="">Pilih Tahun Lulus</option>
+              {yearOptions.map(year => (
+                <option key={`grad-${year}`} value={year}>
+                  {year}
+                </option>
+              ))}
+            </select>
+
             <div className="grid grid-cols-2 gap-4">
-              <input 
-                type="number" 
-                placeholder="Tahun Lulus" 
-                value={graduationYear} 
-                onChange={e => setGraduationYear(e.target.value)} 
+              <select 
+                value={batchStart}
+                onChange={e => setBatchStart(e.target.value)}
                 className="w-full p-4 bg-white/80 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-400 transition-all"
-                required 
-              />
-              <input 
-                type="text" 
-                placeholder="Angkatan" 
-                value={batchYear} 
-                onChange={e => setBatchYear(e.target.value)} 
+                required
+              >
+                <option value="">Tahun Masuk</option>
+                {yearOptions.map(year => (
+                  <option key={`start-${year}`} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
+
+              <select 
+                value={batchEnd}
+                onChange={e => setBatchEnd(e.target.value)}
                 className="w-full p-4 bg-white/80 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-400 transition-all"
-                required 
-              />
+                required
+              >
+                <option value="">Tahun Selesai</option>
+                {yearOptions.map(year => (
+                  <option key={`end-${year}`} value={year}>
+                    {year}
+                  </option>
+                ))}
+              </select>
             </div>
 
             <select 
@@ -143,13 +220,28 @@ export default function AlumniManager() {
             </select>
           </div>
 
-          <button 
-            type="submit" 
-            disabled={isSubmitting} 
-            className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-4 rounded-xl disabled:opacity-50 font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02]"
-          >
-            {isSubmitting ? 'Menyimpan...' : 'Tambah Alumni'}
-          </button>
+          <div className="flex gap-4">
+            <button 
+              type="submit" 
+              disabled={isSubmitting} 
+              className="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-4 rounded-xl disabled:opacity-50 font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02]"
+            >
+              {isSubmitting 
+                ? 'Menyimpan...' 
+                : (editingAlumni ? 'Perbarui Alumni' : 'Tambah Alumni')
+              }
+            </button>
+
+            {editingAlumni && (
+              <button 
+                type="button" 
+                onClick={resetForm}
+                className="flex-1 bg-gray-500 text-white p-4 rounded-xl font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02]"
+              >
+                Batal
+              </button>
+            )}
+          </div>
         </form>
       </div>
 
@@ -183,6 +275,13 @@ export default function AlumniManager() {
                   }`}>
                     {alumni.school}
                   </span>
+                  <button 
+                    onClick={() => handleEdit(alumni)} 
+                    className="text-yellow-500 hover:text-yellow-600 transition-colors p-2 hover:bg-yellow-50 rounded-full"
+                    title="Edit Alumni"
+                  >
+                    <FaPen />
+                  </button>
                   <button 
                     onClick={() => handleDelete(alumni.id)} 
                     className="text-red-500 hover:text-red-600 transition-colors p-2 hover:bg-red-50 rounded-full"
