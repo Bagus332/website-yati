@@ -61,42 +61,59 @@ export default function GalleryManager() {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-      <h3 className="text-2xl font-bold mb-4 text-[#071952]">Kelola Galeri</h3>
-      
-      {/* Pesan Notifikasi */}
+    <div className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60">
+      <div className="text-center mb-8">
+        <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+          Kelola Galeri
+        </h3>
+        <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full mt-4" />
+      </div>
+
       {message.text && (
-        <p className={`mb-4 text-sm font-semibold ${message.type === 'error' ? 'text-red-600' : 'text-green-600'}`}>
+        <div className={`mb-6 p-4 rounded-xl ${
+          message.type === 'error' 
+            ? 'bg-red-50 text-red-600' 
+            : 'bg-green-50 text-green-600'
+        } font-semibold text-center`}>
           {message.text}
-        </p>
+        </div>
       )}
 
-      {/* Tombol Upload */}
       <CldUploadButton 
-        uploadPreset="ponpes_yati" // Pastikan nama preset ini benar
+        uploadPreset="ponpes_yati"
         onSuccess={handleUpload}
+        className="w-full"
       >
-        <div className="w-full text-center bg-[#3572EF] text-white py-3 px-4 rounded-lg hover:bg-opacity-90 cursor-pointer transition-colors font-semibold">
-          <FaPlus className="inline mr-2"/>Tambah Foto Baru
+        <div className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-4 px-6 rounded-xl hover:opacity-90 transition-all duration-300 font-semibold flex items-center justify-center space-x-2">
+          <FaPlus />
+          <span>Tambah Foto Baru</span>
         </div>
       </CldUploadButton>
 
-      {/* Grid Tampilan Gambar */}
-      <div className="grid grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 mt-6 max-h-[500px] overflow-y-auto p-4 bg-[#E0F7FA]/50 rounded-lg border border-[#97FEED]">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
         {images.length > 0 ? images.map(img => (
-          <div key={img.id} className="relative group">
-            <img src={img.image_url} alt="Foto Galeri" className="w-full h-28 object-cover rounded-lg shadow-md"/>
-            <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center rounded-lg">
-                <button 
-                    onClick={() => handleDelete(img.id)} 
-                    className="bg-red-600 text-white rounded-full p-2 transform scale-75 group-hover:scale-100 transition-transform duration-300"
-                    title="Hapus Foto"
-                >
-                    <FaTrash size={12}/>
-                </button>
+          <div key={img.id} className="group relative transform hover:scale-105 transition-all duration-300">
+            <div className="relative h-48 rounded-xl overflow-hidden shadow-lg">
+              <img 
+                src={img.image_url} 
+                alt="Foto Galeri" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </div>
+            <button 
+              onClick={() => handleDelete(img.id)} 
+              className="absolute bottom-4 right-4 bg-red-500 text-white rounded-full p-3 shadow-lg opacity-0 group-hover:opacity-100 transition-all duration-300 hover:bg-red-600 transform hover:scale-110"
+              title="Hapus Foto"
+            >
+              <FaTrash size={14} />
+            </button>
           </div>
-        )) : <p className="col-span-full text-center text-gray-500 py-8">Belum ada foto di galeri.</p>}
+        )) : (
+          <div className="col-span-full text-center py-12 text-gray-500">
+            Belum ada foto di galeri.
+          </div>
+        )}
       </div>
     </div>
   );

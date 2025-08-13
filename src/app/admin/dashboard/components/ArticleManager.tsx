@@ -127,52 +127,144 @@ export default function ArticleManager() {
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-      {/* Kolom Kiri: Form Input */}
+      {/* Form Section */}
       <div>
-        <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-          <h3 className="text-2xl font-bold mb-4 text-[#071952]">{editingArticle ? 'Edit Artikel' : 'Artikel Baru'}</h3>
-          {message.text && <p className={`mb-4 text-sm font-semibold ${message.type === 'error' ? 'text-red-600' : (message.type === 'success' ? 'text-green-600' : 'text-blue-600')}`}>{message.text}</p>}
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input type="text" placeholder="Judul Artikel" value={title} onChange={(e) => setTitle(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3572EF] transition" required />
-            <textarea placeholder="Konten Artikel" value={content} onChange={(e) => setContent(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3572EF] transition" rows={8} required />
+        <div className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60">
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              {editingArticle ? 'Edit Artikel' : 'Artikel Baru'}
+            </h3>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full mt-4" />
+          </div>
+
+          {message.text && (
+            <div className={`mb-6 p-4 rounded-xl ${
+              message.type === 'error' 
+                ? 'bg-red-50 text-red-600' 
+                : message.type === 'success'
+                ? 'bg-green-50 text-green-600'
+                : 'bg-blue-50 text-blue-600'
+            } font-semibold text-center`}>
+              {message.text}
+            </div>
+          )}
+
+          <form onSubmit={handleSubmit} className="space-y-6">
+            <input 
+              type="text" 
+              placeholder="Judul Artikel" 
+              value={title} 
+              onChange={(e) => setTitle(e.target.value)} 
+              className="w-full p-4 bg-white/80 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-400 transition-all" 
+              required 
+            />
             
-            <div className="space-y-2">
-                <label className="font-semibold text-gray-700">Gambar Artikel</label>
-                <div className="flex items-center gap-4">
-                    <CldUploadButton uploadPreset="ponpes_yati" onSuccess={handleArticleUpload}>
-                        <span className="bg-[#0B666A] text-white py-2 px-4 rounded-lg hover:bg-opacity-90 transition-colors cursor-pointer text-sm font-semibold">
-                            {imageUrl ? 'Ganti Gambar' : 'Pilih Gambar'}
-                        </span>
-                    </CldUploadButton>
-                    {imageUrl && (
-                        <div className="relative">
-                            <img src={imageUrl} alt="Preview" className="w-24 h-24 object-cover rounded-lg shadow" />
-                            <button type="button" onClick={handleRemoveImage} className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full p-1.5 leading-none hover:bg-red-700 transition-transform hover:scale-110" title="Hapus gambar">
-                                <FaTimes size={12} />
-                            </button>
-                        </div>
-                    )}
-                </div>
+            <textarea 
+              placeholder="Konten Artikel" 
+              value={content} 
+              onChange={(e) => setContent(e.target.value)} 
+              className="w-full p-4 bg-white/80 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-400 transition-all" 
+              rows={8} 
+              required 
+            />
+            
+            <div className="space-y-3">
+              <label className="font-semibold text-gray-700 block">Gambar Artikel</label>
+              <div className="flex items-center gap-4">
+                <CldUploadButton 
+                  uploadPreset="ponpes_yati" 
+                  onSuccess={handleArticleUpload}
+                  className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white py-3 px-6 rounded-xl hover:opacity-90 transition-all duration-300 font-semibold"
+                >
+                  {imageUrl ? 'Ganti Gambar' : 'Pilih Gambar'}
+                </CldUploadButton>
+
+                {imageUrl && (
+                  <div className="relative">
+                    <img 
+                      src={imageUrl} 
+                      alt="Preview" 
+                      className="w-24 h-24 object-cover rounded-xl shadow-lg" 
+                    />
+                    <button 
+                      type="button" 
+                      onClick={handleRemoveImage} 
+                      className="absolute -top-2 -right-2 bg-red-500 text-white rounded-full p-2 shadow-lg hover:bg-red-600 transition-all duration-300"
+                    >
+                      <FaTimes size={12} />
+                    </button>
+                  </div>
+                )}
+              </div>
             </div>
 
-            <button type="submit" disabled={isSubmitting} className="w-full bg-[#3572EF] text-white p-3 rounded-lg disabled:bg-opacity-50 font-bold hover:bg-opacity-90 transition-colors">{isSubmitting ? 'Menyimpan...' : (editingArticle ? 'Perbarui Artikel' : 'Terbitkan Artikel')}</button>
-            {editingArticle && <button type="button" onClick={resetForm} className="w-full bg-gray-600 text-white p-3 rounded-lg mt-2 hover:bg-gray-700 transition-colors">Batal</button>}
+            <div className="space-y-3">
+              <button 
+                type="submit" 
+                disabled={isSubmitting} 
+                className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-4 rounded-xl disabled:opacity-50 font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02]"
+              >
+                {isSubmitting ? 'Menyimpan...' : (editingArticle ? 'Perbarui Artikel' : 'Terbitkan Artikel')}
+              </button>
+
+              {editingArticle && (
+                <button 
+                  type="button" 
+                  onClick={resetForm} 
+                  className="w-full bg-gradient-to-r from-gray-500 to-gray-600 text-white p-4 rounded-xl hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02]"
+                >
+                  Batal
+                </button>
+              )}
+            </div>
           </form>
         </div>
       </div>
-      
-      {/* Kolom Kanan: Daftar Artikel */}
+
+      {/* Article List Section */}
       <div>
-        <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-          <h3 className="text-2xl font-bold mb-4 text-[#071952]">Daftar Artikel</h3>
-          <div className="max-h-[600px] overflow-y-auto">
+        <div className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-cyan-100/60">
+          <div className="text-center mb-8">
+            <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+              Daftar Artikel
+            </h3>
+            <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full mt-4" />
+          </div>
+
+          <div className="max-h-[600px] overflow-y-auto pr-4 space-y-4">
             {articles.map(article => (
-              <div key={article.id} className="flex justify-between items-center p-3 border-b border-gray-200 hover:bg-[#E0F7FA]/50">
-                <span className="flex-1 truncate pr-4 text-gray-700">{article.title}</span>
-                <div className="flex space-x-4">
-                  <button onClick={() => handleEdit(article)} title="Edit"><FaPen className="text-yellow-500 hover:text-yellow-600 transition-colors" /></button>
-                  <button onClick={() => handleDelete(article.id)} title="Hapus"><FaTrash className="text-red-500 hover:text-red-600 transition-colors" /></button>
+              <div 
+                key={article.id} 
+                className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl border border-blue-100/60 transition-all duration-300 hover:scale-[1.02]"
+              >
+                <div className="flex justify-between items-center">
+                  <span className="flex-1 font-semibold text-gray-800 truncate pr-4">
+                    {article.title}
+                  </span>
+                  <div className="flex space-x-4">
+                    <button 
+                      onClick={() => handleEdit(article)} 
+                      className="text-yellow-500 hover:text-yellow-600 transition-colors p-2 hover:bg-yellow-50 rounded-full"
+                      title="Edit"
+                    >
+                      <FaPen />
+                    </button>
+                    <button 
+                      onClick={() => handleDelete(article.id)} 
+                      className="text-red-500 hover:text-red-600 transition-colors p-2 hover:bg-red-50 rounded-full"
+                      title="Hapus"
+                    >
+                      <FaTrash />
+                    </button>
+                  </div>
                 </div>
+                <p className="text-sm text-gray-500 mt-2">
+                  {new Date(article.created_at).toLocaleDateString('id-ID', {
+                    day: 'numeric',
+                    month: 'long',
+                    year: 'numeric'
+                  })}
+                </p>
               </div>
             ))}
           </div>

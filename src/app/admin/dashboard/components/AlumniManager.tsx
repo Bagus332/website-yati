@@ -83,44 +83,122 @@ export default function AlumniManager() {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-      <h3 className="text-2xl font-bold mb-4 text-[#071952]">Kelola Alumni</h3>
-      {message.text && <p className={`mb-4 text-sm font-semibold ${message.type === 'error' ? 'text-red-600' : 'text-green-600'}`}>{message.text}</p>}
-      
-      {/* Form Input Alumni */}
-      <form onSubmit={handleSubmit} className="space-y-4 mb-6">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <input type="text" placeholder="Nama Lengkap Alumni" value={name} onChange={e => setName(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3572EF] md:col-span-2" required />
-            <input type="number" placeholder="Tahun Lulus" value={graduationYear} onChange={e => setGraduationYear(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3572EF]" required />
-            <input type="text" placeholder="Angkatan" value={batchYear} onChange={e => setBatchYear(e.target.value)} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3572EF]" required />
+    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+      {/* Form Section */}
+      <div className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60">
+        <div className="text-center mb-8">
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+            Tambah Alumni
+          </h3>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full mt-4" />
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4 items-end">
-            <select value={school} onChange={(e) => setSchool(e.target.value as 'MTS' | 'MA')} className="w-full p-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#3572EF] md:col-span-3">
-                <option value="MTS">MTS</option>
-                <option value="MA">MA</option>
-            </select>
-            <button type="submit" disabled={isSubmitting} className="w-full bg-[#3572EF] text-white p-3 rounded-lg disabled:bg-opacity-50 font-bold hover:bg-opacity-90 transition-colors">
-            {isSubmitting ? 'Menyimpan...' : 'Tambah Alumni'}
-            </button>
-        </div>
-      </form>
 
-      {/* Daftar Alumni */}
-      <div className="mt-6 max-h-80 overflow-y-auto p-2 bg-[#E0F7FA]/50 rounded-lg border border-[#97FEED]">
-        {alumniList.length > 0 ? alumniList.map(alumni => (
-          <div key={alumni.id} className="flex justify-between items-center p-3 border-b border-[#97FEED] last:border-b-0 hover:bg-white/50">
-            <div>
-              <p className="font-semibold text-gray-800">{alumni.name}</p>
-              <p className="text-sm text-gray-500">
-                Lulus {alumni.graduation_year} - Angkatan {alumni.batch_year}
-                <span className={`ml-2 text-xs font-bold px-2 py-0.5 rounded-full ${alumni.school === 'MTS' ? 'bg-emerald-100 text-emerald-800' : 'bg-sky-100 text-sky-800'}`}>
-                    {alumni.school}
-                </span>
-              </p>
-            </div>
-            <button onClick={() => handleDelete(alumni.id)} title="Hapus Alumni"><FaTrash className="text-red-500 hover:text-red-600 transition-colors" /></button>
+        {message.text && (
+          <div className={`mb-6 p-4 rounded-xl ${
+            message.type === 'error' 
+              ? 'bg-red-50 text-red-600' 
+              : 'bg-green-50 text-green-600'
+          } font-semibold text-center`}>
+            {message.text}
           </div>
-        )) : <p className="text-center text-gray-500 p-4">Belum ada data alumni.</p>}
+        )}
+
+        <form onSubmit={handleSubmit} className="space-y-6">
+          <div className="space-y-4">
+            <input 
+              type="text" 
+              placeholder="Nama Lengkap Alumni" 
+              value={name} 
+              onChange={e => setName(e.target.value)} 
+              className="w-full p-4 bg-white/80 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-400 transition-all"
+              required 
+            />
+            
+            <div className="grid grid-cols-2 gap-4">
+              <input 
+                type="number" 
+                placeholder="Tahun Lulus" 
+                value={graduationYear} 
+                onChange={e => setGraduationYear(e.target.value)} 
+                className="w-full p-4 bg-white/80 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-400 transition-all"
+                required 
+              />
+              <input 
+                type="text" 
+                placeholder="Angkatan" 
+                value={batchYear} 
+                onChange={e => setBatchYear(e.target.value)} 
+                className="w-full p-4 bg-white/80 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-400 transition-all"
+                required 
+              />
+            </div>
+
+            <select 
+              value={school} 
+              onChange={(e) => setSchool(e.target.value as 'MTS' | 'MA')} 
+              className="w-full p-4 bg-white/80 border border-blue-100 rounded-xl focus:ring-2 focus:ring-blue-400 transition-all"
+            >
+              <option value="MTS">MTS</option>
+              <option value="MA">MA</option>
+            </select>
+          </div>
+
+          <button 
+            type="submit" 
+            disabled={isSubmitting} 
+            className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 text-white p-4 rounded-xl disabled:opacity-50 font-bold hover:opacity-90 transition-all duration-300 transform hover:scale-[1.02]"
+          >
+            {isSubmitting ? 'Menyimpan...' : 'Tambah Alumni'}
+          </button>
+        </form>
+      </div>
+
+      {/* Alumni List Section */}
+      <div className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-cyan-100/60">
+        <div className="text-center mb-8">
+          <h3 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent">
+            Daftar Alumni
+          </h3>
+          <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full mt-4" />
+        </div>
+
+        <div className="max-h-[600px] overflow-y-auto space-y-4 pr-4">
+          {alumniList.length > 0 ? alumniList.map(alumni => (
+            <div 
+              key={alumni.id} 
+              className="group bg-white p-6 rounded-xl shadow-lg hover:shadow-xl border border-blue-100/60 transition-all duration-300 hover:scale-[1.02]"
+            >
+              <div className="flex justify-between items-start">
+                <div>
+                  <h4 className="font-bold text-gray-800 mb-1">{alumni.name}</h4>
+                  <p className="text-sm text-gray-600">
+                    Lulus {alumni.graduation_year} • Angkatan {alumni.batch_year}
+                  </p>
+                </div>
+                <div className="flex items-center space-x-3">
+                  <span className={`text-xs font-bold px-3 py-1 rounded-full ${
+                    alumni.school === 'MTS' 
+                      ? 'bg-emerald-100 text-emerald-800' 
+                      : 'bg-blue-100 text-blue-800'
+                  }`}>
+                    {alumni.school}
+                  </span>
+                  <button 
+                    onClick={() => handleDelete(alumni.id)} 
+                    className="text-red-500 hover:text-red-600 transition-colors p-2 hover:bg-red-50 rounded-full"
+                    title="Hapus Alumni"
+                  >
+                    <FaTrash />
+                  </button>
+                </div>
+              </div>
+            </div>
+          )) : (
+            <div className="text-center py-12 text-gray-500">
+              Belum ada data alumni.
+            </div>
+          )}
+        </div>
       </div>
     </div>
   );
