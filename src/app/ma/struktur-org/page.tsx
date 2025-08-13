@@ -1,46 +1,34 @@
 "use client";
 
-import { JSX, useState } from "react";
+import { JSX } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { FaUserTie, FaUsers, FaBook, FaMoneyBillWave, FaChalkboardTeacher, FaGraduationCap, FaChevronDown } from "react-icons/fa";
+import { FaUserTie, FaUsers, FaBook, FaMoneyBillWave, FaChalkboardTeacher, FaGraduationCap } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 type StaffItem = {
   title: string;
   icon: JSX.Element;
   description: string;
-  details?: string;
   photo: string;
-  subItems?: string[];
   level: number;
   parent?: string;
 };
 
 export default function StrukturAliyah() {
-  const [selected, setSelected] = useState<StaffItem | null>(null);
-  const [accordionOpen, setAccordionOpen] = useState<number | null>(null);
-
-  const toggleAccordion = (index: number) => {
-    setAccordionOpen(accordionOpen === index ? null : index);
-  };
-
   const aliyahStructure: StaffItem[] = [
-    // Level 1 - Kepala Madrasah
+    // Staf dan struktur organisasi lainnya
     {
       title: "Kepala Madrasah Aliyah - Delvianti, M.Pd",
       icon: <FaUserTie />,
       description: "Memimpin dan mengatur jalannya pendidikan di Madrasah Aliyah",
-      details: "Bertanggung jawab penuh atas jalannya pendidikan, pembinaan guru, dan pengelolaan administrasi Madrasah Aliyah.",
       photo: "/foto/kepala MAS YATI KAMANG MUDIK.jpg",
       level: 1
     },
-    
-    // Level 2 - Wakil Kepala
     {
       title: "Waka Kurikulum - Yenni Firda, S.Pd",
       icon: <FaBook />,
       description: "Mengatur dan mengembangkan kurikulum",
-      details: "Menyusun, mengembangkan, dan mengevaluasi kurikulum agar sesuai standar pendidikan nasional dan visi sekolah.",
       photo: "/foto/yeni firda.jpg",
       level: 2,
       parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
@@ -49,7 +37,6 @@ export default function StrukturAliyah() {
       title: "Waka Kesiswaan - Mhd. Sabri, SH",
       icon: <FaUsers />,
       description: "Mengatur kegiatan kesiswaan dan pembinaan karakter",
-      details: "Bertanggung jawab atas pembinaan siswa, kedisiplinan, dan kegiatan ekstrakurikuler.",
       photo: "/foto/Muhammad Sabri.jpg",
       level: 2,
       parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
@@ -58,7 +45,6 @@ export default function StrukturAliyah() {
       title: "Tata Usaha - Yufita Indriani, S.Pd",
       icon: <FaUsers />,
       description: "Mengelola administrasi sekolah",
-      details: "Mengurus dokumen, surat menyurat, arsip, dan administrasi pendidikan di Madrasah Aliyah.",
       photo: "/vorg.jpg",
       level: 2,
       parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
@@ -67,7 +53,6 @@ export default function StrukturAliyah() {
       title: "Bendahara - Putri Nurhasanah, S.Pd",
       icon: <FaMoneyBillWave />,
       description: "Mengatur keuangan sekolah",
-      details: "Mengelola keuangan, membuat laporan, dan menjaga transparansi anggaran.",
       photo: "/foto/Putri Nurhasanah.jpg",
       level: 2,
       parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
@@ -76,18 +61,14 @@ export default function StrukturAliyah() {
       title: "Kepala Perpustakaan - Asmawati, S.Pd.I",
       icon: <FaBook />,
       description: "Mengelola perpustakaan sekolah",
-      details: "Mengatur koleksi buku, pelayanan perpustakaan, dan kegiatan literasi siswa.",
       photo: "/foto/asmawati ok.jpg",
       level: 2,
       parent: "Kepala Madrasah Aliyah - Delvianti, M.Pd"
     },
-
-    // Level 3 - Wali Kelas
     {
       title: "Wali Kelas 10 - Nurrahmi Lathifa, M.Pd",
       icon: <FaChalkboardTeacher />,
       description: "Membimbing siswa kelas 10",
-      details: "Bertanggung jawab atas pembinaan siswa kelas 10 dan menjadi penghubung antara siswa, guru, dan orang tua.",
       photo: "/vorg.jpg",
       level: 3,
       parent: "Waka Kesiswaan - Mhd. Sabri, SH"
@@ -96,7 +77,6 @@ export default function StrukturAliyah() {
       title: "Wali Kelas 11 - Yusnetti, SH",
       icon: <FaChalkboardTeacher />,
       description: "Membimbing siswa kelas 11",
-      details: "Bertanggung jawab atas pembinaan siswa kelas 11 dan menjadi penghubung antara siswa, guru, dan orang tua.",
       photo: "/foto/yusnetti oke.jpg",
       level: 3,
       parent: "Waka Kesiswaan - Mhd. Sabri, SH"
@@ -105,23 +85,14 @@ export default function StrukturAliyah() {
       title: "Wali Kelas 12 - Aufi Afifah Rifki TM, S.Pd",
       icon: <FaChalkboardTeacher />,
       description: "Membimbing siswa kelas 12",
-      details: "Bertanggung jawab atas pembinaan siswa kelas 12 dan menjadi penghubung antara siswa, guru, dan orang tua.",
       photo: "/foto/aufi afifa rifki.jpg",
       level: 3,
       parent: "Waka Kesiswaan - Mhd. Sabri, SH"
     },
-
-    // Level 3 - Guru Mapel
     {
       title: "Guru Mapel IPS & PKN",
       icon: <FaChalkboardTeacher />,
       description: "Pengajar mata pelajaran IPS dan PKN",
-      subItems: [
-        "Asmawati, S.Pd.I",
-        "Refda Yetti, S.Pd.I", 
-        "Lisa Yunita, S.Pd.I", 
-        "Debi Amanda, S.Pd"
-      ],
       photo: "/vorg.jpg",
       level: 3,
       parent: "Waka Kurikulum - Yenni Firda, S.Pd"
@@ -130,11 +101,6 @@ export default function StrukturAliyah() {
       title: "Guru Mapel IPA dan Matematika",
       icon: <FaChalkboardTeacher />,
       description: "Pengajar mata pelajaran IPA dan Matematika",
-      subItems: [
-        "Weni Anggraini, S.Pd", 
-        "Arbaisyah, S.Pd", 
-        "Nur Faizi, S.Pd"
-      ],
       photo: "/vorg.jpg",
       level: 3,
       parent: "Waka Kurikulum - Yenni Firda, S.Pd"
@@ -143,13 +109,6 @@ export default function StrukturAliyah() {
       title: "Guru Mapel Agama",
       icon: <FaChalkboardTeacher />,
       description: "Pengajar mata pelajaran Agama",
-      subItems: [
-        "Silhen, S.Pd",
-        "Aufi Afifah Rifki TM, S.Pd",
-        "Yusnetti, SH",
-        "Hevi Murnialis, S.Pd",
-        "Elfi Yusmanizar, S.Pd"
-      ],
       photo: "/vorg.jpg",
       level: 3,
       parent: "Waka Kurikulum - Yenni Firda, S.Pd"
@@ -158,13 +117,6 @@ export default function StrukturAliyah() {
       title: "Guru Mapel Bahasa",
       icon: <FaChalkboardTeacher />,
       description: "Pengajar mata pelajaran Bahasa Indonesia & Inggris",
-      subItems: [
-        "Marlina, S.Pd",
-        "Putri Rahmadhani, S.Pd",
-        "Lilvia, S.Pd",
-        "Gusti Ayu, S.Pd",
-        "Fahmi Hafizha O, S.Pd"
-      ],
       photo: "/vorg.jpg",
       level: 3,
       parent: "Waka Kurikulum - Yenni Firda, S.Pd"
@@ -173,23 +125,14 @@ export default function StrukturAliyah() {
       title: "Guru Mapel Pondok",
       icon: <FaChalkboardTeacher />,
       description: "Pengajar mata pelajaran kepondokan",
-      subItems: [
-       "Nini Arianti, S.Ag", 
-       "M. Irfan, S.Pd", 
-       "Azkia Rahmi, S.Ag", 
-       "Nurrahmi Lathifa, M.Pd"
-      ],
       photo: "/vorg.jpg",
       level: 3,
       parent: "Waka Kurikulum - Yenni Firda, S.Pd"
     },
-
-    // Level 4 - Siswa
     {
       title: "Siswa Aliyah",
       icon: <FaGraduationCap />,
       description: "Peserta didik Madrasah Aliyah",
-      details: "Siswa-siswi yang sedang menempuh pendidikan menengah berbasis Islam.",
       photo: "/vorg.jpg",
       level: 4,
       parent: "Wali Kelas"
@@ -200,163 +143,105 @@ export default function StrukturAliyah() {
     return aliyahStructure.filter(item => item.level === level);
   };
 
-  const getChildren = (parentTitle: string) => {
-    return aliyahStructure.filter(item => item.parent === parentTitle);
-  };
-
   return (
     <>
       <Navbar />
-      <main className="container mx-auto py-12 px-4">
+      <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white font-sans">
+      <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,_theme(colors.cyan.500)_0%,_transparent_50%)]" />
+        </div>
+      <div className="container mx-auto py-24 px-4">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold mb-10 text-center text-emerald-700">
-            Struktur Organisasi Madrasah Aliyah
-          </h1>
+        <div className="text-center mb-16">
+              <span className="inline-block bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
+                Organisasi
+              </span>
+              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
+                Struktur Organisasi Madrasah Aliyah
+              </h1>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
+            </div>
 
           {/* Organizational Chart */}
-          <div className="bg-white rounded-lg shadow-lg p-8">
+          <div className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60">
             {/* Level 1 - Kepala Madrasah */}
             <div className="flex justify-center mb-12">
-              <div className="text-center">
-                <div 
-                  className="inline-block p-6 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                  onClick={() => setSelected(aliyahStructure[0])}
-                >
-                  <div className="text-4xl mb-3">{aliyahStructure[0].icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{aliyahStructure[0].title}</h3>
-                  <p className="text-sm opacity-90">{aliyahStructure[0].description}</p>
+            <motion.div whileHover={{ y: -5, scale: 1.05 }} className="text-center">
+                <div className="inline-block p-6 bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-2xl shadow-xl">
+                  <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                    <div className="text-4xl">{aliyahStructure[0].icon}</div>
+                  </div>
+                  <h3 className="text-lg font-semibold">{aliyahStructure[0].title.split(" - ")[0]}</h3>
+                  <p className="text-sm opacity-90">{aliyahStructure[0].title.split(" - ")[1]}</p>
                 </div>
-              </div>
+              </motion.div>
             </div>
 
             {/* Connecting Line */}
             <div className="flex justify-center mb-8">
-              <div className="w-px h-8 bg-emerald-300"></div>
+              <div className="w-px h-12 bg-gradient-to-b from-cyan-500 to-blue-500"></div>
             </div>
 
             {/* Level 2 - Wakil Kepala */}
             <div className="flex justify-center mb-12">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
                 {getLevelItems(2).map((item, index) => (
-                  <div key={index} className="text-center">
-                    <div 
-                      className="inline-block p-4 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                      onClick={() => setSelected(item)}
-                    >
-                      <div className="text-2xl mb-2">{item.icon}</div>
-                      <h4 className="text-sm font-semibold mb-1">{item.title.split(' - ')[0]}</h4>
-                      <p className="text-xs opacity-90">{item.title.split(' - ')[1]}</p>
-                    </div>
-                  </div>
+                   <motion.div whileHover={{ y: -5, scale: 1.05 }} key={index} className="text-center">
+                   <div className="p-4 bg-white rounded-2xl shadow-lg border border-gray-100 h-full flex flex-col justify-center">
+                     <div className="w-16 h-16 mx-auto mb-3 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full flex items-center justify-center text-blue-600">
+                       <div className="text-3xl">{item.icon}</div>
+                     </div>
+                     <h4 className="text-sm font-semibold text-gray-800">{item.title.split(' - ')[0]}</h4>
+                     <p className="text-xs text-gray-500">{item.title.split(' - ')[1]}</p>
+                   </div>
+                 </motion.div>
                 ))}
               </div>
             </div>
 
-            {/* Connecting Lines */}
-            <div className="flex justify-center mb-8">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
-                {getLevelItems(2).map((_, index) => (
-                  <div key={index} className="flex justify-center">
-                    <div className="w-px h-8 bg-blue-300"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
 
             {/* Level 3 - Wali Kelas & Guru Mapel */}
             <div className="mb-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <h3 className="text-2xl font-bold text-center mb-8 text-gray-800">Wali Kelas & Guru</h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
                 {getLevelItems(3).map((item, index) => (
-                  <div key={index} className="text-center">
-                    <div 
-                      className="inline-block p-4 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                      onClick={() => setSelected(item)}
-                    >
-                      <div className="text-2xl mb-2">{item.icon}</div>
-                      <h4 className="text-sm font-semibold mb-1">{item.title.split(' - ')[0]}</h4>
-                      {item.title.includes(' - ') && (
-                        <p className="text-xs opacity-90">{item.title.split(' - ')[1]}</p>
-                      )}
+                  <motion.div whileHover={{ y: -5, scale: 1.05 }} key={index} className="text-center">
+                  <div className="p-4 bg-gray-50 rounded-2xl shadow-md h-full flex flex-col justify-center items-center">
+                    <div className="w-12 h-12 mb-2 bg-gradient-to-br from-gray-200 to-gray-100 rounded-full flex items-center justify-center text-cyan-600">
+                      {item.icon}
                     </div>
+                    <h4 className="text-sm font-semibold text-gray-700">{item.title.split(' - ')[0]}</h4>
+                    {item.title.includes(' - ') && (
+                        <p className="text-xs text-gray-500">{item.title.split(' - ')[1]}</p>
+                      )}
                   </div>
+                  </motion.div>
                 ))}
               </div>
             </div>
 
             {/* Connecting Lines */}
             <div className="flex justify-center mb-8">
-              <div className="w-px h-8 bg-cyan-300"></div>
+            <div className="w-px h-12 bg-gradient-to-b from-blue-500 to-cyan-500"></div>
             </div>
 
             {/* Level 4 - Siswa */}
             <div className="flex justify-center">
-              <div className="text-center">
-                <div 
-                  className="inline-block p-6 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                  onClick={() => setSelected(aliyahStructure[aliyahStructure.length - 1])}
-                >
-                  <div className="text-4xl mb-3">{aliyahStructure[aliyahStructure.length - 1].icon}</div>
-                  <h3 className="text-lg font-semibold mb-2">{aliyahStructure[aliyahStructure.length - 1].title}</h3>
-                  <p className="text-sm opacity-90">{aliyahStructure[aliyahStructure.length - 1].description}</p>
+            <motion.div whileHover={{ y: -5, scale: 1.05 }} className="text-center">
+                <div className="inline-block p-6 bg-gradient-to-br from-cyan-500 to-blue-500 text-white rounded-2xl shadow-xl">
+                  <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center">
+                  <div className="text-4xl">{aliyahStructure[aliyahStructure.length - 1].icon}</div>
+                  </div>
+                  <h3 className="text-lg font-semibold">{aliyahStructure[aliyahStructure.length - 1].title}</h3>
                 </div>
-              </div>
+                </motion.div>
             </div>
           </div>
         </div>
+        </div>
       </main>
       <Footer />
-
-      {/* Modal Detail */}
-      {selected && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl p-6 max-w-lg w-full relative animate-fadeIn">
-            <button
-              className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl"
-              onClick={() => setSelected(null)}
-            >
-              ✕
-            </button>
-
-            <img
-              src={selected.photo}
-              alt={selected.title}
-              className="w-40 h-40 object-cover rounded-full border-4 border-emerald-500 mx-auto mb-4"
-              onError={(e) => (e.currentTarget.src = "/images/aliyah/default.jpg")}
-            />
-
-            <h2 className="text-2xl font-semibold text-center text-emerald-700 mb-4">
-              {selected.title}
-            </h2>
-
-            {selected.subItems ? (
-              <div>
-                <div
-                  className="flex justify-between items-center cursor-pointer p-3 bg-emerald-100 rounded-lg"
-                  onClick={() => toggleAccordion(0)}
-                >
-                  <span className="font-semibold text-emerald-700">Daftar Guru</span>
-                  <FaChevronDown
-                    className={`transition-transform duration-300 ${
-                      accordionOpen === 0 ? "rotate-180" : ""
-                    }`}
-                  />
-                </div>
-                {accordionOpen === 0 && (
-                  <ul className="mt-3 space-y-2 pl-5 list-disc text-gray-700">
-                    {selected.subItems.map((name, idx) => (
-                      <li key={idx}>{name}</li>
-                    ))}
-                  </ul>
-                )}
-              </div>
-            ) : (
-              <p className="text-gray-700 text-center leading-relaxed">
-                {selected.details}
-              </p>
-            )}
-          </div>
-        </div>
-      )}
     </>
   );
 }
