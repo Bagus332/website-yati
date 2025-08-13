@@ -44,9 +44,7 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children }) => {
       {/* Isi Dropdown */}
       {isOpen && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-2xl shadow-2xl bg-white text-[#0F1035] ring-2 ring-[#7FC7D9] z-30 overflow-hidden backdrop-blur-lg border-2 border-[#7FC7D9]">
-          <div className="py-3">
-            {children}
-          </div>
+          <div className="py-3">{children}</div>
           {/* Decorative gradient line */}
           <div className="h-1 bg-gradient-to-r from-[#7FC7D9] via-[#365486] to-[#7FC7D9]"></div>
         </div>
@@ -111,8 +109,13 @@ const Navbar: React.FC = () => {
                 className="block px-6 py-3 hover:bg-[#7FC7D9] hover:text-white transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
               >
                 <span className="flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                   </svg>
                   Visi dan Misi
                 </span>
@@ -122,8 +125,13 @@ const Navbar: React.FC = () => {
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
               >
                 <span className="flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
                   </svg>
                   Sejarah
                 </span>
@@ -133,8 +141,13 @@ const Navbar: React.FC = () => {
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
               >
                 <span className="flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A2.99 2.99 0 0 0 17.09 7H14.9c-1.29 0-2.4.8-2.87 1.93L9.49 18H12v-6h4v8h4z"/>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M16 4c0-1.11.89-2 2-2s2 .89 2 2-.89 2-2 2-2-.89-2-2zm4 18v-6h2.5l-2.54-7.63A2.99 2.99 0 0 0 17.09 7H14.9c-1.29 0-2.4.8-2.87 1.93L9.49 18H12v-6h4v8h4z" />
                   </svg>
                   Manajemen
                 </span>
@@ -144,8 +157,13 @@ const Navbar: React.FC = () => {
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
               >
                 <span className="flex items-center gap-2">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M12 2l8 6v12H4V8l8-6zm0 2.4L6 8.8V18h12V8.8L12 4.4z"/>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                  >
+                    <path d="M12 2l8 6v12H4V8l8-6zm0 2.4L6 8.8V18h12V8.8L12 4.4z" />
                   </svg>
                   Fasilitas
                 </span>
@@ -158,12 +176,6 @@ const Navbar: React.FC = () => {
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
               >
                 Profil
-              </a>
-              <a
-                href="/mts/tendik"
-                className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
-              >
-                Tendik
               </a>
               <a
                 href="/mts/struktur-org"
@@ -185,12 +197,6 @@ const Navbar: React.FC = () => {
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
               >
                 Profil
-              </a>
-              <a
-                href="/ma/tendik"
-                className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
-              >
-                Tendik
               </a>
               <a
                 href="/ma/struktur-org"
@@ -222,7 +228,7 @@ const Navbar: React.FC = () => {
                 stroke="currentColor"
                 strokeWidth="2.5"
                 className={`transform transition-transform duration-300 ${
-                  isMobileMenuOpen ? 'rotate-90' : ''
+                  isMobileMenuOpen ? "rotate-90" : ""
                 }`}
               >
                 <line x1="4" x2="20" y1="12" y2="12" />
@@ -245,7 +251,7 @@ const Navbar: React.FC = () => {
                 {link.label}
               </a>
             ))}
-            
+
             {/* Mobile Dropdowns */}
             <div className="space-y-2 pt-4 border-t-2 border-[#7FC7D9]">
               <Dropdown title="Profil">
@@ -274,19 +280,13 @@ const Navbar: React.FC = () => {
                   Fasilitas
                 </a>
               </Dropdown>
-              
+
               <Dropdown title="MTsS">
                 <a
                   href="/mts/profil"
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Profil
-                </a>
-                <a
-                  href="/mts/tendik"
-                  className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
-                >
-                  Tendik
                 </a>
                 <a
                   href="/mts/struktur-org"
@@ -301,19 +301,13 @@ const Navbar: React.FC = () => {
                   Alumni
                 </a>
               </Dropdown>
-              
+
               <Dropdown title="MAS">
                 <a
                   href="/ma/profil"
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Profil
-                </a>
-                <a
-                  href="/ma/tendik"
-                  className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
-                >
-                  Tendik
                 </a>
                 <a
                   href="/ma/struktur-org"
@@ -329,7 +323,7 @@ const Navbar: React.FC = () => {
                 </a>
               </Dropdown>
             </div>
-            
+
             {/* Decorative bottom gradient */}
             <div className="mt-6 h-1 bg-gradient-to-r from-[#7FC7D9] via-[#365486] to-[#7FC7D9] rounded-full"></div>
           </div>
