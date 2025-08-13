@@ -27,11 +27,11 @@ export default function Home() {
             Yayasan Tarbiyah Islamiyah Buya H Mansur
           </p>
           <p className="mb-2">
-            <span className="font-semibold text-blue-700">Alamat:</span> Jalan
-            Kampung Baru, Jorong Pakan Sinayan
+            <span className="font-semibold text-blue-700">Alamat:</span>{" "}
+            QCQ2+4X5 Yati, Kampung Baru
           </p>
-          <p className="mb-2">Nagari Kamang Mudiak, Kec. Kamang Magek</p>
-          <p className="mb-2">Kab. Agam, Sumatera Barat</p>
+          <p className="mb-2">Kamang Mudiak, Kamang Magek</p>
+          <p className="mb-2">Kabupaten Agam, Sumatera Barat 26152</p>
           <p className="mb-2">
             <span className="font-semibold text-blue-700">Email:</span>{" "}
             <a
@@ -64,13 +64,12 @@ export default function Home() {
         {/* Google Maps */}
         <div className="text-center mt-10">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d15957.443721011277!2d100.402472!3d-0.212250!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd537f912345678%3A0xabcdefabcdefabcd!2sPonpes%20YATI%20Kamang%20Mudik!5e0!3m2!1sid!2sid!4v1692000000000!5m2!1sid!2sid"
+            src="https://www.bing.com/maps/embed?h=400&w=800&cp=-0.212067~100.402306&lvl=16&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
             width="100%"
             height="350"
             style={{ border: 0, borderRadius: "12px" }}
             allowFullScreen
             loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
             title="Lokasi Pondok Pesantren YATI Kamang Mudik"
           ></iframe>
         </div>
