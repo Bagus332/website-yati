@@ -6,7 +6,13 @@ import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
 import { useRef } from "react";
-import { FaQuran, FaGraduationCap, FaUserTie, FaSchool, FaStar } from "react-icons/fa";
+import {
+  FaQuran,
+  FaGraduationCap,
+  FaUserTie,
+  FaSchool,
+  FaStar,
+} from "react-icons/fa";
 
 export default function Home() {
   const contentRef = useRef(null);
@@ -40,7 +46,7 @@ export default function Home() {
             priority
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/80" />
-          
+
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -90,25 +96,30 @@ export default function Home() {
               <div className="space-y-8">
                 <div className="bg-white p-8 rounded-2xl shadow-xl border border-blue-100">
                   <p className="text-gray-700 leading-relaxed mb-6">
-                    Madrasah Aliyah (MA) YATI merupakan lembaga pendidikan tingkat menengah atas
-                    yang menjadi bagian integral dari Pondok Pesantren YATI Kamang Mudik.
-                    Didirikan di bawah naungan Yayasan Tarbiyah Islamiyah Buya H. Mansur,
-                    MA YATI konsisten menjalankan sistem pendidikan yang mengintegrasikan
-                    nilai-nilai kepesantrenan dengan kurikulum nasional modern.
+                    Madrasah Aliyah (MA) YATI merupakan lembaga pendidikan
+                    tingkat menengah atas yang menjadi bagian integral dari
+                    Pondok Pesantren YATI Kamang Mudik. Didirikan di bawah
+                    naungan Yayasan Tarbiyah Islamiyah Buya H. Mansur, MA YATI
+                    konsisten menjalankan sistem pendidikan yang
+                    mengintegrasikan nilai-nilai kepesantrenan dengan kurikulum
+                    nasional modern.
                   </p>
                   <p className="text-gray-700 leading-relaxed mb-6">
-                    Sistem pembelajaran di MA YATI menerapkan pendekatan komprehensif
-                    dengan memadukan tradisi pesantren dan modernitas. Para santri tidak
-                    hanya mendalami ilmu-ilmu agama melalui kajian kitab kuning dan
-                    program tahfidz Al-Qur'an, tetapi juga dibekali dengan ilmu pengetahuan
-                    umum sesuai Kurikulum 2013.
+                    Sistem pembelajaran di MA YATI menerapkan pendekatan
+                    komprehensif dengan memadukan tradisi pesantren dan
+                    modernitas. Para santri tidak hanya mendalami ilmu-ilmu
+                    agama melalui kajian kitab kuning dan program tahfidz
+                    Al-Qur'an, tetapi juga dibekali dengan ilmu pengetahuan umum
+                    sesuai Kurikulum 2013.
                   </p>
                   <div className="grid grid-cols-2 gap-6">
                     <div className="flex items-center space-x-3">
                       <FaUserTie className="text-blue-600 text-xl" />
                       <div>
-                        <h4 className="font-semibold text-gray-800">Kepala Madrasah</h4>
-                        <p className="text-blue-600">Mhd. Padhil, S.Pd</p>
+                        <h4 className="font-semibold text-gray-800">
+                          Kepala Madrasah
+                        </h4>
+                        <p className="text-blue-600">Delvianti, M.Pd</p>
                       </div>
                     </div>
                     <div className="flex items-center space-x-3">
@@ -138,7 +149,10 @@ export default function Home() {
         </section>
 
         {/* Programs Section */}
-        <section ref={programsRef} className="py-24 px-6 lg:px-14 bg-gradient-to-b from-gray-50 to-white relative">
+        <section
+          ref={programsRef}
+          className="py-24 px-6 lg:px-14 bg-gradient-to-b from-gray-50 to-white relative"
+        >
           <motion.div
             variants={fadeInUp}
             initial="initial"
@@ -160,7 +174,9 @@ export default function Home() {
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="bg-white p-8 rounded-2xl shadow-xl border border-blue-100"
               >
-                <h3 className="text-2xl font-bold text-gray-800 mb-6">Program Wajib</h3>
+                <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                  Program Wajib
+                </h3>
                 <ul className="space-y-3 text-gray-700">
                   <li>Tahfizhul Qur'an dengan tingkatan juz tertentu</li>
                   <li>Pelatihan Komputer dan TIK terstruktur</li>
@@ -173,7 +189,9 @@ export default function Home() {
                 whileHover={{ y: -8, scale: 1.02 }}
                 className="bg-white p-8 rounded-2xl shadow-xl border border-cyan-100"
               >
-                <h3 className="text-2xl font-bold text-gray-800 mb-6">Program Pengembangan</h3>
+                <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                  Program Pengembangan
+                </h3>
                 <ul className="space-y-3 text-gray-700">
                   <li>Jahit menjahit dan Tata Busana</li>
                   <li>Seni Bela Diri (Silat dan Karate)</li>
@@ -203,7 +221,8 @@ export default function Home() {
                   <h3 className="text-2xl font-bold text-gray-800">Visi</h3>
                 </div>
                 <p className="text-gray-700 leading-relaxed">
-                  Terwujudnya siswa yang beriman, bertakwa, berkarakter dan berprestasi
+                  Terwujudnya siswa yang beriman, bertakwa, berkarakter dan
+                  berprestasi
                 </p>
               </motion.div>
 
@@ -218,12 +237,24 @@ export default function Home() {
                   <h3 className="text-2xl font-bold text-gray-800">Misi</h3>
                 </div>
                 <ul className="space-y-3 text-gray-700">
-                  <li>• Mewujudkan penyelenggaraan pendidikan yang berorientasi pada mutu</li>
+                  <li>
+                    • Mewujudkan penyelenggaraan pendidikan yang berorientasi
+                    pada mutu
+                  </li>
                   <li>• Mewujudkan manajemen Madrasah yang akuntabiliatas</li>
-                  <li>• Mewujudkan SDM yang cerdas intelektual, emosional dan spiritual</li>
+                  <li>
+                    • Mewujudkan SDM yang cerdas intelektual, emosional dan
+                    spiritual
+                  </li>
                   <li>• Penguasaan ilmu-ilmu agama dan umum</li>
-                  <li>• Mewujudkan sarana dan prasarana yang memadai dan berkualitas</li>
-                  <li>• Mewujudkan partisipasi aktif masyarakat terhadap pendidikan Madrasah</li>
+                  <li>
+                    • Mewujudkan sarana dan prasarana yang memadai dan
+                    berkualitas
+                  </li>
+                  <li>
+                    • Mewujudkan partisipasi aktif masyarakat terhadap
+                    pendidikan Madrasah
+                  </li>
                 </ul>
               </motion.div>
             </div>
