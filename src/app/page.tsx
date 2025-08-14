@@ -171,7 +171,7 @@ export default function Home() {
               </motion.div>
             </div>
           </motion.div>
-
+          {/* 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -181,7 +181,7 @@ export default function Home() {
             <div className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center">
               <div className="w-1 h-3 bg-white/60 rounded-full mt-2 animate-bounce" />
             </div>
-          </motion.div>
+          </motion.div> */}
         </section>
 
         <section
@@ -218,9 +218,9 @@ export default function Home() {
                     <p className="text-lg text-gray-600 leading-relaxed">
                       Pondok Pesantren YATI Kamang Mudik merupakan lembaga
                       pendidikan agama Islam yang terdiri dari Madrasah Aliyah
-                      untuk tingkat SMA dan Madrasah Tsanawiyah untuk Tingkat SMP,
-                      bernaung di bawah Yayasan yang dikelola oleh keluarga Buya
-                      H. Mansur Dt. Nagari Basa.
+                      untuk tingkat SMA dan Madrasah Tsanawiyah untuk Tingkat
+                      SMP, bernaung di bawah Yayasan yang dikelola oleh keluarga
+                      Buya H. Mansur Dt. Nagari Basa.
                     </p>
                   </div>
                 </div>
@@ -395,8 +395,8 @@ export default function Home() {
                     </h3>
                   </div>
                   <p className="text-gray-600 mb-6 leading-relaxed">
-                    Mengadopsi Kurikulum 2013 yang menekankan pendidikan berbasis
-                    karakter, sejalan dengan pola pendidikan pesantren.
+                    Mengadopsi Kurikulum 2013 yang menekankan pendidikan
+                    berbasis karakter, sejalan dengan pola pendidikan pesantren.
                   </p>
                   <div className="space-y-3">
                     {[
@@ -533,8 +533,8 @@ export default function Home() {
                       Program Dakwah
                     </h3>
                     <p className="text-gray-700 leading-relaxed mb-2">
-                      Program dakwah bil hal dan bil qaul: Mesjidku Bersih, Safari
-                      Dakwah, dan penyelenggaraan jenazah sebagai bentuk
+                      Program dakwah bil hal dan bil qaul: Mesjidku Bersih,
+                      Safari Dakwah, dan penyelenggaraan jenazah sebagai bentuk
                       pengabdian kepada masyarakat.
                     </p>
                     <div className="mt-4 flex justify-center">
@@ -571,7 +571,8 @@ export default function Home() {
               </h2>
               <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
               <p className="mt-6 text-lg text-gray-600 max-w-3xl mx-auto">
-                Ikuti perkembangan terbaru dari Pondok Pesantren YATI Kamang Mudik
+                Ikuti perkembangan terbaru dari Pondok Pesantren YATI Kamang
+                Mudik
               </p>
             </motion.div>
 
