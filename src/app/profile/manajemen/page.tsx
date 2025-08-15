@@ -1,267 +1,100 @@
 "use client";
 
-import { JSX, useState } from "react";
+import { JSX } from "react";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { FaUserTie, FaUsers, FaBook, FaMoneyBillWave } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 type ManagementItem = {
   title: string;
   icon: JSX.Element;
   description: string;
-  details: string;
-  photo: string;
   level: number;
   parent?: string;
 };
 
+// Komponen untuk setiap kartu manajemen
+const ManagementCard = ({ item }: { item: ManagementItem }) => (
+  <motion.div whileHover={{ y: -5, scale: 1.05 }} className="text-center">
+    <div className="inline-block p-6 bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-2xl shadow-xl w-64">
+      <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center text-4xl">{item.icon}</div>
+      <h3 className="text-md font-semibold">{item.title.split(' - ')[0]}</h3>
+      <p className="text-xs opacity-90">{item.title.split(' - ')[1]}</p>
+    </div>
+  </motion.div>
+);
+
 export default function Home() {
-  const [selected, setSelected] = useState<ManagementItem | null>(null);
-
   const managementStructure: ManagementItem[] = [
-    // Level 1 - Pembina & Ketua Yayasan
-    {
-      title: "Pembina Yayasan - H. Edi Mahmud",
-      icon: <FaUserTie />,
-      description: "Membina dan mengarahkan kebijakan strategis yayasan",
-      details: "Pembina Yayasan bertanggung jawab membina arah dan kebijakan strategis pondok pesantren agar sesuai dengan visi dan misi yang telah ditetapkan.",
-      photo: "/vorg.jpg",
-      level: 1
-    },
-    {
-      title: "Ketua Yayasan - Drs. H. Ramza Husmen, M.Pd",
-      icon: <FaUserTie />,
-      description: "Memimpin yayasan dan memastikan visi misi tercapai",
-      details: "Ketua Yayasan memastikan seluruh kegiatan berjalan sesuai visi dan misi, serta memimpin jalannya organisasi yayasan.",
-      photo: "/vorg.jpg",
-      level: 1
-    },
-    
-    // Level 2 - Pimpinan Operasional
-    {
-      title: "Pimpinan Pondok - Mhd. Padhil, S.Pd",
-      icon: <FaUserTie />,
-      description: "Mengelola seluruh kegiatan pesantren dan pembinaan santri",
-      details: "Pimpinan pondok bertugas memimpin pengelolaan pendidikan, pembinaan santri, serta mengawasi seluruh aspek kehidupan di pesantren.",
-      photo: "/foto/Mhd Padhil.jpg",
-      level: 2,
-      parent: "Ketua Yayasan - Drs. H. Ramza Husmen, M.Pd"
-    },
-    {
-      title: "Ketua Komite - Sirajul Munir, S.Ag",
-      icon: <FaUsers />,
-      description: "Mewakili komite dalam memberikan dukungan terhadap pengelolaan pesantren",
-      details: "Ketua komite bertugas memberikan masukan dan dukungan strategis bagi perkembangan pesantren.",
-      photo: "/vorg.jpg",
-      level: 2,
-      parent: "Pembina Yayasan - H. Edi Mahmud"
-    },
-    
-    // Level 3 - Kepala Madrasah
-    {
-      title: "Kepala Madrasah Aliyah - Delvianti, M.Pd",
-      icon: <FaBook />,
-      description: "Mengelola proses pendidikan di tingkat Madrasah Aliyah",
-      details: "Kepala Madrasah Aliyah mengatur jalannya pendidikan, kurikulum, dan pembinaan guru di tingkat Aliyah.",
-      photo: "/foto/kepala MAS YATI KAMANG MUDIK.jpg",
-      level: 3,
-      parent: "Pimpinan Pondok - Mhd. Padhil, S.Pd"
-    },
-    {
-      title: "Kepala Madrasah Tsanawiyah - Welli Okmira, M.Pd",
-      icon: <FaBook />,
-      description: "Mengelola proses pendidikan di tingkat Madrasah Tsanawiyah",
-      details: "Kepala Madrasah Tsanawiyah memimpin pelaksanaan pendidikan dan pembinaan guru di tingkat Tsanawiyah.",
-      photo: "/foto/Welli Okmira.jpg",
-      level: 3,
-      parent: "Pimpinan Pondok - Mhd. Padhil, S.Pd"
-    },
-    
-    // Level 4 - Wakil Kepala & Bendahara
-    {
-      title: "Waka Kurikulum - Yenni Firda, S.Pd",
-      icon: <FaBook />,
-      description: "Mengatur dan mengembangkan kurikulum pendidikan pesantren",
-      details: "Waka Kurikulum menyusun, mengembangkan, dan mengevaluasi kurikulum pendidikan pesantren agar relevan dan efektif.",
-      photo: "/foto/yeni firda.jpg",
-      level: 4,
-      parent: "Kepala Madrasah"
-    },
-    {
-      title: "Bendahara - Putri Nurhasanah, S.Pd",
-      icon: <FaMoneyBillWave />,
-      description: "Mengelola keuangan dan administrasi pesantren",
-      details: "Bendahara mengatur arus keuangan, membuat laporan, dan menjaga transparansi dalam pengelolaan dana pesantren.",
-      photo: "/foto/Putri Nurhasanah.jpg",
-      level: 4,
-      parent: "Pimpinan Pondok - Mhd. Padhil, S.Pd"
-    }
+    { title: "Pembina Yayasan - H. Edi Mahmud", icon: <FaUserTie />, description: "Membina dan mengarahkan kebijakan strategis.", level: 1 },
+    { title: "Ketua Yayasan - Drs. H. Ramza Husmen, M.Pd", icon: <FaUserTie />, description: "Memimpin yayasan dan memastikan visi-misi tercapai.", level: 1 },
+    { title: "Pimpinan Pondok - Mhd. Padhil, S.Pd", icon: <FaUserTie />, description: "Mengelola seluruh kegiatan pesantren.", level: 2, parent: "Ketua Yayasan" },
+    { title: "Ketua Komite - Sirajul Munir, S.Ag", icon: <FaUsers />, description: "Memberikan dukungan strategis.", level: 2, parent: "Pembina Yayasan" },
+    { title: "Kepala MA - Delvianti, M.Pd", icon: <FaBook />, description: "Mengelola pendidikan tingkat Aliyah.", level: 3, parent: "Pimpinan Pondok" },
+    { title: "Kepala MTs - Welli Okmira, M.Pd", icon: <FaBook />, description: "Mengelola pendidikan tingkat Tsanawiyah.", level: 3, parent: "Pimpinan Pondok" },
+    { title: "Waka Kurikulum - Yenni Firda, S.Pd", icon: <FaBook />, description: "Mengembangkan kurikulum pendidikan.", level: 4, parent: "Kepala Madrasah" },
+    { title: "Bendahara - Putri Nurhasanah, S.Pd", icon: <FaMoneyBillWave />, description: "Mengelola keuangan dan administrasi.", level: 4, parent: "Pimpinan Pondok" }
   ];
-
-  const getLevelItems = (level: number) => {
-    return managementStructure.filter(item => item.level === level);
-  };
 
   return (
     <>
       <Navbar />
-      <main className="container mx-auto py-12 px-4">
-        <div className="max-w-7xl mx-auto">
-          <h1 className="text-4xl font-bold mb-10 text-center text-emerald-700">
-            Manajemen Pondok Pesantren YATI
-          </h1>
-          
-          <div className="bg-gradient-to-r from-emerald-50 to-white p-6 rounded-xl shadow-lg mb-10">
-            <p className="text-gray-700 text-lg leading-relaxed text-center max-w-3xl mx-auto">
-              Pondok Pesantren YATI dikelola oleh tim manajemen yang berdedikasi tinggi.
-              Dengan pembagian tugas yang jelas, setiap jabatan berperan penting
-              memastikan kualitas pendidikan dan pembinaan santri berjalan optimal.
-            </p>
-          </div>
-
-          {/* Organizational Chart */}
-          <div className="bg-white rounded-lg shadow-lg p-8">
-            {/* Level 1 - Pembina & Ketua Yayasan */}
-            <div className="flex justify-center mb-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {getLevelItems(1).map((item, index) => (
-                  <div key={index} className="text-center">
-                    <div 
-                      className="inline-block p-6 bg-gradient-to-br from-emerald-500 to-emerald-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                      onClick={() => setSelected(item)}
-                    >
-                      <div className="text-4xl mb-3">{item.icon}</div>
-                      <h3 className="text-lg font-semibold mb-2">{item.title}</h3>
-                      <p className="text-sm opacity-90">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
+      <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white font-sans">
+        <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,_theme(colors.cyan.500)_0%,_transparent_50%)]" />
+        </div>
+        <div className="container mx-auto py-24 px-4">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-16">
+              <span className="inline-block bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
+                Tata Kelola
+              </span>
+              <h1 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
+                Manajemen Pondok Pesantren YATI
+              </h1>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
             </div>
 
-            {/* Connecting Lines */}
-            <div className="flex justify-center mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {getLevelItems(1).map((_, index) => (
-                  <div key={index} className="flex justify-center">
-                    <div className="w-px h-8 bg-emerald-300"></div>
-                  </div>
-                ))}
+            <div className="relative flex flex-col items-center bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60">
+              {/* Level 1: Yayasan */}
+              <div className="flex flex-wrap justify-center gap-24">
+                <ManagementCard item={managementStructure[0]} />
+                <ManagementCard item={managementStructure[1]} />
               </div>
-            </div>
 
-            {/* Level 2 - Pimpinan Operasional */}
-            <div className="flex justify-center mb-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {getLevelItems(2).map((item, index) => (
-                  <div key={index} className="text-center">
-                    <div 
-                      className="inline-block p-5 bg-gradient-to-br from-blue-500 to-blue-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                      onClick={() => setSelected(item)}
-                    >
-                      <div className="text-3xl mb-2">{item.icon}</div>
-                      <h4 className="text-base font-semibold mb-1">{item.title.split(' - ')[0]}</h4>
-                      <p className="text-xs opacity-90">{item.title.split(' - ')[1]}</p>
-                      <p className="text-xs opacity-90 mt-1">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
+              {/* Garis Penghubung ke Level 2 */}
+              <div className="absolute top-40 left-1/2 -translate-x-1/2 w-px h-16 bg-cyan-400"></div>
+
+              {/* Level 2: Pimpinan & Komite */}
+              <div className="mt-16 flex w-full justify-around">
+                <ManagementCard item={managementStructure[3]} />
+                <ManagementCard item={managementStructure[2]} />
               </div>
-            </div>
+              
+              {/* Garis Penghubung ke Level 3 */}
+              <div className="absolute top-[25rem] left-1/2 -translate-x-1/2 w-px h-16 bg-cyan-400"></div>
 
-            {/* Connecting Lines */}
-            <div className="flex justify-center mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {getLevelItems(2).map((_, index) => (
-                  <div key={index} className="flex justify-center">
-                    <div className="w-px h-8 bg-blue-300"></div>
-                  </div>
-                ))}
+              {/* Level 3: Kepala Madrasah */}
+              <div className="mt-16 flex justify-center gap-16">
+                 <ManagementCard item={managementStructure[4]} />
+                 <ManagementCard item={managementStructure[5]} />
               </div>
-            </div>
 
-            {/* Level 3 - Kepala Madrasah */}
-            <div className="flex justify-center mb-12">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {getLevelItems(3).map((item, index) => (
-                  <div key={index} className="text-center">
-                    <div 
-                      className="inline-block p-5 bg-gradient-to-br from-cyan-500 to-cyan-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                      onClick={() => setSelected(item)}
-                    >
-                      <div className="text-3xl mb-2">{item.icon}</div>
-                      <h4 className="text-base font-semibold mb-1">{item.title.split(' - ')[0]}</h4>
-                      <p className="text-xs opacity-90">{item.title.split(' - ')[1]}</p>
-                      <p className="text-xs opacity-90 mt-1">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+              {/* Garis Penghubung ke Level 4 */}
+              <div className="absolute top-[42rem] left-1/2 -translate-x-1/2 w-px h-16 bg-cyan-400"></div>
 
-            {/* Connecting Lines */}
-            <div className="flex justify-center mb-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {getLevelItems(3).map((_, index) => (
-                  <div key={index} className="flex justify-center">
-                    <div className="w-px h-8 bg-cyan-300"></div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Level 4 - Wakil Kepala & Bendahara */}
-            <div className="flex justify-center">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {getLevelItems(4).map((item, index) => (
-                  <div key={index} className="text-center">
-                    <div 
-                      className="inline-block p-5 bg-gradient-to-br from-purple-500 to-purple-600 text-white rounded-lg shadow-lg cursor-pointer hover:shadow-xl transition-all duration-300"
-                      onClick={() => setSelected(item)}
-                    >
-                      <div className="text-3xl mb-2">{item.icon}</div>
-                      <h4 className="text-base font-semibold mb-1">{item.title.split(' - ')[0]}</h4>
-                      <p className="text-xs opacity-90">{item.title.split(' - ')[1]}</p>
-                      <p className="text-xs opacity-90 mt-1">{item.description}</p>
-                    </div>
-                  </div>
-                ))}
+              {/* Level 4: Waka & Bendahara */}
+              <div className="mt-16 flex w-full justify-around">
+                <ManagementCard item={managementStructure[7]} />
+                <ManagementCard item={managementStructure[6]} />
               </div>
             </div>
           </div>
         </div>
       </main>
       <Footer />
-
-      {/* Modal */}
-      {selected && (
-        <div className="fixed inset-0 bg-black bg-opacity-60 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg shadow-xl p-6 max-w-lg w-full relative">
-            {/* Tombol close */}
-            <button 
-              className="absolute top-3 right-3 text-gray-500 hover:text-red-500 text-xl"
-              onClick={() => setSelected(null)}
-            >
-              ✕
-            </button>
-            {/* Foto besar */}
-            <img 
-              src={selected.photo} 
-              alt={selected.title} 
-              className="w-40 h-40 object-cover rounded-full border-4 border-emerald-500 mx-auto mb-4"
-              onError={(e) => e.currentTarget.src = "/images/management/default.jpg"}
-            />
-            {/* Nama */}
-            <h2 className="text-2xl font-semibold text-center text-emerald-700 mb-2">
-              {selected.title}
-            </h2>
-            {/* Detail */}
-            <p className="text-gray-700 text-center leading-relaxed">
-              {selected.details}
-            </p>
-          </div>
-        </div>
-      )}
     </>
   );
 }

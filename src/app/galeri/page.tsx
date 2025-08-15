@@ -75,6 +75,13 @@ export default function GaleriPage() {
 
       {selectedImage && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-75 z-50" onClick={closeModal}>
+          <button 
+            onClick={closeModal} 
+            className="absolute top-4 right-4 text-white text-3xl hover:text-gray-300 transition-colors"
+            aria-label="Close"
+          >
+            &times;
+          </button>
           <img 
             src={selectedImage.image_url} 
             alt={selectedImage.alt_text} 

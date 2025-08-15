@@ -171,8 +171,7 @@ export default function Home() {
               </motion.div>
             </div>
           </motion.div>
-          {/* 
-          <motion.div
+          {/* <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.5 }}
@@ -274,16 +273,16 @@ export default function Home() {
                     className="bg-gradient-to-br from-blue-500 to-blue-600 p-6 rounded-2xl text-white shadow-xl hover:shadow-blue-200 transition-all duration-300"
                   >
                     <div className="text-3xl mb-2">🏫</div>
-                    <h4 className="font-bold mb-2">Luas Tanah</h4>
-                    <p className="text-3xl font-black">101.202 m²</p>
+                    <h4 className="font-bold mb-2 text-base md:text-lg">Luas Tanah</h4>
+                    <p className="text-2xl md:text-3xl font-black">101.202 m²</p>
                   </motion.div>
                   <motion.div
                     whileHover={{ scale: 1.05, y: -2 }}
                     className="bg-gradient-to-br from-cyan-500 to-cyan-600 p-6 rounded-2xl text-white shadow-xl hover:shadow-cyan-200 transition-all duration-300"
                   >
                     <div className="text-3xl mb-2">🏢</div>
-                    <h4 className="font-bold mb-2">Luas Bangunan</h4>
-                    <p className="text-3xl font-black">505 m²</p>
+                    <h4 className="font-bold mb-2 text-base md:text-lg">Luas Bangunan</h4>
+                    <p className="text-2xl md:text-3xl font-black">505 m²</p>
                   </motion.div>
                 </div>
               </motion.div>
