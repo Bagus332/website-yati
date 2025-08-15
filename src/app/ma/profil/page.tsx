@@ -39,7 +39,7 @@ export default function Home() {
         {/* Hero Section */}
         <section className="relative h-[60vh] overflow-hidden">
           <Image
-            src="/madrasah.jpg"
+            src="/photo_2025-08-15_09-16-27.jpg"
             alt="MA YATI"
             fill
             className="object-cover brightness-[0.6] scale-105"

@@ -133,7 +133,7 @@ export default function Home() {
               <div className="relative">
                 <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/madrasah.jpg"
+                    src="/photo_2025-08-15_09-16-27 (2).jpg"
                     alt="Kegiatan MTs"
                     fill
                     className="object-cover"
