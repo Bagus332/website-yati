@@ -1,6 +1,15 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { FaPhone, FaEnvelope, FaMapMarkerAlt, FaFacebook, FaInstagram, FaYoutube, FaQuran, FaGraduationCap } from 'react-icons/fa';
+import Link from "next/link";
+import Image from "next/image";
+import {
+  FaPhone,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaFacebook,
+  FaInstagram,
+  FaYoutube,
+  FaQuran,
+  FaGraduationCap,
+} from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -16,24 +25,44 @@ export default function Footer() {
           {/* Brand Section */}
           <div className="space-y-6">
             <div className="flex items-center space-x-3">
-              <Image src="/logo.jpeg" alt="YATI Logo" width={60} height={60} className="rounded-lg" />
+              <Image
+                src="/logo.jpeg"
+                alt="YATI Logo"
+                width={60}
+                height={60}
+                className="rounded-lg"
+              />
               <div>
-                <h3 className="text-xl font-bold text-white">Pondok Pesantren YATI</h3>
-                <p className="text-blue-100 text-sm">Mendidik Generasi Qurani</p>
+                <h3 className="text-xl font-bold text-white">
+                  Pondok Pesantren YATI
+                </h3>
+                <p className="text-blue-100 text-sm">
+                  Mendidik Generasi Qurani
+                </p>
               </div>
             </div>
             <p className="text-blue-50 leading-relaxed">
-              Yayasan Tarbiyah Islamiyah Buya H Mansur, lembaga pendidikan Islam yang 
-              mengintegrasikan nilai-nilai pesantren dengan pendidikan modern.
+              Yayasan Tarbiyah Islamiyah Buya H Mansur, lembaga pendidikan Islam
+              yang mengintegrasikan nilai-nilai pesantren dengan pendidikan
+              modern.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-white hover:text-blue-200 transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-blue-200 transition-colors"
+              >
                 <FaFacebook size={24} />
               </a>
-              <a href="#" className="text-white hover:text-blue-200 transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-blue-200 transition-colors"
+              >
                 <FaInstagram size={24} />
               </a>
-              <a href="#" className="text-white hover:text-blue-200 transition-colors">
+              <a
+                href="#"
+                className="text-white hover:text-blue-200 transition-colors"
+              >
                 <FaYoutube size={24} />
               </a>
             </div>
@@ -44,12 +73,18 @@ export default function Footer() {
             <h3 className="text-lg font-bold text-white mb-6">Menu Utama</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/berita" className="text-blue-50 hover:text-white transition-colors flex items-center">
+                <Link
+                  href="/berita"
+                  className="text-blue-50 hover:text-white transition-colors flex items-center"
+                >
                   <FaQuran className="mr-2" /> Program Tahfiz
                 </Link>
               </li>
               <li>
-                <Link href="/pendaftaran" className="text-blue-50 hover:text-white transition-colors flex items-center">
+                <Link
+                  href="/pendaftaran"
+                  className="text-blue-50 hover:text-white transition-colors flex items-center"
+                >
                   <FaGraduationCap className="mr-2" /> Pendaftaran Santri
                 </Link>
               </li>
@@ -58,21 +93,32 @@ export default function Footer() {
 
           {/* Contact Info */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-6">Informasi Kontak</h3>
+            <h3 className="text-lg font-bold text-white mb-6">
+              Informasi Kontak
+            </h3>
             <div className="space-y-4">
               <p className="flex items-center text-blue-50">
                 <FaMapMarkerAlt className="text-blue-200 mr-3 flex-shrink-0" />
-                <span>QCQ2+4X5 Yati, Kampung Baru, Kamang Mudiak, Kamang Magek, Kab. Agam</span>
+                <span>
+                  QCQ2+4X5 Yati, Kampung Baru, Kamang Mudiak, Kamang Magek, Kab.
+                  Agam
+                </span>
               </p>
               <p className="flex items-center text-blue-50">
                 <FaPhone className="text-blue-200 mr-3 flex-shrink-0" />
-                <a href="tel:081374549687" className="hover:text-white transition-colors">
+                <a
+                  href="tel:081374549687"
+                  className="hover:text-white transition-colors"
+                >
                   0813-7454-9687
                 </a>
               </p>
               <p className="flex items-center text-blue-50">
                 <FaEnvelope className="text-blue-200 mr-3 flex-shrink-0" />
-                <a href="mailto:mti.yati@yahoo.com" className="hover:text-white transition-colors">
+                <a
+                  href="mailto:mti.yati@yahoo.com"
+                  className="hover:text-white transition-colors"
+                >
                   mti.yati@yahoo.com
                 </a>
               </p>
@@ -81,7 +127,9 @@ export default function Footer() {
 
           {/* Operating Hours */}
           <div>
-            <h3 className="text-lg font-bold text-white mb-6">Jam Operasional</h3>
+            <h3 className="text-lg font-bold text-white mb-6">
+              Jam Operasional
+            </h3>
             <div className="space-y-3 text-blue-50">
               <p className="flex justify-between">
                 <span>Senin - Kamis:</span>
@@ -105,7 +153,8 @@ export default function Footer() {
 
         <div className="border-t border-blue-400/30 mt-12 pt-8 text-center">
           <p className="text-blue-100">
-            &copy; {new Date().getFullYear()} Pondok Pesantren YATI. All rights reserved.
+            &copy; {new Date().getFullYear()} Pondok Pesantren YATI. All rights
+            reserved.
           </p>
         </div>
       </div>
