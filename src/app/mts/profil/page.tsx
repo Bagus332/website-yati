@@ -55,11 +55,11 @@ export default function Home() {
           >
             <h1 className="text-5xl md:text-7xl font-black mb-6 text-center">
               <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
-                Madrasah Tsanawiyah
+                MTsS
               </span>
               <br />
               <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-blue-300 bg-clip-text text-transparent">
-                YATI
+                YATI Kamang Mudik
               </span>
             </h1>
             <motion.div
@@ -123,7 +123,7 @@ export default function Home() {
                       <FaSchool className="text-blue-600 text-xl" />
                       <div>
                         <h4 className="font-semibold text-gray-800">Status</h4>
-                        <p className="text-blue-600">Terakreditasi B</p>
+                        <p className="text-blue-600">Terakreditasi</p>
                       </div>
                     </div>
                   </div>

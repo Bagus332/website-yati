@@ -3,7 +3,14 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion } from "framer-motion";
-import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaUser, FaBuilding, FaIdCard } from "react-icons/fa";
+import {
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+  FaUser,
+  FaBuilding,
+  FaIdCard,
+} from "react-icons/fa";
 
 export default function Home() {
   return (
@@ -28,21 +35,21 @@ export default function Home() {
               <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
             </div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60 mb-16"
             >
               <p className="text-gray-700 text-lg leading-relaxed text-center max-w-3xl mx-auto">
                 Silakan hubungi kami untuk informasi lebih lanjut mengenai
-                pendaftaran, program pendidikan, atau kunjungan ke Pondok Pesantren
-                YATI Kamang Mudik.
+                pendaftaran, program pendidikan, atau kunjungan ke Pondok
+                Pesantren YATI Kamang Mudik.
               </p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 gap-8 mb-16">
               {/* Contact Info */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60"
@@ -53,8 +60,12 @@ export default function Home() {
                       <FaBuilding className="text-2xl text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-800">Nama Yayasan</h3>
-                      <p className="text-gray-600">Yayasan Tarbiyah Islamiyah Buya H Mansur</p>
+                      <h3 className="text-lg font-bold text-gray-800">
+                        Nama Yayasan
+                      </h3>
+                      <p className="text-gray-600">
+                        Yayasan Tarbiyah Islamiyah Buya H Mansur
+                      </p>
                     </div>
                   </div>
 
@@ -63,10 +74,18 @@ export default function Home() {
                       <FaMapMarkerAlt className="text-2xl text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-800">Alamat</h3>
-                      <p className="text-gray-600">QCQ2+4X5 Yati, Kampung Baru</p>
-                      <p className="text-gray-600">Kamang Mudiak, Kamang Magek</p>
-                      <p className="text-gray-600">Kabupaten Agam, Sumatera Barat 26152</p>
+                      <h3 className="text-lg font-bold text-gray-800">
+                        Alamat
+                      </h3>
+                      <p className="text-gray-600">
+                        QCQ2+4X5 Yati, Kampung Baru
+                      </p>
+                      <p className="text-gray-600">
+                        Kamang Mudiak, Kamang Magek
+                      </p>
+                      <p className="text-gray-600">
+                        Kabupaten Agam, Sumatera Barat 26152
+                      </p>
                     </div>
                   </div>
 
@@ -75,7 +94,9 @@ export default function Home() {
                       <FaUser className="text-2xl text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-800">Pimpinan</h3>
+                      <h3 className="text-lg font-bold text-gray-800">
+                        Pimpinan
+                      </h3>
                       <p className="text-gray-600">Mhd Padhil, S.Pd</p>
                     </div>
                   </div>
@@ -85,8 +106,13 @@ export default function Home() {
                       <FaPhone className="text-2xl text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-800">Telepon</h3>
-                      <a href="tel:081374549687" className="text-blue-600 hover:text-blue-700 transition-colors">
+                      <h3 className="text-lg font-bold text-gray-800">
+                        Telepon
+                      </h3>
+                      <a
+                        href="tel:081374549687"
+                        className="text-blue-600 hover:text-blue-700 transition-colors"
+                      >
                         0813-7454-9687
                       </a>
                     </div>
@@ -98,7 +124,10 @@ export default function Home() {
                     </div>
                     <div>
                       <h3 className="text-lg font-bold text-gray-800">Email</h3>
-                      <a href="mailto:mti.yati@yahoo.com" className="text-blue-600 hover:text-blue-700 transition-colors">
+                      <a
+                        href="mailto:mti.yati@yahoo.com"
+                        className="text-blue-600 hover:text-blue-700 transition-colors"
+                      >
                         mti.yati@yahoo.com
                       </a>
                     </div>
@@ -109,30 +138,57 @@ export default function Home() {
                       <FaIdCard className="text-2xl text-white" />
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-gray-800">Informasi Legal</h3>
-                      <p className="text-gray-600">No. Statistik: 510013060005</p>
-                      <p className="text-gray-600">NPWP: 0.2.698.791.7-203.000</p>
+                      <h3 className="text-lg font-bold text-gray-800">
+                        Informasi Legal
+                      </h3>
+                      <p className="text-gray-600">
+                        No. Statistik: 510013060005
+                      </p>
+                      <p className="text-gray-600">
+                        NPWP: 0.2.698.791.7-203.000
+                      </p>
                     </div>
                   </div>
                 </div>
               </motion.div>
-
               {/* Maps Section */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60"
               >
-                <div className="relative h-full min-h-[500px] rounded-2xl overflow-hidden">
-                  <iframe
-                    src="https://www.bing.com/maps/embed?h=400&w=800&cp=-0.212067~100.402306&lvl=16&typ=d&sty=r&src=SHELL&FORM=MBEDV8"
-                    width="100%"
-                    height="100%"
-                    className="absolute inset-0 w-full h-full rounded-2xl"
-                    allowFullScreen
-                    loading="lazy"
-                    title="Lokasi Pondok Pesantren YATI Kamang Mudik"
-                  ></iframe>
+                <div className="space-y-6">
+                  {/* Iframe Peta (untuk tampilan desktop) */}
+                  <div className="relative pt-[56.25%] rounded-2xl overflow-hidden shadow-md">
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3989.790991355191!2d100.402306!3d-0.212067!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2fd5452d2b0d1af9%3A0xf07f31c10565121!2sPondok%20Pesantren%20YATI%20Kamang%20Mudik!5e0!3m2!1sen!2sid!4v1755325146076!5m2!1sen!2sid"
+                      className="absolute inset-0 w-full h-full"
+                      style={{ border: 0 }}
+                      allowFullScreen
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      title="Lokasi Pondok Pesantren YATI Kamang Mudik"
+                    ></iframe>
+                  </div>
+
+                  {/* Tombol Buka Peta (untuk tampilan mobile dan alternatif) */}
+                  <div className="flex flex-col items-center justify-center text-center p-4">
+                    <h3 className="text-xl font-bold text-gray-800 mb-2">
+                      Lihat Lokasi di Peta
+                    </h3>
+                    <p className="text-gray-600 max-w-sm mb-4">
+                      Jika peta tidak muncul, klik tombol di bawah untuk membuka
+                      lokasi langsung di aplikasi peta Anda.
+                    </p>
+                    <a
+                      href="https://www.google.com/maps/place/Pondok+Pesantren+Yati+Kamang+Mudiak/@-0.212067,100.402306,17z/data=!3m1!4b1!4m6!3m5!1s0x2fd538f9b9a67a03:0xaf5081fdfd5395a0!8m2!3d-0.212067!4d100.402306!16s%2Fg%2F11b6m774r8"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block bg-blue-600 text-white font-bold py-3 px-8 rounded-full shadow-lg hover:bg-blue-700 transition-colors"
+                    >
+                      Buka Peta
+                    </a>
+                  </div>
                 </div>
               </motion.div>
             </div>
