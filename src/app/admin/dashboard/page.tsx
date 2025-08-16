@@ -1,27 +1,26 @@
 "use client";
 
-import React, { JSX, useState, useEffect } from "react"; // Tambahkan useEffect di sini
-import { useRouter } from "next/navigation"; // Tambahkan useRouter
-import { supabase } from "@/lib/supabase"; // Impor supabase
+import React, { JSX, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { supabase } from "@/lib/supabase";
 import ArticleManager from "./components/ArticleManager";
 import GalleryManager from "./components/GalleryManager";
 import AlumniManager from "./components/AlumniManager";
+import CarouselManager from "./components/CarouselManager"; // Impor komponen baru
 import AdminNavbar from "@/components/AdminNavbar";
-import { FaNewspaper, FaImages, FaUserGraduate } from "react-icons/fa";
+import { FaNewspaper, FaImages, FaUserGraduate, FaPhotoVideo } from "react-icons/fa"; // Tambahkan ikon baru
 
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState("articles");
   const router = useRouter();
   const [loading, setLoading] = useState(true);
 
-  // Efek untuk memeriksa status otentikasi saat komponen dimuat
   useEffect(() => {
     const checkUser = async () => {
       const {
         data: { session },
       } = await supabase.auth.getSession();
       if (!session) {
-        // Jika tidak ada sesi, arahkan pengguna ke halaman login
         router.push("/admin");
       } else {
         setLoading(false);
@@ -30,7 +29,6 @@ export default function AdminDashboardPage() {
     checkUser();
   }, [router]);
 
-  // Tampilkan loading state atau semacamnya saat sedang memeriksa sesi
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gradient-to-b from-blue-50 to-white">
@@ -45,6 +43,8 @@ export default function AdminDashboardPage() {
         return <GalleryManager />;
       case "alumni":
         return <AlumniManager />;
+      case "carousel": // Tambahkan case baru
+        return <CarouselManager />;
       case "articles":
       default:
         return <ArticleManager />;
@@ -75,7 +75,6 @@ export default function AdminDashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white">
-      {/* Background Patterns */}
       <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,_theme(colors.cyan.500)_0%,_transparent_50%)]" />
@@ -91,7 +90,7 @@ export default function AdminDashboardPage() {
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
         </div>
 
-        <nav className="flex justify-center space-x-4 mb-12">
+        <nav className="flex flex-wrap justify-center gap-4 mb-12">
           <TabButton
             tabName="articles"
             icon={<FaNewspaper />}
@@ -102,6 +101,11 @@ export default function AdminDashboardPage() {
             tabName="alumni"
             icon={<FaUserGraduate />}
             label="Alumni"
+          />
+          <TabButton // Tambahkan tombol tab baru
+            tabName="carousel"
+            icon={<FaPhotoVideo />}
+            label="Carousel"
           />
         </nav>
 

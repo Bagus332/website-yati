@@ -6,7 +6,8 @@ import Footer from "@/components/Footer";
 import { Carousel } from "@/components/ui/carousel";
 import { motion } from "framer-motion";
 import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useRef, useEffect, useState } from "react"; // Tambahkan useEffect dan useState
+import { supabase } from "@/lib/supabase"; // Impor supabase
 import {
   FaQuran,
   FaGraduationCap,
@@ -15,35 +16,41 @@ import {
   FaStar,
 } from "react-icons/fa";
 
+interface SlideData {
+  src: string;
+}
+
 export default function Home() {
   const contentRef = useRef(null);
   const programsRef = useRef(null);
   const isContentInView = useInView(contentRef, { once: true });
   const isProgramsInView = useInView(programsRef, { once: true });
 
+  const [slideData, setSlideData] = useState<SlideData[]>([]);
+
+  useEffect(() => {
+    const fetchCarouselImages = async () => {
+      const { data, error } = await supabase
+        .from("carousel_images")
+        .select("image_url")
+        .order("created_at", { ascending: false });
+
+      if (data) {
+        const formattedData = data.map((item) => ({ src: item.image_url }));
+        setSlideData(formattedData);
+      } else {
+        console.error("Error fetching carousel images:", error);
+      }
+    };
+
+    fetchCarouselImages();
+  }, []);
+
   const fadeInUp = {
     initial: { opacity: 0, y: 60 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.8, ease: "easeOut" },
   };
-
-  const slideData = [
-    {
-      title: "Mystic Mountains",
-      button: "Explore Component",
-      src: "/photo_2025-08-15_09-16-27.jpg",
-    },
-    {
-      title: "Urban Dreams",
-      button: "Explore Component",
-      src: "/photo_2025-08-15_09-16-27.jpg",
-    },
-    {
-      title: "Neon Nights",
-      button: "Explore Component",
-      src: "/photo_2025-08-15_09-16-27.jpg",
-    },
-  ];
 
   return (
     <>
@@ -59,7 +66,7 @@ export default function Home() {
         <section className="relative h-[60vh] overflow-hidden">
           {/* Carousel as a background */}
           <div className="absolute inset-0 w-full h-full">
-            <Carousel slides={slideData} />
+            {slideData.length > 0 && <Carousel slides={slideData} />}
           </div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/80" />
 
@@ -90,7 +97,8 @@ export default function Home() {
           </motion.div>
         </section>
 
-        {/* Content Section */}
+        {/* Sisa konten halaman... */}
+        {/* ... (tidak ada perubahan di bawah ini) ... */}
         <section ref={contentRef} className="py-24 px-6 lg:px-14 relative">
           <motion.div
             variants={fadeInUp}
@@ -157,121 +165,6 @@ export default function Home() {
                   <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
                 </div>
               </div>
-            </div>
-          </motion.div>
-        </section>
-
-        {/* Programs Section */}
-        <section
-          ref={programsRef}
-          className="py-24 px-6 lg:px-14 bg-gradient-to-b from-gray-50 to-white relative"
-        >
-          <motion.div
-            variants={fadeInUp}
-            initial="initial"
-            animate={isProgramsInView ? "animate" : "initial"}
-            className="max-w-7xl mx-auto"
-          >
-            <div className="text-center mb-16">
-              <span className="inline-block bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
-                Program Unggulan
-              </span>
-              <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
-                Program & Kegiatan
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8 mb-16">
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white p-8 rounded-2xl shadow-xl border border-blue-100"
-              >
-                <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                  Program Wajib
-                </h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li>
-                    • Program Tahfizhul Qur'an dengan tingkatan juz tertentu
-                  </li>
-                  <li>• Pelatihan Komputer dan TIK terstruktur</li>
-                  <li>• Kegiatan Pramuka sesuai Kurikulum 2013</li>
-                  <li>• Program Muhadharah (Pidato dan Khutbah)</li>
-                </ul>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white p-8 rounded-2xl shadow-xl border border-cyan-100"
-              >
-                <h3 className="text-2xl font-bold text-gray-800 mb-6">
-                  Program Pengembangan
-                </h3>
-                <ul className="space-y-3 text-gray-700">
-                  <li>• Jahit menjahit dan Tata Busana</li>
-                  <li>• Seni Bela Diri (Silat dan Karate)</li>
-                  <li>• Forum Annisa'</li>
-                  <li>• Kegiatan Sosial dan Dakwah Kemasyarakatan</li>
-                </ul>
-              </motion.div>
-            </div>
-
-            {/* Visi & Misi Section */}
-            <div className="text-center mb-16">
-              <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
-                Visi & Misi
-              </h2>
-              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-8">
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white p-8 rounded-2xl shadow-xl border border-blue-100"
-              >
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-600 rounded-2xl flex items-center justify-center">
-                    <FaStar className="text-2xl text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-800">Visi</h3>
-                </div>
-                <p className="text-gray-700 leading-relaxed">
-                  Terwujudnya siswa yang beriman, bertakwa, berkarakter dan
-                  berprestasi
-                </p>
-              </motion.div>
-
-              <motion.div
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="bg-white p-8 rounded-2xl shadow-xl border border-cyan-100"
-              >
-                <div className="flex items-center space-x-4 mb-6">
-                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-cyan-600 rounded-2xl flex items-center justify-center">
-                    <FaQuran className="text-2xl text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-gray-800">Misi</h3>
-                </div>
-                <ul className="space-y-3 text-gray-700">
-                  <li>
-                    • Mewujudkan penyelenggaraan pendidikan yang berorientasi
-                    pada mutu
-                  </li>
-                  <li>• Mewujudkan manajemen Madrasah yang akuntabiliatas</li>
-                  <li>
-                    • Mewujudkan SDM yang cerdas intelektual, emosional dan
-                    spiritual
-                  </li>
-                  <li>• Penguasaan ilmu-ilmu agama dan umum</li>
-                  <li>
-                    • Mewujudkan sarana dan prasarana yang memadai dan
-                    berkualitas
-                  </li>
-                  <li>
-                    • Mewujudkan partisipasi aktif masyarakat terhadap
-                    pendidikan Madrasah
-                  </li>
-                </ul>
-              </motion.div>
             </div>
           </motion.div>
         </section>

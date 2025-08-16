@@ -1,36 +1,99 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Website Pondok Pesantren YATI
 
-## Getting Started
+Ini adalah proyek [Next.js](https://nextjs.org) yang di-bootstrap dengan [`create-next-app`](https://www.google.com/search?q=%5Bhttps://nextjs.org/docs/app/api-reference/cli/create-next-app%5D\(https://nextjs.org/docs/app/api-reference/cli/create-next-app\)).
 
-First, run the development server:
+## Ringkasan Proyek
+
+Website ini bertujuan untuk menjadi platform digital bagi Pondok Pesantren YATI, menyediakan informasi profil, berita, galeri kegiatan, serta detail mengenai jenjang pendidikan MTsS dan MAS. Selain itu, terdapat dasbor admin untuk mengelola konten artikel, galeri, dan data alumni.
+
+## Teknologi yang Digunakan
+
+  * **Framework**: [Next.js](https://nextjs.org/)
+  * **Bahasa**: [TypeScript](https://www.typescriptlang.org/)
+  * **Styling**: [Tailwind CSS](https://tailwindcss.com/)
+  * **Animasi**: [Framer Motion](https://www.framer.com/motion/)
+  * **Database & Autentikasi**: [Supabase](https://supabase.io/)
+  * **Penyimpanan Gambar**: [Cloudinary](https://cloudinary.com/)
+
+## Memulai
+
+Pertama, jalankan server pengembangan:
 
 ```bash
 npm run dev
-# or
+# atau
 yarn dev
-# or
+# atau
 pnpm dev
-# or
+# atau
 bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Buka [http://localhost:3000](https://www.google.com/search?q=http://localhost:3000) dengan browser Anda untuk melihat hasilnya.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Anda dapat mulai mengedit halaman dengan memodifikasi `app/page.tsx`. Halaman akan diperbarui secara otomatis saat Anda mengedit file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Proyek ini menggunakan [`next/font`](https://www.google.com/search?q=%5Bhttps://nextjs.org/docs/app/building-your-application/optimizing/fonts%5D\(https://nextjs.org/docs/app/building-your-application/optimizing/fonts\)) untuk mengoptimalkan dan memuat [Geist](https://vercel.com/font), keluarga font baru untuk Vercel, secara otomatis.
 
-## Learn More
+## Struktur Proyek
 
-To learn more about Next.js, take a look at the following resources:
+```
+/src
+├── app
+│   ├── (public)
+│   │   ├── profile
+│   │   ├── mts
+│   │   ├── ma
+│   │   ├── berita
+│   │   ├── galeri
+│   │   └── kontak
+│   └── admin
+│       ├── dashboard
+│       └── page.tsx (Login)
+├── components
+│   ├── ui
+│   └── (komponen-utama)
+└── lib
+    ├── supabase.ts
+    └── utils.ts
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+  * **`/app`**: Berisi semua rute aplikasi.
+      * **`(public)`**: Grup rute untuk halaman yang dapat diakses publik.
+      * **`/admin`**: Grup rute untuk halaman admin, termasuk halaman login dan dasbor.
+  * **`/components`**: Berisi komponen React yang dapat digunakan kembali.
+  * **`/lib`**: Berisi file utilitas dan konfigurasi, seperti koneksi Supabase.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Dasbor Admin
 
-## Deploy on Vercel
+Dasbor admin adalah area terproteksi untuk mengelola konten website.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+  * **Login**: Akses halaman `/admin` untuk masuk.
+  * **Fitur**:
+      * **Manajemen Artikel**: Buat, edit, dan hapus artikel berita.
+      * **Manajemen Galeri**: Unggah dan hapus foto di galeri.
+      * **Manajemen Alumni**: Tambah, edit, dan hapus data alumni untuk MTsS dan MAS.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Variabel Lingkungan
+
+Untuk menjalankan proyek ini secara lokal, Anda perlu membuat file `.env.local` di root proyek dan menambahkan variabel berikut:
+
+```
+NEXT_PUBLIC_SUPABASE_URL=URL_PROYEK_SUPABASE_ANDA
+NEXT_PUBLIC_SUPABASE_ANON_KEY=KUNCI_ANON_SUPABASE_ANDA
+```
+
+## Pelajari Lebih Lanjut
+
+Untuk mempelajari lebih lanjut tentang Next.js, lihat sumber daya berikut:
+
+  * [Dokumentasi Next.js](https://nextjs.org/docs) - pelajari tentang fitur dan API Next.js.
+  * [Learn Next.js](https://nextjs.org/learn) - tutorial interaktif Next.js.
+
+Anda dapat melihat [repositori GitHub Next.js](https://github.com/vercel/next.js) - umpan balik dan kontribusi Anda sangat kami harapkan\!
+
+## Deploy di Vercel
+
+Cara termudah untuk men-deploy aplikasi Next.js Anda adalah dengan menggunakan [Platform Vercel](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) dari para pembuat Next.js.
+
+Lihat [dokumentasi deployment Next.js](https://nextjs.org/docs/app/building-your-application/deploying) kami untuk detail lebih lanjut.

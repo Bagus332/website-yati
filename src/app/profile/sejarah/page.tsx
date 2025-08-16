@@ -2,6 +2,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import Image from "next/image"; // Impor komponen Image
 import {
   FaHistory,
   FaGraduationCap,
@@ -191,79 +192,79 @@ export default function Home() {
                   name: "H. Buya Mansur Dt. Nagari Basa",
                   role: "Pendiri",
                   period: "1930 - 1945",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "H. Abdul Manaf Idris",
                   role: "Pimpinan",
                   period: "1945 - 1955",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "A. Tuangku Sati",
                   role: "Pimpinan",
                   period: "1955 - 1965",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "Hj. Nurza Mahmud",
                   role: "Pimpinan",
                   period: "1965 - 1975",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "Muhammad Nasir",
                   role: "Pimpinan",
                   period: "1975 - 1985",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "Drs. Abdurrahman",
                   role: "Pimpinan",
                   period: "1985 - 1995",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "Dra. Emilya Husteti",
                   role: "Pimpinan",
                   period: "1995 - 2000",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "Junaidi, S.Pd. I",
                   role: "Pimpinan",
                   period: "2000 - 2005",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "Drs. Ramza Husmen, M.Pd",
                   role: "Pimpinan",
                   period: "2005 - 2010",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "Hj. Suarni, S. Pd. I",
                   role: "Pimpinan",
                   period: "2010 - 2015",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "Fetriwati, S.Ag. M.Pd",
                   role: "Pimpinan",
                   period: "2015 - 2018",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
                 {
                   name: "Welli Okmira, S.Pd.I",
                   role: "Pimpinan",
                   period: "2018 - 2020",
-                  image: "/public/foto/Welli Okmira.jpg",
+                  image: "/foto/Welli Okmira.jpg",
                 },
                 {
                   name: "Drs. H. Chairul Huda",
                   role: "Pimpinan",
                   period: "2020 - Sekarang",
-                  image: "/placeholder-leader.jpg",
+                  image: "/vorg.jpg",
                 },
               ].map((leader, index) => (
                 <motion.div
@@ -272,10 +273,17 @@ export default function Home() {
                   whileHover={{ y: -5 }}
                   className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 group"
                 >
-                  <div className="w-full h-48 mb-4 rounded-lg bg-gray-100 overflow-hidden">
-                    <div className="w-full h-full bg-gradient-to-br from-emerald-100 to-blue-50 flex items-center justify-center">
-                      <FaUserTie className="text-4xl text-emerald-300" />
-                    </div>
+                  <div className="w-full h-48 mb-4 rounded-lg bg-gray-100 overflow-hidden relative">
+                    <Image
+                      src={leader.image}
+                      alt={`Foto ${leader.name}`}
+                      layout="fill"
+                      objectFit="cover"
+                      className="group-hover:scale-100 transition-transform duration-300"
+                      onError={(e) => {
+                        e.currentTarget.src = "/vorg.jpg";
+                      }}
+                    />
                   </div>
                   <h3 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-emerald-600 transition-colors">
                     {leader.name}
