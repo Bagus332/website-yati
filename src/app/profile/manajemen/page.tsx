@@ -16,26 +16,80 @@ type ManagementItem = {
 
 // Komponen untuk setiap kartu manajemen
 const ManagementCard = ({ item }: { item: ManagementItem }) => (
-  <motion.div whileHover={{ y: -5, scale: 1.05 }} className="text-center">
-    <div className="inline-block p-6 bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-2xl shadow-xl w-64">
-      <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center text-4xl">{item.icon}</div>
-      <h3 className="text-md font-semibold">{item.title.split(' - ')[0]}</h3>
-      <p className="text-xs opacity-90">{item.title.split(' - ')[1]}</p>
+  <motion.div
+    whileHover={{ y: -5, scale: 1.05 }}
+    className="text-center w-full md:w-64"
+  >
+    <div className="p-6 bg-gradient-to-br from-blue-500 to-cyan-500 text-white rounded-2xl shadow-xl h-full flex flex-col items-center justify-center">
+      <div className="w-20 h-20 mx-auto mb-4 bg-white/20 rounded-full flex items-center justify-center text-4xl">
+        {item.icon}
+      </div>
+      <h3 className="text-md font-semibold">{item.title.split(" - ")[0]}</h3>
+      <p className="text-xs opacity-90">{item.title.split(" - ")[1]}</p>
     </div>
   </motion.div>
 );
 
 export default function Home() {
   const managementStructure: ManagementItem[] = [
-    { title: "Pembina Yayasan - H. Edi Mahmud", icon: <FaUserTie />, description: "Membina dan mengarahkan kebijakan strategis.", level: 1 },
-    { title: "Ketua Yayasan - Drs. H. Ramza Husmen, M.Pd", icon: <FaUserTie />, description: "Memimpin yayasan dan memastikan visi-misi tercapai.", level: 1 },
-    { title: "Pimpinan Pondok - Mhd. Padhil, S.Pd", icon: <FaUserTie />, description: "Mengelola seluruh kegiatan pesantren.", level: 2, parent: "Ketua Yayasan" },
-    { title: "Ketua Komite - Sirajul Munir, S.Ag", icon: <FaUsers />, description: "Memberikan dukungan strategis.", level: 2, parent: "Pembina Yayasan" },
-    { title: "Kepala MA - Delvianti, M.Pd", icon: <FaBook />, description: "Mengelola pendidikan tingkat Aliyah.", level: 3, parent: "Pimpinan Pondok" },
-    { title: "Kepala MTs - Welli Okmira, M.Pd", icon: <FaBook />, description: "Mengelola pendidikan tingkat Tsanawiyah.", level: 3, parent: "Pimpinan Pondok" },
-    { title: "Waka Kurikulum - Yenni Firda, S.Pd", icon: <FaBook />, description: "Mengembangkan kurikulum pendidikan.", level: 4, parent: "Kepala Madrasah" },
-    { title: "Bendahara - Putri Nurhasanah, S.Pd", icon: <FaMoneyBillWave />, description: "Mengelola keuangan dan administrasi.", level: 4, parent: "Pimpinan Pondok" }
+    {
+      title: "Pembina Yayasan - H. Edi Mahmud",
+      icon: <FaUserTie />,
+      description: "Membina dan mengarahkan kebijakan strategis.",
+      level: 1,
+    },
+    {
+      title: "Ketua Yayasan - Drs. H. Ramza Husmen, M.Pd",
+      icon: <FaUserTie />,
+      description: "Memimpin yayasan dan memastikan visi-misi tercapai.",
+      level: 1,
+    },
+    {
+      title: "Pimpinan Pondok - Mhd. Padhil, S.Pd",
+      icon: <FaUserTie />,
+      description: "Mengelola seluruh kegiatan pesantren.",
+      level: 2,
+      parent: "Ketua Yayasan",
+    },
+    {
+      title: "Ketua Komite - Sirajul Munir, S.Ag",
+      icon: <FaUsers />,
+      description: "Memberikan dukungan strategis.",
+      level: 2,
+      parent: "Pembina Yayasan",
+    },
+    {
+      title: "Kepala MA - Delvianti, M.Pd",
+      icon: <FaBook />,
+      description: "Mengelola pendidikan tingkat Aliyah.",
+      level: 3,
+      parent: "Pimpinan Pondok",
+    },
+    {
+      title: "Kepala MTs - Welli Okmira, M.Pd",
+      icon: <FaBook />,
+      description: "Mengelola pendidikan tingkat Tsanawiyah.",
+      level: 3,
+      parent: "Pimpinan Pondok",
+    },
+    {
+      title: "Waka Kurikulum - Yenni Firda, S.Pd",
+      icon: <FaBook />,
+      description: "Mengembangkan kurikulum pendidikan.",
+      level: 4,
+      parent: "Kepala Madrasah",
+    },
+    {
+      title: "Bendahara - Putri Nurhasanah, S.Pd",
+      icon: <FaMoneyBillWave />,
+      description: "Mengelola keuangan dan administrasi.",
+      level: 4,
+      parent: "Pimpinan Pondok",
+    },
   ];
+
+  const getLevelItems = (level: number) =>
+    managementStructure.filter((item) => item.level === level);
 
   return (
     <>
@@ -57,38 +111,42 @@ export default function Home() {
               <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
             </div>
 
-            <div className="relative flex flex-col items-center bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60">
+            <div className="flex flex-col items-center bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60">
               {/* Level 1: Yayasan */}
-              <div className="flex flex-wrap justify-center gap-24">
-                <ManagementCard item={managementStructure[0]} />
-                <ManagementCard item={managementStructure[1]} />
+              <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-24 mb-6">
+                {getLevelItems(1).map((item, index) => (
+                  <ManagementCard key={index} item={item} />
+                ))}
               </div>
 
               {/* Garis Penghubung ke Level 2 */}
-              <div className="absolute top-40 left-1/2 -translate-x-1/2 w-px h-16 bg-cyan-400"></div>
+              <div className="w-px h-16 bg-gradient-to-b from-cyan-400 to-cyan-400 my-4"></div>
 
               {/* Level 2: Pimpinan & Komite */}
-              <div className="mt-16 flex w-full justify-around">
-                <ManagementCard item={managementStructure[3]} />
-                <ManagementCard item={managementStructure[2]} />
+              <div className="flex flex-col md:flex-row justify-around gap-6 md:gap-16 w-full mb-6">
+                {getLevelItems(2).map((item, index) => (
+                  <ManagementCard key={index} item={item} />
+                ))}
               </div>
-              
+
               {/* Garis Penghubung ke Level 3 */}
-              <div className="absolute top-[25rem] left-1/2 -translate-x-1/2 w-px h-16 bg-cyan-400"></div>
+              <div className="w-px h-16 bg-gradient-to-b from-cyan-400 to-cyan-400 my-4"></div>
 
               {/* Level 3: Kepala Madrasah */}
-              <div className="mt-16 flex justify-center gap-16">
-                 <ManagementCard item={managementStructure[4]} />
-                 <ManagementCard item={managementStructure[5]} />
+              <div className="flex flex-col md:flex-row justify-center gap-6 md:gap-16 w-full mb-6">
+                {getLevelItems(3).map((item, index) => (
+                  <ManagementCard key={index} item={item} />
+                ))}
               </div>
 
               {/* Garis Penghubung ke Level 4 */}
-              <div className="absolute top-[42rem] left-1/2 -translate-x-1/2 w-px h-16 bg-cyan-400"></div>
+              <div className="w-px h-16 bg-gradient-to-b from-cyan-400 to-cyan-400 my-4"></div>
 
               {/* Level 4: Waka & Bendahara */}
-              <div className="mt-16 flex w-full justify-around">
-                <ManagementCard item={managementStructure[7]} />
-                <ManagementCard item={managementStructure[6]} />
+              <div className="flex flex-col md:flex-row justify-around gap-6 md:gap-16 w-full">
+                {getLevelItems(4).map((item, index) => (
+                  <ManagementCard key={index} item={item} />
+                ))}
               </div>
             </div>
           </div>

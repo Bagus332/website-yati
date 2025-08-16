@@ -71,7 +71,7 @@ export default function Home() {
                 <FaHistory className="text-2xl text-white" />
               </div>
               <h2 className="text-3xl font-bold bg-gradient-to-r from-emerald-600 to-emerald-800 bg-clip-text text-transparent">
-                Awal Mula
+                Latar Belakang
               </h2>
             </motion.div>
             <motion.div
