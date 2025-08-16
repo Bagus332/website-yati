@@ -13,26 +13,90 @@ type StaffItem = {
 
 export default function TendikTsanawiyah() {
   const tsanawiyahTendik: StaffItem[] = [
-    { title: "Welli Okmira, M.Pd", jabatan: "Kepala Madrasah Tsanawiyah", photo: "/foto/Welli Okmira.jpg" },
-    { title: "Yenni Firda, S.Pd", jabatan: "Waka Kurikulum & Guru Ekonomi", photo: "/foto/yeni firda.jpg" },
-    { title: "Putri Nurhasanah, S.Pd", jabatan: "Waka Kesiswaan & Bendahara", photo: "/foto/Putri Nurhasanah.jpg" },
-    { title: "Gito Prabowo, S.Pd", jabatan: "Tata Usaha", photo: "/foto/Gito Prabowo.jpg" },
-    { title: "Meldawati, S.Pd.I", jabatan: "Kepala Perpustakaan", photo: "/foto/Meldawati.jpg" },
+    {
+      title: "Welli Okmira, M.Pd",
+      jabatan: "Kepala Madrasah Tsanawiyah",
+      photo: "/foto/Welli Okmira.jpg",
+    },
+    {
+      title: "Yenni Firda, S.Pd",
+      jabatan: "Waka Kurikulum & Guru Ekonomi",
+      photo: "/foto/yeni firda.jpg",
+    },
+    {
+      title: "Putri Nurhasanah, S.Pd",
+      jabatan: "Waka Kesiswaan & Bendahara",
+      photo: "/foto/Putri Nurhasanah.jpg",
+    },
+    {
+      title: "Gito Prabowo, S.Pd",
+      jabatan: "Tata Usaha",
+      photo: "/foto/Gito Prabowo.jpg",
+    },
+    {
+      title: "Meldawati, S.Pd.I",
+      jabatan: "Kepala Perpustakaan",
+      photo: "/foto/Meldawati.jpg",
+    },
     { title: "Azkia Rahmi, S.Ag", jabatan: "Wali Kelas 7", photo: "/vorg.jpg" },
-    { title: "Putri Rahmadhani, S.Pd", jabatan: "Wali Kelas 8 & Guru Bahasa Indonesia", photo: "/foto/Putri Ramadhani.jpg" },
-    { title: "Lilvia, S.Pd", jabatan: "Wali Kelas 9 & Guru Bahasa Arab", photo: "/foto/Lilvia.jpg" },
-    { title: "Zul Efendi, S.Pd", jabatan: "Akhlak Libanin", photo: "/foto/Zul Efendi.jpg" },
-    { title: "Refda Yetti, S.Pd I", jabatan: "Al Qur'an Hadist, Hadist", photo: "/foto/Refda Yetti.jpg" },
-    { title: "Lisa Yunita, S.Pd I", jabatan: "Akidah Akhlak, Tauhid", photo: "/foto/Lisa Yunita.jpg" },
-    { title: "Arbaisyah, S. Pd", jabatan: "IPA Terpadu", photo: "/foto/Arbaisyah.jpg" },
-    { title: "Weni Anggraini, S. Pd", jabatan: "IPS/Matematika", photo: "/foto/Weni Anggraini.jpg" },
+    {
+      title: "Putri Rahmadhani, S.Pd",
+      jabatan: "Wali Kelas 8 & Guru Bahasa Indonesia",
+      photo: "/foto/Putri Ramadhani.jpg",
+    },
+    {
+      title: "Lilvia, S.Pd",
+      jabatan: "Wali Kelas 9 & Guru Bahasa Arab",
+      photo: "/foto/Lilvia.jpg",
+    },
+    {
+      title: "Zul Efendi, S.Pd",
+      jabatan: "Akhlak Libanin",
+      photo: "/foto/Zul Efendi.jpg",
+    },
+    {
+      title: "Refda Yetti, S.Pd I",
+      jabatan: "Al Qur'an Hadist, Hadist",
+      photo: "/foto/Refda Yetti.jpg",
+    },
+    {
+      title: "Lisa Yunita, S.Pd I",
+      jabatan: "Akidah Akhlak, Tauhid",
+      photo: "/foto/Lisa Yunita.jpg",
+    },
+    {
+      title: "Arbaisyah, S. Pd",
+      jabatan: "IPA Terpadu",
+      photo: "/foto/Arbaisyah.jpg",
+    },
+    {
+      title: "Weni Anggraini, S. Pd",
+      jabatan: "IPS/Matematika",
+      photo: "/foto/Weni Anggraini.jpg",
+    },
     { title: "Junia Safreni", jabatan: "Nahwu/Sharaf", photo: "/vorg.jpg" },
-    { title: "M. Padhil, S.Pd", jabatan: "Matematika", photo: "/foto/Mhd Padhil.jpg" },
+    {
+      title: "M. Padhil, S.Pd",
+      jabatan: "Matematika",
+      photo: "/foto/Mhd Padhil.jpg",
+    },
     { title: "Elfi Yusmanizar, S.Pd", jabatan: "Geografi", photo: "/vorg.jpg" },
-    { title: "Hevi Murnialis, S.Pd", jabatan: "Ekonomi/Akutansi", photo: "/vorg.jpg" },
-    { title: "Yusnetti, S.H", jabatan: "Sosiologi", photo: "/foto/yusnetti oke.jpg" },
+    {
+      title: "Hevi Murnialis, S.Pd",
+      jabatan: "Ekonomi/Akutansi",
+      photo: "/vorg.jpg",
+    },
+    {
+      title: "Yusnetti, S.H",
+      jabatan: "Sosiologi",
+      photo: "/foto/yusnetti oke.jpg",
+    },
     { title: "Firdaus, SH", jabatan: "Tarekh", photo: "/foto/Firdaus.jpg" },
-    { title: "Muhammad Sabri, SH", jabatan: "Fikih Khitab", photo: "/foto/Muhammad Sabri.jpg" },
+    {
+      title: "Muhammad Sabri, SH",
+      jabatan: "Fikih Khitab",
+      photo: "/foto/Muhammad Sabri.jpg",
+    },
     { title: "Nini Arianti, S Thi", jabatan: "Sharaf", photo: "/vorg.jpg" },
   ];
 
@@ -56,7 +120,7 @@ export default function TendikTsanawiyah() {
               <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
               {tsanawiyahTendik.map((item, index) => (
                 <motion.div
                   key={index}
@@ -72,8 +136,12 @@ export default function TendikTsanawiyah() {
                       onError={(e) => (e.currentTarget.src = "/vorg.jpg")}
                     />
                   </div>
-                  <h4 className="text-md font-bold text-gray-800 mb-1">{item.title}</h4>
-                  <p className="text-sm text-blue-600 font-medium">{item.jabatan}</p>
+                  <h4 className="text-md font-bold text-gray-800 mb-1">
+                    {item.title}
+                  </h4>
+                  <p className="text-sm text-blue-600 font-medium">
+                    {item.jabatan}
+                  </p>
                 </motion.div>
               ))}
             </div>
