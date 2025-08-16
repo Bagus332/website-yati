@@ -3,8 +3,8 @@
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { Carousel } from "@/components/ui/carousel";
+import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import {
   FaQuran,
@@ -26,6 +26,24 @@ export default function Home() {
     transition: { duration: 0.8, ease: "easeOut" },
   };
 
+  const slideData = [
+    {
+      title: "Mystic Mountains",
+      button: "Explore Component",
+      src: "/photo_2025-08-15_09-16-27.jpg",
+    },
+    {
+      title: "Urban Dreams",
+      button: "Explore Component",
+      src: "/photo_2025-08-15_09-16-27.jpg",
+    },
+    {
+      title: "Neon Nights",
+      button: "Explore Component",
+      src: "/photo_2025-08-15_09-16-27.jpg",
+    },
+  ];
+
   return (
     <>
       <Navbar />
@@ -38,13 +56,10 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="relative h-[60vh] overflow-hidden">
-          <Image
-            src="/photo_2025-08-15_09-16-27.jpg"
-            alt="MA YATI"
-            fill
-            className="object-cover brightness-[0.6] scale-105"
-            priority
-          />
+          {/* Carousel as a background */}
+          <div className="absolute inset-0 w-full h-full">
+            <Carousel slides={slideData} />
+          </div>
           <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/80" />
 
           <motion.div
@@ -136,7 +151,7 @@ export default function Home() {
               <div className="relative">
                 <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
                   <Image
-                    src="/madrasah.jpg"
+                    src="/photo_2025-08-15_09-16-27.jpg"
                     alt="Kegiatan Madrasah"
                     fill
                     className="object-cover"

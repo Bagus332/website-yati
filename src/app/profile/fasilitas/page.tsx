@@ -40,10 +40,11 @@ export default function Home() {
               className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60 mb-16"
             >
               <p className="text-gray-700 text-lg leading-relaxed text-center max-w-3xl mx-auto">
-                Pondok Pesantren YATI berkomitmen untuk menyediakan lingkungan belajar
-                yang optimal bagi para santri. Dengan lahan yang luas dan fasilitas yang
-                terawat dengan baik, kami memastikan setiap santri dapat menjalani proses
-                pendidikan dengan nyaman dan fokus.
+                Pondok Pesantren YATI berkomitmen untuk menyediakan lingkungan
+                belajar yang optimal bagi para santri. Dengan lahan yang luas
+                dan fasilitas yang terawat dengan baik, kami memastikan setiap
+                santri dapat menjalani proses pendidikan dengan nyaman dan
+                fokus.
               </p>
             </motion.div>
 
@@ -71,7 +72,9 @@ export default function Home() {
                     </li>
                     <li className="flex items-center space-x-3">
                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Perpustakaan dengan koleksi buku agama dan umum</span>
+                      <span>
+                        Perpustakaan dengan koleksi buku agama dan umum
+                      </span>
                     </li>
                     <li className="flex items-center space-x-3">
                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
@@ -84,6 +87,10 @@ export default function Home() {
                     <li className="flex items-center space-x-3">
                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
                       <span>Ruang konseling untuk bimbingan santri</span>
+                    </li>
+                    <li className="flex items-center space-x-3">
+                      <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                      <span>Ruang menjahit dan tata busana</span>
                     </li>
                   </ul>
                 </div>
@@ -100,7 +107,9 @@ export default function Home() {
                   <ul className="space-y-3 text-gray-700">
                     <li className="flex items-center space-x-3">
                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Masjid sebagai pusat kegiatan ibadah dan kajian</span>
+                      <span>
+                        Masjid sebagai pusat kegiatan ibadah dan kajian
+                      </span>
                     </li>
                     <li className="flex items-center space-x-3">
                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
@@ -108,7 +117,9 @@ export default function Home() {
                     </li>
                     <li className="flex items-center space-x-3">
                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>7 unit kamar mandi/toilet (5 dalam kondisi baik)</span>
+                      <span>
+                        7 unit kamar mandi/toilet (5 dalam kondisi baik)
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -137,7 +148,10 @@ export default function Home() {
                     </li>
                     <li className="flex items-center space-x-3">
                       <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
-                      <span>Ruang organisasi kesiswaan untuk kegiatan ekstrakurikuler</span>
+                      <span>
+                        Ruang organisasi kesiswaan untuk kegiatan
+                        ekstrakurikuler
+                      </span>
                     </li>
                   </ul>
                 </div>
@@ -172,10 +186,12 @@ export default function Home() {
               className="bg-white/70 backdrop-blur-lg p-8 rounded-[2.5rem] shadow-2xl border-2 border-blue-100/60 mt-16"
             >
               <p className="text-gray-700 leading-relaxed text-center italic">
-                Kami terus berkomitmen untuk meningkatkan dan memelihara kualitas fasilitas
-                yang ada demi mendukung terciptanya lingkungan belajar yang kondusif bagi
-                para santri Pondok Pesantren YATI. Pengembangan fasilitas dilakukan secara
-                berkelanjutan sesuai dengan kebutuhan dan perkembangan pendidikan.
+                Kami terus berkomitmen untuk meningkatkan dan memelihara
+                kualitas fasilitas yang ada demi mendukung terciptanya
+                lingkungan belajar yang kondusif bagi para santri Pondok
+                Pesantren YATI. Pengembangan fasilitas dilakukan secara
+                berkelanjutan sesuai dengan kebutuhan dan perkembangan
+                pendidikan.
               </p>
             </motion.div>
           </div>
