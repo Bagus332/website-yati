@@ -81,12 +81,12 @@ export default function TendikAliyah() {
     {
       title: "Nur Faizi, S. Pd",
       jabatan: "Guru IPA Biologi",
-      photo: "/vorg.jpg",
+      photo: "/foto/Nur Faizi.jpeg",
     },
     {
       title: "Lisnawati, S. Pd",
       jabatan: "Guru Bahasa Indonesia",
-      photo: "/vorg.jpg",
+      photo: "/foto/Lisnawati.jpeg",
     },
     {
       title: "Weni Anggraini, S. Pd",

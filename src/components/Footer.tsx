@@ -137,7 +137,7 @@ export default function Footer() {
                   href="mailto:mti.yati@yahoo.com"
                   className="hover:text-white transition-colors"
                 >
-                  mti.yati@yahoo.com
+                  ponpesyatii@gmail.com
                 </a>
               </p>
             </div>

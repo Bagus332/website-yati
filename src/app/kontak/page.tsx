@@ -142,7 +142,7 @@ export default function Home() {
                         href="mailto:mti.yati@yahoo.com"
                         className="text-blue-600 hover:text-blue-700 transition-colors"
                       >
-                        mti.yati@yahoo.com
+                        ponpesyatii@gmail.com
                       </a>
                     </div>
                   </div>
