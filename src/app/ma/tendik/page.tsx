@@ -31,7 +31,7 @@ export default function TendikAliyah() {
     {
       title: "Yufita Indriani, S.Pd",
       jabatan: "Tata Usaha & Guru TIK",
-      photo: "/vorg.jpg",
+      photo: "/foto/Yuftia Indri.png",
     },
     {
       title: "Putri Nurhasanah, S.Pd",
@@ -76,7 +76,7 @@ export default function TendikAliyah() {
     {
       title: "Gusti Ayu, S.Pd I",
       jabatan: "Guru Bahasa Arab",
-      photo: "/vorg.jpg",
+      photo: "/foto/Gusti Ayu.jpg",
     },
     {
       title: "Nur Faizi, S. Pd",
@@ -101,17 +101,17 @@ export default function TendikAliyah() {
     {
       title: "Elfi Yusmanizar, S.Pd",
       jabatan: "Guru Geografi",
-      photo: "/vorg.jpg",
+      photo: "/foto/Elfi Yusmanizar.jpg",
     },
     {
       title: "Hevi Murnialis, S.Pd",
       jabatan: "Guru Ekonomi",
-      photo: "/vorg.jpg",
+      photo: "/foto/Hevi Murnialis.jpg",
     },
     {
       title: "M.Irfan, S.Hum",
       jabatan: "Guru Fekah & Nahwu & Tasawuf",
-      photo: "/vorg.jpg",
+      photo: "/foto/M.Irfan.jpeg",
     },
     {
       title: "Gito Prabowo",
@@ -121,7 +121,7 @@ export default function TendikAliyah() {
     {
       title: "Azkia Rahmi, S.Ag",
       jabatan: "Guru Keterampilan Agama",
-      photo: "/vorg.jpg",
+      photo: "/foto/Azkia Rahmi.jpg",
     },
     {
       title: "Nini Arianti, S Thi",

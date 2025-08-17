@@ -47,8 +47,8 @@ export default function Home() {
             </h1>
             <div className="w-24 h-1 bg-gradient-to-r from-emerald-500 to-blue-500 mx-auto rounded-full mb-4" />
             <p className="text-gray-600 text-lg max-w-2xl mx-auto">
-              Arah dan tujuan Pondok Pesantren YATI dalam membentuk generasi
-              yang unggul
+              Arah dan tujuan Madrasah Aliyah Swasta (MAS) YATI Kamang Mudik
+              dalam membentuk generasi yang unggul
             </p>
           </motion.div>
 
@@ -84,8 +84,8 @@ export default function Home() {
               >
                 <FaQuoteLeft className="absolute -top-4 -left-2 text-4xl text-emerald-200" />
                 <p className="text-2xl md:text-3xl text-gray-700 font-medium leading-relaxed">
-                  "Terwujudnya siswa yang beriman, bertakwa, berkarakter dan
-                  berprestasi"
+                  "Terbentuknya Generasi Islami, moderat, Unggul dalam Iptek
+                  Serta Terampil Berkarya"
                 </p>
               </motion.div>
 
@@ -102,24 +102,19 @@ export default function Home() {
                 <div className="grid md:grid-cols-2 gap-6">
                   {[
                     {
-                      title: "Beriman",
+                      title: "Generasi Islami",
                       description:
-                        "Memiliki kepercayaan kepada Allah SWT dengan penuh keyakinan dan tanpa keraguan.",
+                        "Taat menjalankan ibadah, berakhlakul karimah, fasih membaca Alquran dan memahami maknanya, serta mampu menjadi imam salat dan memimpin kegiatan keagamaan. Selain itu, hafal Juz 4, 5, 6 dan surat-surat populer lainnya, serta mampu mengamalkan doa dan zikir setelah salat.",
                     },
                     {
-                      title: "Bertakwa",
+                      title: "Unggul Dalam Iptek",
                       description:
-                        "Melaksanakan segala perintah dan menjauhi larangan Allah SWT",
+                        "Berprestasi dalam bidang akademik dan non-akademik, mampu mengoperasikan program komputer, dan mengikuti perkembangan teknologi, terutama IT.",
                     },
                     {
-                      title: "Berkarakter",
+                      title: "Terampil Berkarya",
                       description:
-                        "Memiliki cara berfikir dan berperilaku untuk hidup dan bekerja sama baik dalam lingkup keluarga, masyarakat, agama, bangsa dan negara",
-                    },
-                    {
-                      title: "Berprestasi",
-                      description:
-                        "Memiliki kualitas yang tinggi dalam penguasaan Iptek dan Imtak serta keterampilan yang berjiwa kompetitif dan Islami",
+                        "Mandiri dalam kegiatan madrasah, keluarga, dan masyarakat, serta mampu membuat dan mengembangkan berbagai keterampilan yang produktif.",
                     },
                   ].map((item, index) => (
                     <motion.div
@@ -169,12 +164,13 @@ export default function Home() {
 
               <motion.div variants={fadeInUp} className="grid gap-4">
                 {[
-                  "Mewujudkan penyelenggaraan pendidikan yang berorientasi pada mutu, baik pada mutu tenaga pendidik dan kependidikan maupun mutu siswa.",
-                  "Mewujudkan manajemen Madrasah yang akuntabiliatas.",
-                  "Mewujudkan sumber daya manusia yang cerdas baik intelektual, emosional dan spiritual.",
-                  "Penguasaan ilmu-ilmu agama dan umum.",
-                  "Mewujudkan sarana dan prasarana yang memadai dan berkualitas sesuai dengan kebutuhan.",
-                  "Mewujudkan partisipasi aktif masyarakat terhadap pendidikan Madrasah.",
+                  "Melaksanakan pembelajaran PAIKEMI dan bermakna melalui pendekatan Saintifik dan Abad 21 dengan metode MIKiR (mengamati, interaksi, komunikasi dan refleksi) yang dapat menumbuhkembangkan siswa secara maksimal untuk mencapai generasi Islam.",
+                  "Melaksanakan pembelajaran profesional dan bermakna melalui pendekatan Saintifik dan Abad 21 dengan metode MIKiR yang dapat menumbuhkembangkan potensi siswa untuk menguasai Iptek dan berakhlakul karimah.",
+                  "Menumbuhkan penghayatan dan pengamalan siswa terhadap ajaran agama Islam Ahlussunah Wal Jama’ah.",
+                  "Melaksanakan program bimbingan untuk mengoptimalkan potensi yang dimiliki siswa agar menjadi pribadi yang kreatif dan mandiri.",
+                  "Melaksanakan pengelolaan madrasah dengan manajemen partisipatif, profesional, dan kreatif berlandaskan nilai-nilai islami.",
+                  "Melaksanakan program ekstrakurikuler untuk pengembangan bakat, minat, dan kreativitas siswa secara efektif.",
+                  "Bekerja sama dengan stakeholder dan berbagai lembaga untuk mengembangkan madrasah.",
                 ].map((mission, index) => (
                   <motion.div
                     key={index}

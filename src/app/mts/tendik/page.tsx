@@ -46,7 +46,7 @@ export default function TendikTsanawiyah() {
     {
       title: "Azkia Rahmi, S.Ag",
       jabatan: "Wali Kelas 7 & Guru Tauhid dan Hadist",
-      photo: "/vorg.jpg",
+      photo: "/foto/Azkia Rahmi.jpg",
     },
     {
       title: "Putri Rahmadhani, S.Pd",

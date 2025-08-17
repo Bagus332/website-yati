@@ -231,6 +231,235 @@ export default function Home() {
             </div>
           </motion.div>
         </section>
+
+        {/* Visi, Misi, dan Kegiatan Unggulan Section */}
+        <section
+          ref={programsRef}
+          className="py-24 px-6 lg:px-14 relative bg-gradient-to-b from-white to-blue-50"
+        >
+          <motion.div
+            variants={fadeInUp}
+            initial="initial"
+            animate={isProgramsInView ? "animate" : "initial"}
+            className="max-w-7xl mx-auto"
+          >
+            <div className="text-center mb-16">
+              <span className="inline-block bg-gradient-to-r from-blue-100 to-cyan-100 text-blue-800 px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wider mb-6">
+                Visi, Misi & Program
+              </span>
+              <h2 className="text-4xl md:text-6xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
+                Visi, Misi & Kegiatan Unggulan
+              </h2>
+              <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
+            </div>
+
+            {/* Visi Misi Cards */}
+            <div className="grid lg:grid-cols-2 gap-8 mb-16">
+              {/* Visi Card */}
+              <motion.div
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2, duration: 0.8 }}
+                className="bg-white p-8 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300"
+              >
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <FaStar className="text-white text-2xl" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                    Visi
+                  </h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed text-center text-lg">
+                  "Terwujudnya Madrasah Aliyah yang unggul dalam prestasi
+                  akademik dan non-akademik, berakhlak mulia, berwawasan global,
+                  dan berlandaskan nilai-nilai Islam Ahlussunnah wal Jama'ah"
+                </p>
+              </motion.div>
+
+              {/* Misi Card */}
+              <motion.div
+                initial={{ opacity: 0, x: 50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.8 }}
+                className="bg-white p-8 rounded-2xl shadow-xl border border-blue-100 hover:shadow-2xl transition-all duration-300"
+              >
+                <div className="text-center mb-6">
+                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <FaGraduationCap className="text-white text-2xl" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-gray-800 mb-4">
+                    Misi
+                  </h3>
+                </div>
+                <div className="space-y-3 text-gray-700">
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p>
+                      Menyelenggarakan pendidikan berkualitas dengan kurikulum
+                      nasional dan nilai kepesantrenan tingkat menengah atas
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p>
+                      Mengembangkan karakter islami dan akhlak mulia berdasarkan
+                      Ahlussunnah wal Jama'ah
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p>
+                      Meningkatkan prestasi akademik dan non-akademik siswa
+                      untuk persiapan perguruan tinggi
+                    </p>
+                  </div>
+                  <div className="flex items-start space-x-3">
+                    <div className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                    <p>
+                      Menyiapkan generasi muslim yang siap menghadapi tantangan
+                      global dan dunia kerja
+                    </p>
+                  </div>
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Kegiatan Unggulan Section */}
+            <div className="text-center mb-12">
+              <h3 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
+                Kegiatan Unggulan
+              </h3>
+              <p className="text-gray-600 text-lg max-w-3xl mx-auto">
+                Program-program unggulan yang membedakan MA YATI dari madrasah
+                lainnya
+              </p>
+            </div>
+
+            {/* Kegiatan Cards Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {/* Tahfidz Al-Qur'an */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.8 }}
+                className="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <FaQuran className="text-white text-2xl" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800 mb-3">
+                  Tahfidz Al-Qur'an
+                </h4>
+                <p className="text-gray-600 leading-relaxed">
+                  Program hafalan Al-Qur'an dengan target minimal 10 juz selama
+                  3 tahun, didukung dengan metode modern dan bimbingan intensif
+                  untuk persiapan kuliah.
+                </p>
+              </motion.div>
+
+              {/* Bahasa Arab & Inggris */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.8 }}
+                className="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <FaGraduationCap className="text-white text-2xl" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800 mb-3">
+                  Bahasa Arab & Inggris
+                </h4>
+                <p className="text-gray-600 leading-relaxed">
+                  Program bilingual dengan native speaker, conversation
+                  practice, dan sertifikasi bahasa untuk meningkatkan kompetensi
+                  global dan persiapan kuliah internasional.
+                </p>
+              </motion.div>
+
+              {/* Teknologi Informasi */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.0, duration: 0.8 }}
+                className="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <FaSchool className="text-white text-2xl" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800 mb-3">
+                  Teknologi Informasi
+                </h4>
+                <p className="text-gray-600 leading-relaxed">
+                  Pembelajaran komputer tingkat lanjut, programming, dan digital
+                  literacy untuk mempersiapkan siswa menghadapi era digital dan
+                  dunia kerja.
+                </p>
+              </motion.div>
+
+              {/* Ekstrakurikuler Seni */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.2, duration: 0.8 }}
+                className="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-orange-500 to-red-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <FaStar className="text-white text-2xl" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800 mb-3">
+                  Seni & Budaya
+                </h4>
+                <p className="text-gray-600 leading-relaxed">
+                  Program seni islami, kaligrafi, musik rebana, dan kegiatan
+                  budaya untuk mengembangkan kreativitas dan apresiasi seni
+                  tingkat menengah atas.
+                </p>
+              </motion.div>
+
+              {/* Olahraga & Kesehatan */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.4, duration: 0.8 }}
+                className="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-teal-500 to-cyan-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <FaUserTie className="text-white text-2xl" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800 mb-3">
+                  Olahraga & Kesehatan
+                </h4>
+                <p className="text-gray-600 leading-relaxed">
+                  Program olahraga prestasi, futsal, voli, dan kesehatan untuk
+                  mengembangkan fisik dan mental yang sehat serta persiapan
+                  kuliah olahraga.
+                </p>
+              </motion.div>
+
+              {/* Kepemimpinan */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 1.6, duration: 0.8 }}
+                className="bg-white p-6 rounded-2xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 group"
+              >
+                <div className="w-16 h-16 bg-gradient-to-br from-yellow-500 to-orange-500 rounded-2xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
+                  <FaStar className="text-white text-2xl" />
+                </div>
+                <h4 className="text-xl font-bold text-gray-800 mb-3">
+                  Kepemimpinan
+                </h4>
+                <p className="text-gray-600 leading-relaxed">
+                  Program OSIS, pramuka, dan leadership training untuk
+                  mengembangkan jiwa kepemimpinan dan organisasi tingkat
+                  menengah atas.
+                </p>
+              </motion.div>
+            </div>
+          </motion.div>
+        </section>
       </main>
       <Footer />
     </>
