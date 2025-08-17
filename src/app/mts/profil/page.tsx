@@ -63,38 +63,94 @@ export default function Home() {
 
         {/* Hero Section */}
         <section className="relative h-screen overflow-hidden">
-          {/* Layer 2: Carousel as a background */}
-          <div className="absolute inset-0 w-full h-full -z-10">
+          {/* Layer 1: Background Carousel */}
+          <div className="absolute inset-0 w-full h-full">
             {slideData.length > 0 && <Carousel slides={slideData} />}
           </div>
-          {/* OVERLAY SOLID */}
-          <div className="absolute inset-0 bg-blue-950/70" />
 
-          {/* Layer 1: Text and Main Content */}
+          {/* Layer 2: Overlay with Patterns and Gradients */}
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-900/85 via-slate-800/75 to-slate-700/65" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(30,64,175,0.25)_0%,transparent_50%)]" />
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_70%_80%,rgba(6,182,212,0.15)_0%,transparent_50%)]" />
+
+          {/* Decorative Elements */}
+          <div className="absolute top-20 left-10 w-32 h-32 bg-indigo-500/8 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-teal-500/8 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/4 w-24 h-24 bg-white/3 rounded-full blur-2xl" />
+
+          {/* Layer 3: Main Content with Enhanced Typography */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 50 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1.2, ease: "easeOut" }}
-            className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 z-10"
+            transition={{ duration: 1.5, ease: "easeOut" }}
+            className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 z-20"
           >
-            <h1 className="text-5xl md:text-7xl font-black mb-6 text-center">
-              <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
+            {/* Badge */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+              className="inline-block bg-white/15 backdrop-blur-sm border border-white/25 text-white px-6 py-3 rounded-full text-sm font-semibold uppercase tracking-wider mb-8 shadow-lg"
+            >
+              Madrasah Tsanawiyah
+            </motion.div>
+
+            {/* Main Title */}
+            <motion.h1
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5, duration: 1 }}
+              className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-center leading-tight"
+            >
+              <span className="block bg-gradient-to-r from-white via-slate-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
                 MTsS
               </span>
-              <br />
-              <span className="bg-gradient-to-r from-blue-300 via-cyan-200 to-blue-300 bg-clip-text text-transparent">
-                YATI Kamang Mudik
+              <span className="block bg-gradient-to-r from-blue-200 via-sky-200 to-blue-200 bg-clip-text text-transparent drop-shadow-xl">
+                YATI
               </span>
-            </h1>
+              <span className="block text-2xl md:text-3xl lg:text-4xl font-bold text-slate-200 mt-4">
+                Kamang Mudik
+              </span>
+            </motion.h1>
+
+            {/* Animated Divider */}
             <motion.div
-              initial={{ width: 0 }}
-              animate={{ width: "12rem" }}
-              transition={{ delay: 0.8, duration: 0.6 }}
-              className="h-1 bg-gradient-to-r from-blue-400 to-cyan-400 mx-auto mb-8 rounded-full"
+              initial={{ width: 0, opacity: 0 }}
+              animate={{ width: "16rem", opacity: 1 }}
+              transition={{ delay: 1, duration: 0.8 }}
+              className="h-1 bg-gradient-to-r from-blue-400 via-sky-400 to-blue-400 mx-auto mb-8 rounded-full shadow-lg"
             />
-            <p className="text-xl md:text-2xl text-blue-100 text-center max-w-3xl">
+
+            {/* Subtitle */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.2, duration: 0.8 }}
+              className="text-xl md:text-2xl lg:text-3xl text-slate-200 text-center max-w-4xl leading-relaxed font-medium"
+            >
               Pendidikan Islam Modern dengan Nilai-nilai Pesantren
-            </p>
+            </motion.p>
+
+            {/* Additional Info */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.5, duration: 0.8 }}
+              className="mt-8 flex flex-wrap justify-center gap-6 text-slate-200"
+            >
+              <div className="flex items-center space-x-2">
+                <FaQuran className="text-sky-300 text-xl" />
+                <span className="text-sm font-medium">Akreditasi A</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <FaGraduationCap className="text-sky-300 text-xl" />
+                <span className="text-sm font-medium">Kurikulum Nasional</span>
+              </div>
+              <div className="flex items-center space-x-2">
+                <FaStar className="text-sky-300 text-xl" />
+                <span className="text-sm font-medium">Berprestasi</span>
+              </div>
+            </motion.div>
           </motion.div>
         </section>
 

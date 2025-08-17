@@ -96,7 +96,7 @@ export default function TendikAliyah() {
     {
       title: "Fahmi Hafizha O, S.Pd",
       jabatan: "Guru Bahasa Arab",
-      photo: "/vorg.jpg",
+      photo: "/foto/Fahmi Hafizha.jpeg",
     },
     {
       title: "Elfi Yusmanizar, S.Pd",

@@ -86,7 +86,7 @@ export default function TendikTsanawiyah() {
     {
       title: "Fahmi Hafizha O, S.Pd",
       jabatan: "Guru Tarekh",
-      photo: "/vorg.jpg",
+      photo: "/foto/Fahmi Hafizha.jpeg",
     },
     {
       title: "Firdaus, SH",
