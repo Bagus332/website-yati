@@ -109,12 +109,26 @@ export default function Home() {
                       <h3 className="text-lg font-bold text-gray-800">
                         Telepon
                       </h3>
-                      <a
-                        href="tel:081374549687"
-                        className="text-blue-600 hover:text-blue-700 transition-colors"
-                      >
-                        0813-7454-9687
-                      </a>
+                      <div className="flex flex-col">
+                        <a
+                          href="tel:081266261470"
+                          className="text-blue-600 hover:text-blue-700 transition-colors"
+                        >
+                          0812-6626-1470 (Admin)
+                        </a>
+                        <a
+                          href="tel:085263286663"
+                          className="text-blue-600 hover:text-blue-700 transition-colors mt-1"
+                        >
+                          0852-6328-6663 (Kepala MAS)
+                        </a>
+                        <a
+                          href="tel:081363789074"
+                          className="text-blue-600 hover:text-blue-700 transition-colors mt-1"
+                        >
+                          0813-6378-9074 (Kepala MTsS)
+                        </a>
+                      </div>
                     </div>
                   </div>
 

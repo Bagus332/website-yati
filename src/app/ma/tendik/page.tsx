@@ -30,12 +30,12 @@ export default function TendikAliyah() {
     },
     {
       title: "Yufita Indriani, S.Pd",
-      jabatan: "Tata Usaha",
+      jabatan: "Tata Usaha & Guru TIK",
       photo: "/vorg.jpg",
     },
     {
       title: "Putri Nurhasanah, S.Pd",
-      jabatan: "Bendahara",
+      jabatan: "Bendahara & Guru BK",
       photo: "/foto/Putri Nurhasanah.jpg",
     },
     {
@@ -45,7 +45,7 @@ export default function TendikAliyah() {
     },
     {
       title: "Nurrahmi Lathifa, M.Pd",
-      jabatan: "Wali Kelas 10",
+      jabatan: "Wali Kelas 10 & Guru Tahfidz",
       photo: "/vorg.jpg",
     },
     {
@@ -55,58 +55,79 @@ export default function TendikAliyah() {
     },
     {
       title: "Aufi Afifah Rifki TM, S.Pd",
-      jabatan: "Wali Kelas 12",
+      jabatan: "Wali Kelas 12 & Guru PKN",
       photo: "/foto/aufi afifa rifki.jpg",
     },
     {
       title: "Zul Efendi, S.Pd",
-      jabatan: "Akhlak Libanin",
+      jabatan: "Guru Ushul Fiqh",
       photo: "/foto/Zul Efendi.jpg",
     },
     {
-      title: "Refda Yetti, S.Pd I",
-      jabatan: "Al Qur'an Hadist, Hadist",
-      photo: "/foto/Refda Yetti.jpg",
+      title: "Debi Amanda, S.Pd.I",
+      jabatan: "Guru Fikih",
+      photo: "/foto/debi amanda.jpg",
     },
     {
       title: "Lisa Yunita, S.Pd I",
-      jabatan: "Akidah Akhlak, Tauhid",
+      jabatan: "Guru Akidah Akhlak",
       photo: "/foto/Lisa Yunita.jpg",
     },
     {
-      title: "Lilvia, S.Pd.I",
-      jabatan: "Bahasa Arab",
-      photo: "/foto/Lilvia.jpg",
+      title: "Gusti Ayu, S.Pd I",
+      jabatan: "Guru Bahasa Arab",
+      photo: "/vorg.jpg",
     },
     {
-      title: "Arbaisyah, S. Pd",
-      jabatan: "IPA Terpadu",
-      photo: "/foto/Arbaisyah.jpg",
+      title: "Nur Faizi, S. Pd",
+      jabatan: "Guru IPA Biologi",
+      photo: "/vorg.jpg",
     },
     {
-      title: "Putri Ramadhani, S. Pd",
-      jabatan: "Bahasa Indonesia",
-      photo: "/foto/Putri Ramadhani.jpg",
+      title: "Lisnawati, S. Pd",
+      jabatan: "Guru Bahasa Indonesia",
+      photo: "/vorg.jpg",
     },
     {
       title: "Weni Anggraini, S. Pd",
-      jabatan: "IPS/Matematika",
+      jabatan: "Guru Matematika",
       photo: "/foto/Weni Anggraini.jpg",
     },
-    { title: "Junia Safreni", jabatan: "Nahwu/Sharaf", photo: "/vorg.jpg" },
     {
-      title: "M. Padhil, S.Pd",
-      jabatan: "Matematika",
-      photo: "/foto/Mhd Padhil.jpg",
-    },
-    { title: "Elfi Yusmanizar, S.Pd", jabatan: "Geografi", photo: "/vorg.jpg" },
-    {
-      title: "Hevi Murnialis, S.Pd",
-      jabatan: "Ekonomi/Akutansi",
+      title: "Fahmi Hafizha O, S.Pd",
+      jabatan: "Guru Bahasa Arab",
       photo: "/vorg.jpg",
     },
-    { title: "Firdaus, SH", jabatan: "Tarekh", photo: "/foto/Firdaus.jpg" },
-    { title: "Nini Arianti, S Thi", jabatan: "Sharaf", photo: "/vorg.jpg" },
+    {
+      title: "Elfi Yusmanizar, S.Pd",
+      jabatan: "Guru Geografi",
+      photo: "/vorg.jpg",
+    },
+    {
+      title: "Hevi Murnialis, S.Pd",
+      jabatan: "Guru Ekonomi",
+      photo: "/vorg.jpg",
+    },
+    {
+      title: "M.Irfan, S.Hum",
+      jabatan: "Guru Fekah & Nahwu & Tasawuf",
+      photo: "/vorg.jpg",
+    },
+    {
+      title: "Gito Prabowo",
+      jabatan: "Guru TIK & PJOK",
+      photo: "/foto/Gito Prabowo.jpg",
+    },
+    {
+      title: "Azkia Rahmi, S.Ag",
+      jabatan: "Guru Keterampilan Agama",
+      photo: "/vorg.jpg",
+    },
+    {
+      title: "Nini Arianti, S Thi",
+      jabatan: "Guru Sharaf",
+      photo: "/vorg.jpg",
+    },
   ];
 
   return (

@@ -1,5 +1,4 @@
 "use client";
-import { IconArrowNarrowRight } from "@tabler/icons-react";
 import { useState, useRef, useId, useEffect } from "react";
 
 interface SlideData {
@@ -11,6 +10,27 @@ interface SlideProps {
   index: number;
   current: number;
 }
+
+// Komponen untuk ikon panah kanan menggunakan SVG inline
+const RightArrowIcon = ({ className }: { className: string }) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    className={className}
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    strokeWidth="2"
+    stroke="currentColor"
+    fill="none"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+    <path d="M5 12l14 0" />
+    <path d="M15 16l4 -4" />
+    <path d="M15 8l4 4" />
+  </svg>
+);
 
 const Slide = ({ slide, index, current }: SlideProps) => {
   const slideRef = useRef<HTMLLIElement>(null);
@@ -61,7 +81,9 @@ const Slide = ({ slide, index, current }: SlideProps) => {
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li
         ref={slideRef}
-        className="flex flex-1 flex-col items-center justify-center relative text-center text-white z-10 w-[100vw] h-[100vh] transition-transform duration-1000 ease-in-out"
+        // Menghilangkan `justify-center` untuk menempatkan gambar di bagian atas
+        // dan menyesuaikan `pt-0` untuk mengontrol posisi.
+        className="flex flex-1 flex-col items-center relative text-center text-black z-10 w-[100vw] h-[100vh] transition-transform duration-1000 ease-in-out pt-0"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         style={{
@@ -73,7 +95,8 @@ const Slide = ({ slide, index, current }: SlideProps) => {
         }}
       >
         <div
-          className="absolute top-0 left-0 w-full h-full bg-[#1D1F2F] rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
+          // Mengubah latar belakang slide menjadi putih
+          className="absolute top-0 left-0 w-full h-full bg-white rounded-[1%] overflow-hidden transition-all duration-150 ease-out"
           style={{
             transform:
               current === index
@@ -82,13 +105,15 @@ const Slide = ({ slide, index, current }: SlideProps) => {
           }}
         >
           <img
-            className="absolute inset-0 w-full h-full object-cover opacity-100 transition-opacity duration-600 ease-in-out"
+            // Menggunakan object-contain untuk mencegah gambar terpotong
+            className="absolute inset-0 w-full h-full object-contain"
             src={src}
             loading="eager"
             decoding="sync"
           />
           {current === index && (
-            <div className="absolute inset-0 bg-black/30 transition-all duration-1000" />
+            // Mengubah overlay menjadi abu-abu transparan
+            <div className="absolute inset-0 bg-gray-300/30 transition-all duration-1000" />
           )}
         </div>
       </li>
@@ -109,13 +134,14 @@ const CarouselControl = ({
 }: CarouselControlProps) => {
   return (
     <button
-      className={`w-10 h-10 flex items-center mx-2 justify-center bg-neutral-200 dark:bg-neutral-800 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
+      // Mengubah warna latar belakang tombol untuk latar belakang putih
+      className={`w-10 h-10 flex items-center mx-2 justify-center bg-gray-200 border-3 border-transparent rounded-full focus:border-[#6D64F7] focus:outline-none hover:-translate-y-0.5 active:translate-y-0.5 transition duration-200 ${
         type === "previous" ? "rotate-180" : ""
       }`}
       title={title}
       onClick={handleClick}
     >
-      <IconArrowNarrowRight className="text-neutral-600 dark:text-neutral-200" />
+      <RightArrowIcon className="text-neutral-600" />
     </button>
   );
 };

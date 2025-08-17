@@ -2,7 +2,6 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import Image from "next/image"; // Impor komponen Image
 import {
   FaHistory,
   FaGraduationCap,
@@ -191,80 +190,87 @@ export default function Home() {
                 {
                   name: "H. Buya Mansur Dt. Nagari Basa",
                   role: "Pendiri",
-                  period: "1930 - 1945",
-                  image: "/vorg.jpg",
+                  image: "/placeholder-leader.jpg",
                 },
                 {
                   name: "H. Abdul Manaf Idris",
                   role: "Pimpinan",
-                  period: "1945 - 1955",
-                  image: "/vorg.jpg",
+                  image: "/placeholder-leader.jpg",
                 },
                 {
-                  name: "A. Tuangku Sati",
+                  name: "A. Tuangku Bagindo",
                   role: "Pimpinan",
-                  period: "1955 - 1965",
-                  image: "/vorg.jpg",
+                  image: "/placeholder-leader.jpg",
                 },
                 {
                   name: "Hj. Nurza Mahmud",
                   role: "Pimpinan",
-                  period: "1965 - 1975",
-                  image: "/vorg.jpg",
+                  image: "/placeholder-leader.jpg",
                 },
                 {
                   name: "Muhammad Nasir",
                   role: "Pimpinan",
-                  period: "1975 - 1985",
-                  image: "/vorg.jpg",
-                },
-                {
-                  name: "Drs. Abdurrahman",
-                  role: "Pimpinan",
-                  period: "1985 - 1995",
-                  image: "/vorg.jpg",
-                },
-                {
-                  name: "Dra. Emilya Husteti",
-                  role: "Pimpinan",
-                  period: "1995 - 2000",
-                  image: "/vorg.jpg",
-                },
-                {
-                  name: "Junaidi, S.Pd. I",
-                  role: "Pimpinan",
-                  period: "2000 - 2005",
-                  image: "/vorg.jpg",
+                  image: "/placeholder-leader.jpg",
                 },
                 {
                   name: "Drs. Ramza Husmen, M.Pd",
                   role: "Pimpinan",
-                  period: "2005 - 2010",
-                  image: "/vorg.jpg",
+                  image: "/placeholder-leader.jpg",
+                },
+                {
+                  name: "Drs. Abdurrahman",
+                  role: "Pimpinan",
+                  image: "/placeholder-leader.jpg",
+                },
+                {
+                  name: "Dra. Emilya Husteti",
+                  role: "Pimpinan",
+                  image: "/placeholder-leader.jpg",
+                },
+                {
+                  name: "Junaidi, S.Pd. I",
+                  role: "Pimpinan",
+                  image: "/placeholder-leader.jpg",
                 },
                 {
                   name: "Hj. Suarni, S. Pd. I",
                   role: "Pimpinan",
-                  period: "2010 - 2015",
-                  image: "/vorg.jpg",
+                  image: "/placeholder-leader.jpg",
+                },
+                 {
+                  name: "Dr. H. Alizar Jas M.H",
+                  role: "Pimpinan",
+                  image: "/placeholder-leader.jpg",
                 },
                 {
                   name: "Fetriwati, S.Ag. M.Pd",
                   role: "Pimpinan",
-                  period: "2015 - 2018",
-                  image: "/vorg.jpg",
-                },
-                {
-                  name: "Welli Okmira, S.Pd.I",
-                  role: "Pimpinan",
-                  period: "2018 - 2020",
-                  image: "/foto/Welli Okmira.jpg",
+                  image: "/placeholder-leader.jpg",
                 },
                 {
                   name: "Drs. H. Chairul Huda",
                   role: "Pimpinan",
-                  period: "2020 - Sekarang",
-                  image: "/vorg.jpg",
+                  image: "/placeholder-leader.jpg",
+                },
+                {
+                  name: "Gusnanda, S.Th.I, M.Ag",
+                  role: "Pimpinan",
+                  image: "/placeholder-leader.jpg",
+                },
+                {
+                  name: "Welli Okmira, M.Pd",
+                  role: "Pimpinan",
+                  image: "/placeholder-leader.jpg",
+                },
+                {
+                  name: "Delvianti, M.Pd",
+                  role: "Pimpinan",
+                  image: "/placeholder-leader.jpg",
+                },
+                {
+                  name: "Mhd Padhil, S.Pd",
+                  role: "Pimpinan",
+                  image: "/placeholder-leader.jpg",
                 },
               ].map((leader, index) => (
                 <motion.div
@@ -273,17 +279,10 @@ export default function Home() {
                   whileHover={{ y: -5 }}
                   className="bg-white p-6 rounded-xl shadow-sm hover:shadow-md transition-all duration-300 border border-gray-100 group"
                 >
-                  <div className="w-full h-48 mb-4 rounded-lg bg-gray-100 overflow-hidden relative">
-                    <Image
-                      src={leader.image}
-                      alt={`Foto ${leader.name}`}
-                      layout="fill"
-                      objectFit="cover"
-                      className="group-hover:scale-100 transition-transform duration-300"
-                      onError={(e) => {
-                        e.currentTarget.src = "/vorg.jpg";
-                      }}
-                    />
+                  <div className="w-full h-48 mb-4 rounded-lg bg-gray-100 overflow-hidden">
+                    <div className="w-full h-full bg-gradient-to-br from-emerald-100 to-blue-50 flex items-center justify-center">
+                      <FaUserTie className="text-4xl text-emerald-300" />
+                    </div>
                   </div>
                   <h3 className="font-bold text-lg text-gray-800 mb-1 group-hover:text-emerald-600 transition-colors">
                     {leader.name}
@@ -291,7 +290,6 @@ export default function Home() {
                   <p className="text-emerald-600 font-medium mb-1">
                     {leader.role}
                   </p>
-                  <p className="text-sm text-gray-500">{leader.period}</p>
                 </motion.div>
               ))}
             </div>

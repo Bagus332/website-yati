@@ -110,7 +110,25 @@ export default function Footer() {
                   href="tel:081374549687"
                   className="hover:text-white transition-colors"
                 >
-                  0813-7454-9687
+                  Admin: 0812-6626-1470
+                </a>
+              </p>
+              <p className="flex items-center text-blue-50">
+                <FaPhone className="text-blue-200 mr-3 flex-shrink-0" />
+                <a
+                  href="tel:081374549687"
+                  className="hover:text-white transition-colors"
+                >
+                  Kepala MAS: 0852-6328-6663
+                </a>
+              </p>
+              <p className="flex items-center text-blue-50">
+                <FaPhone className="text-blue-200 mr-3 flex-shrink-0" />
+                <a
+                  href="tel:081374549687"
+                  className="hover:text-white transition-colors"
+                >
+                  Kepala MTsS: 0813-6378-9074
                 </a>
               </p>
               <p className="flex items-center text-blue-50">
@@ -133,15 +151,15 @@ export default function Footer() {
             <div className="space-y-3 text-blue-50">
               <p className="flex justify-between">
                 <span>Senin - Kamis:</span>
-                <span>08:00 - 16:00</span>
+                <span>07:00 - 15:00</span>
               </p>
               <p className="flex justify-between">
                 <span>Jumat:</span>
-                <span>08:00 - 11:30</span>
+                <span>07:00 - 11:45</span>
               </p>
               <p className="flex justify-between">
                 <span>Sabtu:</span>
-                <span>08:00 - 15:00</span>
+                <span>07:00 - 15:00</span>
               </p>
               <p className="flex justify-between text-blue-200">
                 <span>Minggu:</span>

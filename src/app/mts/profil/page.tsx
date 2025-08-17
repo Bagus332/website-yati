@@ -4,10 +4,9 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Carousel } from "@/components/ui/carousel";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef, useEffect, useState } from "react"; // Tambahkan useEffect dan useState
-import { supabase } from "@/lib/supabase"; // Impor supabase
+import { motion, useInView } from "framer-motion";
+import { useRef, useEffect, useState } from "react";
+import { supabase } from "@/lib/supabase";
 import {
   FaQuran,
   FaGraduationCap,
@@ -55,26 +54,28 @@ export default function Home() {
   return (
     <>
       <Navbar />
-      <main className="min-h-screen bg-gradient-to-b from-blue-50 to-white font-sans">
+      <main className="min-h-screen bg-gradient-to-b font-sans">
         {/* Background Patterns */}
-        <div className="fixed inset-0 opacity-[0.02] pointer-events-none">
+        <div className="fixed inset-0 opacity-[0.02] pointer-events-none -z-20">
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_25%_25%,_theme(colors.blue.500)_0%,_transparent_50%)]" />
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_75%_75%,_theme(colors.cyan.500)_0%,_transparent_50%)]" />
         </div>
 
         {/* Hero Section */}
-        <section className="relative h-[60vh] overflow-hidden">
-          {/* Carousel as a background */}
-          <div className="absolute inset-0 w-full h-full">
+        <section className="relative h-screen overflow-hidden">
+          {/* Layer 2: Carousel as a background */}
+          <div className="absolute inset-0 w-full h-full -z-10">
             {slideData.length > 0 && <Carousel slides={slideData} />}
           </div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/30 to-black/80" />
+          {/* OVERLAY SOLID */}
+          <div className="absolute inset-0 bg-blue-950/70" />
 
+          {/* Layer 1: Text and Main Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1.2, ease: "easeOut" }}
-            className="absolute inset-0 flex flex-col items-center justify-center text-white px-4"
+            className="absolute inset-0 flex flex-col items-center justify-center text-white px-4 z-10"
           >
             <h1 className="text-5xl md:text-7xl font-black mb-6 text-center">
               <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent drop-shadow-2xl">
@@ -98,7 +99,6 @@ export default function Home() {
         </section>
 
         {/* Sisa konten halaman... */}
-        {/* ... (tidak ada perubahan di bawah ini) ... */}
         <section ref={contentRef} className="py-24 px-6 lg:px-14 relative">
           <motion.div
             variants={fadeInUp}
@@ -128,10 +128,11 @@ export default function Home() {
                     muslim sejak masa pendiriannya.
                   </p>
                   <p className="text-gray-700 leading-relaxed mb-6">
-                    Dengan menganut faham Ahlussunnah wal Jama'ah dalam kajian
-                    Akidah dan berpegang pada Mazhab Syafi'i dalam kajian Fiqh,
-                    MTs YATI menerapkan sistem pendidikan yang mengintegrasikan
-                    kurikulum nasional dengan nilai-nilai kepesantrenan.
+                    Dengan menganut faham Ahlussunnah wal Jama&apos;ah dalam
+                    kajian Akidah dan berpegang pada Mazhab Syafi&apos;i dalam
+                    kajian Fiqh, MTs YATI menerapkan sistem pendidikan yang
+                    mengintegrasikan kurikulum nasional dengan nilai-nilai
+                    kepesantrenan.
                   </p>
                   <div className="grid grid-cols-2 gap-6">
                     <div className="flex items-center space-x-3">
