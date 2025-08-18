@@ -235,19 +235,19 @@ export default function Home() {
               </div>
 
               <div className="relative">
-                <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
+                <div className="relative h-[500px] rounded-2xl overflow-hidden shadow-2xl">
                   <div className="relative w-full h-full">
                     <Image
-                      src="/MA (1).jpeg"
-                      alt="Kegiatan MA - Gambar 1"
+                      src="/mts cowok.jpg"
+                      alt="Kegiatan MTs - Gambar 1"
                       fill
                       className={`object-cover transition-opacity duration-500 ${
                         currentSlide === 0 ? "opacity-100" : "opacity-0"
                       }`}
                     />
                     <Image
-                      src="/MA (2).jpeg"
-                      alt="Kegiatan MA - Gambar 2"
+                      src="/mts cewek.jpg"
+                      alt="Kegiatan MTs - Gambar 2"
                       fill
                       className={`object-cover transition-opacity duration-500 ${
                         currentSlide === 1 ? "opacity-100" : "opacity-0"
@@ -255,7 +255,7 @@ export default function Home() {
                     />
                     <Image
                       src="/MA (3).jpeg"
-                      alt="Kegiatan MA - Gambar 3"
+                      alt="Kegiatan MTs - Gambar 3"
                       fill
                       className={`object-cover transition-opacity duration-500 ${
                         currentSlide === 2 ? "opacity-100" : "opacity-0"

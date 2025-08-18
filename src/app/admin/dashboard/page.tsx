@@ -8,7 +8,12 @@ import GalleryManager from "./components/GalleryManager";
 import AlumniManager from "./components/AlumniManager";
 import CarouselManager from "./components/CarouselManager"; // Impor komponen baru
 import AdminNavbar from "@/components/AdminNavbar";
-import { FaNewspaper, FaImages, FaUserGraduate, FaPhotoVideo } from "react-icons/fa"; // Tambahkan ikon baru
+import {
+  FaNewspaper,
+  FaImages,
+  FaUserGraduate,
+  FaPhotoVideo,
+} from "react-icons/fa"; // Tambahkan ikon baru
 
 export default function AdminDashboardPage() {
   const [activeTab, setActiveTab] = useState("articles");
@@ -85,7 +90,7 @@ export default function AdminDashboardPage() {
       <div className="container mx-auto px-4 py-12">
         <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-cyan-600 bg-clip-text text-transparent mb-6">
-            Dasbor
+            Dashboard Admin
           </h1>
           <div className="w-24 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mx-auto rounded-full" />
         </div>

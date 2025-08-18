@@ -77,15 +77,15 @@ export default function Footer() {
                   href="/berita"
                   className="text-blue-50 hover:text-white transition-colors flex items-center"
                 >
-                  <FaQuran className="mr-2" /> Program Tahfiz
+                  <FaQuran className="mr-2" /> Berita & Event
                 </Link>
               </li>
               <li>
                 <Link
-                  href="/pendaftaran"
+                  href="/galeri"
                   className="text-blue-50 hover:text-white transition-colors flex items-center"
                 >
-                  <FaGraduationCap className="mr-2" /> Pendaftaran Santri
+                  <FaGraduationCap className="mr-2" /> Galeri Kegiatan
                 </Link>
               </li>
             </ul>

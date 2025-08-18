@@ -27,6 +27,29 @@ export default function Home() {
   const isProgramsInView = useInView(programsRef, { once: true });
 
   const [slideData, setSlideData] = useState<SlideData[]>([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Carousel functions
+  const showSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === 2 ? 0 : prev + 1));
+  };
+
+  const previousSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? 2 : prev - 1));
+  };
+
+  // Auto-play carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
 
   // useEffect untuk mengambil data gambar carousel dari Supabase
   useEffect(() => {
@@ -219,13 +242,100 @@ export default function Home() {
 
               <div className="relative">
                 <div className="relative h-[500px] rounded-3xl overflow-hidden shadow-2xl">
-                  <Image
-                    src="/photo_2025-08-15_09-16-27.jpg"
-                    alt="Kegiatan Madrasah"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  <div className="relative w-full h-full">
+                    <Image
+                      src="/MA (1).jpeg"
+                      alt="Kegiatan MA - Gambar 1"
+                      fill
+                      className={`object-cover transition-opacity duration-500 ${
+                        currentSlide === 0 ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                    <Image
+                      src="/MA (2).jpeg"
+                      alt="Kegiatan MA - Gambar 2"
+                      fill
+                      className={`object-cover transition-opacity duration-500 ${
+                        currentSlide === 1 ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                    <Image
+                      src="/MA (3).jpeg"
+                      alt="Kegiatan MA - Gambar 3"
+                      fill
+                      className={`object-cover transition-opacity duration-500 ${
+                        currentSlide === 2 ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  </div>
+
+                  {/* Navigation Dots */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+                    <button
+                      onClick={() => showSlide(0)}
+                      className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                        currentSlide === 0
+                          ? "bg-white"
+                          : "bg-white/40 hover:bg-white/80"
+                      }`}
+                    />
+                    <button
+                      onClick={() => showSlide(1)}
+                      className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                        currentSlide === 1
+                          ? "bg-white"
+                          : "bg-white/40 hover:bg-white/80"
+                      }`}
+                    />
+                    <button
+                      onClick={() => showSlide(2)}
+                      className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                        currentSlide === 2
+                          ? "bg-white"
+                          : "bg-white/40 hover:bg-white/80"
+                      }`}
+                    />
+                  </div>
+
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={() => previousSlide()}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-200 z-10"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => nextSlide()}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-200 z-10"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                 </div>
               </div>
             </div>
