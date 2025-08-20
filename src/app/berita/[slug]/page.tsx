@@ -104,12 +104,13 @@ async function getArticle(slug: string): Promise<Article | null> {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
+  const { slug } = await params;
   const article = await supabase
     .from("articles")
     .select("title, excerpt, content, image_url")
-    .eq("slug", params.slug)
+    .eq("slug", slug)
     .eq("status", "published")
     .single();
 
@@ -145,12 +146,13 @@ export async function generateMetadata({
 export default async function ArticlePage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const article = await getArticle(params.slug);
+  const { slug } = await params;
+  const article = await getArticle(slug);
   const articleUrl = `${
     process.env.NEXT_PUBLIC_SITE_URL || "https://your-domain.com"
-  }/berita/${params.slug}`;
+  }/berita/${slug}`;
 
   if (!article) {
     return (
