@@ -81,7 +81,7 @@ export default function TendikTsanawiyah() {
     {
       title: "Junia Safreni",
       jabatan: "Guru Nahwu",
-      photo: "/vorg.jpg",
+      photo: "/foto/Junia Safreni.jpg",
     },
     {
       title: "Fahmi Hafizha O, S.Pd",
@@ -101,7 +101,7 @@ export default function TendikTsanawiyah() {
     {
       title: "Nini Arianti, S Thi",
       jabatan: "Guru Sharaf",
-      photo: "/vorg.jpg",
+      photo: "/foto/Nini Arianti.jpg",
     },
     {
       title: "Debi Amanda, S.Pd.I",

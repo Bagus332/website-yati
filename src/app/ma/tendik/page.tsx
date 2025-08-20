@@ -46,7 +46,7 @@ export default function TendikAliyah() {
     {
       title: "Nurrahmi Lathifa, M.Pd",
       jabatan: "Wali Kelas 10 & Guru Tahfidz",
-      photo: "/vorg.jpg",
+      photo: "/foto/Nurrahmi Lathifa.jpg",
     },
     {
       title: "Yusnetti, SH",
@@ -126,7 +126,7 @@ export default function TendikAliyah() {
     {
       title: "Nini Arianti, S Thi",
       jabatan: "Guru Sharaf",
-      photo: "/vorg.jpg",
+      photo: "/foto/Nini Arianti.jpg",
     },
   ];
 

@@ -3,8 +3,7 @@
 import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
+import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import {
   FaQuran,
@@ -39,6 +38,29 @@ export default function Home() {
   const isStatsInView = useInView(statsRef, { once: true });
 
   const [articles, setArticles] = useState<Article[]>([]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Carousel functions
+  const showSlide = (index: number) => {
+    setCurrentSlide(index);
+  };
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev === 4 ? 0 : prev + 1));
+  };
+
+  const previousSlide = () => {
+    setCurrentSlide((prev) => (prev === 0 ? 4 : prev - 1));
+  };
+
+  // Auto-play carousel
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 4000);
+
+    return () => clearInterval(interval);
+  }, [currentSlide]);
 
   useEffect(() => {
     const fetchArticles = async () => {
@@ -295,13 +317,103 @@ export default function Home() {
 
               <motion.div variants={fadeInUp} className="relative">
                 <div className="relative h-96 lg:h-[600px] rounded-3xl overflow-hidden shadow-2xl">
-                  <Image
-                    src="/kegiatan.jpeg"
-                    alt="Kegiatan Santri"
-                    fill
-                    className="object-cover"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent" />
+                  <div className="relative w-full h-full">
+                    <Image
+                      src="/MA (3).jpeg"
+                      alt="Kegiatan Santri - MA 1"
+                      fill
+                      className={`object-cover transition-opacity duration-700 ${
+                        currentSlide === 0 ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                    <Image
+                      src="/MA (1).jpeg"
+                      alt="Kegiatan Santri - MA 2"
+                      fill
+                      className={`object-cover transition-opacity duration-700 ${
+                        currentSlide === 1 ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                    <Image
+                      src="/MA (2).jpeg"
+                      alt="Kegiatan Santri - MA 3"
+                      fill
+                      className={`object-cover transition-opacity duration-700 ${
+                        currentSlide === 2 ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                    <Image
+                      src="/mts cowok.jpg"
+                      alt="Kegiatan Santri - MTs Laki-laki"
+                      fill
+                      className={`object-cover transition-opacity duration-700 ${
+                        currentSlide === 3 ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                    <Image
+                      src="/mts cewek.jpg"
+                      alt="Kegiatan Santri - MTs Perempuan"
+                      fill
+                      className={`object-cover transition-opacity duration-700 ${
+                        currentSlide === 4 ? "opacity-100" : "opacity-0"
+                      }`}
+                    />
+                  </div>
+
+                  {/* Navigation Dots */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
+                    {[0, 1, 2, 3, 4].map((index) => (
+                      <button
+                        key={index}
+                        onClick={() => showSlide(index)}
+                        className={`w-3 h-3 rounded-full transition-colors duration-200 ${
+                          currentSlide === index
+                            ? "bg-white"
+                            : "bg-white/40 hover:bg-white/80"
+                        }`}
+                      />
+                    ))}
+                  </div>
+
+                  {/* Navigation Arrows */}
+                  <button
+                    onClick={() => previousSlide()}
+                    className="absolute left-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-200 z-10"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M15 19l-7-7 7-7"
+                      />
+                    </svg>
+                  </button>
+                  <button
+                    onClick={() => nextSlide()}
+                    className="absolute right-4 top-1/2 transform -translate-y-1/2 w-10 h-10 bg-black/30 hover:bg-black/50 text-white rounded-full flex items-center justify-center transition-all duration-200 z-10"
+                  >
+                    <svg
+                      className="w-5 h-5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M9 5l7 7-7 7"
+                      />
+                    </svg>
+                  </button>
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent pointer-events-none" />
                 </div>
                 <motion.div
                   initial={{ opacity: 0, x: 20 }}
