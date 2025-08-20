@@ -11,11 +11,17 @@ interface DropdownProps {
   onToggle: () => void;
 }
 
-const Dropdown: React.FC<DropdownProps> = ({ title, children, isOpen, onToggle }) => {
+const Dropdown: React.FC<DropdownProps> = ({
+  title,
+  children,
+  isOpen,
+  onToggle,
+}) => {
   const pathname = usePathname();
   const dropdownRef = useRef<HTMLDivElement>(null); // Ref untuk elemen dropdown
 
-  const isActive = pathname.startsWith(`/${title.toLowerCase()}`) || 
+  const isActive =
+    pathname.startsWith(`/${title.toLowerCase()}`) ||
     (title === "MTsS" && pathname.startsWith("/mts")) ||
     (title === "MAS" && pathname.startsWith("/ma"));
 
@@ -23,7 +29,11 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children, isOpen, onToggle }
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       // Jika dropdown terbuka dan klik terjadi di luar elemen dropdown, panggil onToggle untuk menutupnya
-      if (isOpen && dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+      if (
+        isOpen &&
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
         onToggle();
       }
     };
@@ -38,14 +48,17 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children, isOpen, onToggle }
   }, [isOpen, onToggle]); // Jalankan kembali efek jika isOpen atau onToggle berubah
 
   return (
-    <div className="relative" ref={dropdownRef}> {/* Terapkan ref di sini */}
+    <div className="relative" ref={dropdownRef}>
+      {" "}
+      {/* Terapkan ref di sini */}
       {/* Tombol Dropdown */}
       <button
         onClick={onToggle}
         className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all duration-300 font-medium relative group
-          ${isActive
-            ? "text-white bg-[#7FC7D9]"
-            : "text-[#0F1035] hover:text-white hover:bg-[#7FC7D9]"
+          ${
+            isActive
+              ? "text-white bg-[#7FC7D9]"
+              : "text-[#0F1035] hover:text-white hover:bg-[#7FC7D9]"
           }`}
       >
         <span>{title}</span>
@@ -69,7 +82,6 @@ const Dropdown: React.FC<DropdownProps> = ({ title, children, isOpen, onToggle }
         {/* Hover indicator */}
         <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-[#7FC7D9] to-[#365486] group-hover:w-full transition-all duration-300 rounded-full"></span>
       </button>
-
       {/* Isi Dropdown */}
       {isOpen && (
         <div className="absolute top-full left-1/2 -translate-x-1/2 mt-3 w-64 rounded-2xl shadow-2xl bg-white text-[#0F1035] ring-2 ring-[#7FC7D9] z-30 overflow-hidden backdrop-blur-lg border-2 border-[#7FC7D9]">
@@ -86,6 +98,8 @@ const Navbar: React.FC = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
   const pathname = usePathname();
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
 
   // Helper function to toggle dropdown
   const handleDropdownToggle = (dropdownName: string) => {
@@ -97,6 +111,42 @@ const Navbar: React.FC = () => {
     if (path === "/") return pathname === "/";
     return pathname.startsWith(path);
   };
+
+  // Helper function to close mobile menu
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
+  };
+
+  // Effect untuk menutup menu mobile ketika diklik di luar
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        mobileMenuRef.current &&
+        !mobileMenuRef.current.contains(event.target as Node) &&
+        mobileMenuButtonRef.current &&
+        !mobileMenuButtonRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+        setActiveDropdown(null); // Tutup semua dropdown yang terbuka
+      }
+    };
+
+    // Tambahkan event listener untuk klik di luar
+    document.addEventListener("mousedown", handleClickOutside);
+
+    // Cleanup event listener
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isMobileMenuOpen]);
+
+  // Effect untuk menutup menu mobile ketika route berubah
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+    setActiveDropdown(null);
+  }, [pathname]);
 
   const navLinks = [
     { href: "/", label: "Beranda" },
@@ -139,22 +189,28 @@ const Navbar: React.FC = () => {
                 key={link.href}
                 href={link.href}
                 className={`px-4 py-2 rounded-lg transition-all duration-300 relative group font-medium
-                  ${isPathActive(link.href)
-                    ? "text-white bg-[#7FC7D9]"
-                    : "text-[#0F1035] hover:text-white hover:bg-[#7FC7D9]"
+                  ${
+                    isPathActive(link.href)
+                      ? "text-white bg-[#7FC7D9]"
+                      : "text-[#0F1035] hover:text-white hover:bg-[#7FC7D9]"
                   }`}
               >
                 {link.label}
-                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-[#7FC7D9] to-[#365486] transition-all duration-300 rounded-full
-                  ${isPathActive(link.href) ? "w-full" : "w-0 group-hover:w-full"}`}>
-                </span>
+                <span
+                  className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 bg-gradient-to-r from-[#7FC7D9] to-[#365486] transition-all duration-300 rounded-full
+                  ${
+                    isPathActive(link.href)
+                      ? "w-full"
+                      : "w-0 group-hover:w-full"
+                  }`}
+                ></span>
               </a>
             ))}
 
-            <Dropdown 
-              title="Profil" 
-              isOpen={activeDropdown === 'profil'}
-              onToggle={() => handleDropdownToggle('profil')}
+            <Dropdown
+              title="Profil"
+              isOpen={activeDropdown === "profil"}
+              onToggle={() => handleDropdownToggle("profil")}
             >
               <a
                 href="/profile/visi-misi"
@@ -222,10 +278,10 @@ const Navbar: React.FC = () => {
               </a>
             </Dropdown>
 
-            <Dropdown 
-              title="MTsS" 
-              isOpen={activeDropdown === 'mts'}
-              onToggle={() => handleDropdownToggle('mts')}
+            <Dropdown
+              title="MTsS"
+              isOpen={activeDropdown === "mts"}
+              onToggle={() => handleDropdownToggle("mts")}
             >
               <a
                 href="/mts/profil"
@@ -240,11 +296,11 @@ const Navbar: React.FC = () => {
                 Struktur Organisasi
               </a>
               <a
-              href="/mts/tendik"
-              className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
-            >
-              Tendik
-            </a>
+                href="/mts/tendik"
+                className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
+              >
+                Tendik
+              </a>
               <a
                 href="/mts/alumni"
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
@@ -253,10 +309,10 @@ const Navbar: React.FC = () => {
               </a>
             </Dropdown>
 
-            <Dropdown 
-              title="MAS" 
-              isOpen={activeDropdown === 'mas'}
-              onToggle={() => handleDropdownToggle('mas')}
+            <Dropdown
+              title="MAS"
+              isOpen={activeDropdown === "mas"}
+              onToggle={() => handleDropdownToggle("mas")}
             >
               <a
                 href="/ma/profil"
@@ -271,11 +327,11 @@ const Navbar: React.FC = () => {
                 Struktur Organisasi
               </a>
               <a
-              href="/ma/tendik"
-              className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
-            >
-              Tendik
-            </a>
+                href="/ma/tendik"
+                className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
+              >
+                Tendik
+              </a>
               <a
                 href="/ma/alumni"
                 className="block px-6 py-3 hover:bg-gradient-to-r hover:from-[#7FC7D9]/30 hover:to-[#DCF2F1]/50 hover:text-[#0F1035] transition-all duration-300 font-medium border-l-4 border-transparent hover:border-[#365486]"
@@ -288,6 +344,7 @@ const Navbar: React.FC = () => {
           {/* Tombol Menu Mobile */}
           <div className="md:hidden">
             <button
+              ref={mobileMenuButtonRef}
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="text-[#0F1035] hover:text-white focus:outline-none p-3 rounded-xl transition-all duration-300 hover:bg-[#7FC7D9] border-2 border-[#7FC7D9] hover:border-[#365486]"
             >
@@ -313,15 +370,20 @@ const Navbar: React.FC = () => {
 
         {/* Menu Mobile */}
         {isMobileMenuOpen && (
-          <div className="md:hidden mt-6 bg-gradient-to-br from-[#DCF2F1] to-white rounded-2xl shadow-2xl p-6 space-y-3 border-2 border-[#7FC7D9] backdrop-blur-lg">
+          <div
+            ref={mobileMenuRef}
+            className="md:hidden mt-6 bg-gradient-to-br from-[#DCF2F1] to-white rounded-2xl shadow-2xl p-6 space-y-3 border-2 border-[#7FC7D9] backdrop-blur-lg"
+          >
             {navLinks.map((link) => (
               <a
                 key={link.href}
                 href={link.href}
+                onClick={closeMobileMenu}
                 className={`block px-5 py-3 rounded-xl transition-all duration-300 font-medium border-l-4
-                  ${isPathActive(link.href)
-                    ? "bg-[#7FC7D9] text-white border-[#365486]"
-                    : "text-[#0F1035] hover:bg-[#7FC7D9] hover:text-white border-transparent hover:border-[#365486]"
+                  ${
+                    isPathActive(link.href)
+                      ? "bg-[#7FC7D9] text-white border-[#365486]"
+                      : "text-[#0F1035] hover:bg-[#7FC7D9] hover:text-white border-transparent hover:border-[#365486]"
                   } hover:shadow-lg`}
               >
                 {link.label}
@@ -330,93 +392,105 @@ const Navbar: React.FC = () => {
 
             {/* Mobile Dropdowns */}
             <div className="space-y-2 pt-4 border-t-2 border-[#7FC7D9]">
-              <Dropdown 
-                title="Profil" 
-                isOpen={activeDropdown === 'profil-mobile'}
-                onToggle={() => handleDropdownToggle('profil-mobile')}
+              <Dropdown
+                title="Profil"
+                isOpen={activeDropdown === "profil-mobile"}
+                onToggle={() => handleDropdownToggle("profil-mobile")}
               >
                 <a
                   href="/profile/visi-misi"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9] hover:text-white transition-all duration-300 font-medium"
                 >
                   Visi dan Misi
                 </a>
                 <a
                   href="/profile/sejarah"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Sejarah
                 </a>
                 <a
                   href="/profile/manajemen"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Manajemen
                 </a>
                 <a
                   href="/profile/fasilitas"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Fasilitas
                 </a>
               </Dropdown>
 
-              <Dropdown 
-                title="MTsS" 
-                isOpen={activeDropdown === 'mts-mobile'}
-                onToggle={() => handleDropdownToggle('mts-mobile')}
+              <Dropdown
+                title="MTsS"
+                isOpen={activeDropdown === "mts-mobile"}
+                onToggle={() => handleDropdownToggle("mts-mobile")}
               >
                 <a
                   href="/mts/profil"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Profil
                 </a>
                 <a
                   href="/mts/struktur-org"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Struktur Organisasi
                 </a>
                 <a
-              href="/mts/tendik"
-              className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
-            >
-              Tendik
-            </a>
+                  href="/mts/tendik"
+                  onClick={closeMobileMenu}
+                  className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
+                >
+                  Tendik
+                </a>
                 <a
                   href="/mts/alumni"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Alumni
                 </a>
               </Dropdown>
 
-              <Dropdown 
-                title="MAS" 
-                isOpen={activeDropdown === 'mas-mobile'}
-                onToggle={() => handleDropdownToggle('mas-mobile')}
+              <Dropdown
+                title="MAS"
+                isOpen={activeDropdown === "mas-mobile"}
+                onToggle={() => handleDropdownToggle("mas-mobile")}
               >
                 <a
                   href="/ma/profil"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Profil
                 </a>
                 <a
                   href="/ma/struktur-org"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Struktur Organisasi
                 </a>
                 <a
                   href="/ma/tendik"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Tendik
-            </a>
+                </a>
                 <a
                   href="/ma/alumni"
+                  onClick={closeMobileMenu}
                   className="block px-5 py-2 hover:bg-[#7FC7D9]/20 hover:text-[#0F1035] transition-all duration-300 font-medium"
                 >
                   Alumni
