@@ -4,6 +4,7 @@ import Image from "next/image";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Carousel } from "@/components/ui/carousel";
+import { ImageModal } from "@/components/ui/ImageModal";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
@@ -27,6 +28,11 @@ export default function Home() {
 
   const [slideData, setSlideData] = useState<SlideData[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    alt: string;
+    index: number;
+  } | null>(null);
 
   // Carousel functions
   const showSlide = (index: number) => {
@@ -39,6 +45,63 @@ export default function Home() {
 
   const previousSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? 2 : prev - 1));
+  };
+
+  const handleImageClick = (src: string, alt: string) => {
+    // Hanya tampilkan modal jika gambar yang diklik adalah gambar yang sedang aktif
+    const currentImageSrc = getCurrentImageSrc();
+    if (src === currentImageSrc) {
+      const imageIndex = getImageIndex(src);
+      setSelectedImage({ src, alt, index: imageIndex });
+    }
+  };
+
+  // Fungsi untuk mendapatkan src gambar yang sedang aktif
+  const getCurrentImageSrc = () => {
+    const imageSources = ["/mts cowok.jpg", "/mts cewek.jpg", "/MA (3).jpeg"];
+    return imageSources[currentSlide];
+  };
+
+  // Fungsi untuk mendapatkan index gambar berdasarkan src
+  const getImageIndex = (src: string) => {
+    const imageSources = ["/mts cowok.jpg", "/mts cewek.jpg", "/MA (3).jpeg"];
+    return imageSources.indexOf(src);
+  };
+
+  // Fungsi untuk navigasi dalam modal
+  const handleModalNavigate = (direction: "prev" | "next") => {
+    if (!selectedImage) return;
+
+    const imageSources = ["/mts cowok.jpg", "/mts cewek.jpg", "/MA (3).jpeg"];
+
+    const imageAlts = [
+      "Kegiatan MTs - Gambar 1",
+      "Kegiatan MTs - Gambar 2",
+      "Kegiatan MTs - Gambar 3",
+    ];
+
+    let newIndex;
+    if (direction === "prev") {
+      newIndex =
+        selectedImage.index === 0
+          ? imageSources.length - 1
+          : selectedImage.index - 1;
+    } else {
+      newIndex =
+        selectedImage.index === imageSources.length - 1
+          ? 0
+          : selectedImage.index + 1;
+    }
+
+    setSelectedImage({
+      src: imageSources[newIndex],
+      alt: imageAlts[newIndex],
+      index: newIndex,
+    });
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
   };
 
   // Auto-play carousel
@@ -241,25 +304,43 @@ export default function Home() {
                       src="/mts cowok.jpg"
                       alt="Kegiatan MTs - Gambar 1"
                       fill
-                      className={`object-cover transition-opacity duration-500 ${
+                      className={`object-cover transition-opacity duration-500 cursor-pointer hover:scale-105 transition-transform duration-300 ${
                         currentSlide === 0 ? "opacity-100" : "opacity-0"
                       }`}
+                      onClick={() =>
+                        handleImageClick(
+                          "/mts cowok.jpg",
+                          "Kegiatan MTs - Gambar 1"
+                        )
+                      }
                     />
                     <Image
                       src="/mts cewek.jpg"
                       alt="Kegiatan MTs - Gambar 2"
                       fill
-                      className={`object-cover transition-opacity duration-500 ${
+                      className={`object-cover transition-opacity duration-500 cursor-pointer hover:scale-105 transition-transform duration-300 ${
                         currentSlide === 1 ? "opacity-100" : "opacity-0"
                       }`}
+                      onClick={() =>
+                        handleImageClick(
+                          "/mts cewek.jpg",
+                          "Kegiatan MTs - Gambar 2"
+                        )
+                      }
                     />
                     <Image
                       src="/MA (3).jpeg"
                       alt="Kegiatan MTs - Gambar 3"
                       fill
-                      className={`object-cover transition-opacity duration-500 ${
+                      className={`object-cover transition-opacity duration-500 cursor-pointer hover:scale-105 transition-transform duration-300 ${
                         currentSlide === 2 ? "opacity-100" : "opacity-0"
                       }`}
+                      onClick={() =>
+                        handleImageClick(
+                          "/MA (3).jpeg",
+                          "Kegiatan MTs - Gambar 3"
+                        )
+                      }
                     />
                   </div>
 
@@ -558,6 +639,17 @@ export default function Home() {
         </section>
       </main>
       <Footer />
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <ImageModal
+          isOpen={!!selectedImage}
+          onClose={closeModal}
+          imageSrc={selectedImage.src}
+          imageAlt={selectedImage.alt}
+          onNavigate={handleModalNavigate}
+        />
+      )}
     </>
   );
 }

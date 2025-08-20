@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useId, useEffect } from "react";
+import { ImageModal } from "./ImageModal";
 
 interface SlideData {
   src: string;
@@ -9,6 +10,7 @@ interface SlideProps {
   slide: SlideData;
   index: number;
   current: number;
+  onImageClick: (src: string, alt: string) => void;
 }
 
 // Komponen untuk ikon panah kanan menggunakan SVG inline
@@ -32,7 +34,7 @@ const RightArrowIcon = ({ className }: { className: string }) => (
   </svg>
 );
 
-const Slide = ({ slide, index, current }: SlideProps) => {
+const Slide = ({ slide, index, current, onImageClick }: SlideProps) => {
   const slideRef = useRef<HTMLLIElement>(null);
 
   const xRef = useRef(0);
@@ -77,6 +79,13 @@ const Slide = ({ slide, index, current }: SlideProps) => {
 
   const { src } = slide;
 
+  const handleImageClick = () => {
+    // Hanya tampilkan modal jika slide ini adalah slide yang sedang aktif
+    if (current === index) {
+      onImageClick(src, `Slide ${index + 1}`);
+    }
+  };
+
   return (
     <div className="[perspective:1200px] [transform-style:preserve-3d]">
       <li
@@ -106,10 +115,16 @@ const Slide = ({ slide, index, current }: SlideProps) => {
         >
           <img
             // Menggunakan object-contain untuk mencegah gambar terpotong
-            className="absolute inset-0 w-full h-full object-contain"
+            className={`absolute inset-0 w-full h-full object-contain transition-transform duration-300 ${
+              current === index
+                ? "cursor-pointer hover:scale-105"
+                : "cursor-default"
+            }`}
             src={src}
             loading="eager"
             decoding="sync"
+            onClick={handleImageClick}
+            alt={`Slide ${index + 1}`}
           />
           {current === index && (
             // Mengubah overlay menjadi abu-abu transparan
@@ -152,6 +167,11 @@ interface CarouselProps {
 
 export function Carousel({ slides }: CarouselProps) {
   const [current, setCurrent] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    alt: string;
+    index: number;
+  } | null>(null);
 
   const handleNextClick = () => {
     const next = current + 1;
@@ -171,37 +191,90 @@ export function Carousel({ slides }: CarouselProps) {
     setCurrent(previous < 0 ? slides.length - 1 : previous);
   };
 
+  const handleImageClick = (src: string, alt: string) => {
+    const imageIndex = slides.findIndex((slide) => slide.src === src);
+    setSelectedImage({ src, alt, index: imageIndex });
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
+
+  const handleModalNavigate = (direction: "prev" | "next") => {
+    if (!selectedImage) return;
+
+    let newIndex;
+    if (direction === "prev") {
+      newIndex =
+        selectedImage.index === 0 ? slides.length - 1 : selectedImage.index - 1;
+    } else {
+      newIndex =
+        selectedImage.index === slides.length - 1 ? 0 : selectedImage.index + 1;
+    }
+
+    const newSlide = slides[newIndex];
+    setSelectedImage({
+      src: newSlide.src,
+      alt: `Slide ${newIndex + 1}`,
+      index: newIndex,
+    });
+  };
+
   const id = useId();
 
   return (
-    <div
-      className="relative w-full h-screen mx-auto overflow-hidden"
-      aria-labelledby={`carousel-heading-${id}`}
-    >
-      <ul
-        className="absolute flex w-[100vw] h-[100vh] transition-transform duration-1000 ease-in-out"
-        style={{
-          transform: `translateX(-${current * 100}%)`,
-        }}
+    <>
+      <div
+        className="relative w-full h-screen mx-auto overflow-hidden"
+        aria-labelledby={`carousel-heading-${id}`}
       >
-        {slides.map((slide, index) => (
-          <Slide key={index} slide={slide} index={index} current={current} />
-        ))}
-      </ul>
+        <ul
+          className="absolute flex w-[100vw] h-[100vh] transition-transform duration-1000 ease-in-out"
+          style={{
+            transform: `translateX(-${current * 100}%)`,
+          }}
+        >
+          {slides.map((slide, index) => (
+            <Slide
+              key={index}
+              slide={slide}
+              index={index}
+              current={current}
+              onImageClick={handleImageClick}
+            />
+          ))}
+        </ul>
 
-      <div className="absolute flex justify-center w-full top-[calc(100%-4rem)]">
-        <CarouselControl
-          type="previous"
-          title="Go to previous slide"
-          handleClick={handlePreviousClick}
-        />
+        <div className="absolute flex justify-center w-full top-[calc(100%-4rem)]">
+          <CarouselControl
+            type="previous"
+            title="Go to previous slide"
+            handleClick={handlePreviousClick}
+          />
 
-        <CarouselControl
-          type="next"
-          title="Go to next slide"
-          handleClick={handleNextClick}
-        />
+          <CarouselControl
+            type="next"
+            title="Go to next slide"
+            handleClick={handleNextClick}
+          />
+        </div>
       </div>
-    </div>
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <ImageModal
+          isOpen={!!selectedImage}
+          onClose={closeModal}
+          imageSrc={selectedImage.src}
+          imageAlt={selectedImage.alt}
+          allImages={slides.map((slide, index) => ({
+            src: slide.src,
+            alt: `Slide ${index + 1}`,
+          }))}
+          currentIndex={selectedImage.index}
+          onNavigate={handleModalNavigate}
+        />
+      )}
+    </>
   );
 }

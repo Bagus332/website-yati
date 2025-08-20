@@ -171,6 +171,11 @@ export default function Footer() {
 
         <div className="border-t border-blue-400/30 mt-12 pt-8 text-center">
           <p className="text-blue-100">
+          Directed by: KKN 51 UIN Imam Bonjol Padang 2025.
+          </p>
+        </div>
+        <div className="border-t border-blue-400/30 mt-12 pt-8 text-center">
+          <p className="text-blue-100">
             &copy; {new Date().getFullYear()} Pondok Pesantren YATI. All rights
             reserved.
           </p>

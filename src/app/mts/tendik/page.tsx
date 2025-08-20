@@ -81,7 +81,7 @@ export default function TendikTsanawiyah() {
     {
       title: "Junia Safreni",
       jabatan: "Guru Nahwu",
-      photo: "/foto/Junia Safreni.jpg",
+      photo: "/foto/Junia Safreni.JPG",
     },
     {
       title: "Fahmi Hafizha O, S.Pd",

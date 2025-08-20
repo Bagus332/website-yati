@@ -5,6 +5,7 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { motion, useInView } from "framer-motion";
 import { useRef, useEffect, useState } from "react";
+import { ImageModal } from "@/components/ui/ImageModal";
 import {
   FaQuran,
   FaBook,
@@ -39,6 +40,11 @@ export default function Home() {
 
   const [articles, setArticles] = useState<Article[]>([]);
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [selectedImage, setSelectedImage] = useState<{
+    src: string;
+    alt: string;
+    index: number;
+  } | null>(null);
 
   // Carousel functions
   const showSlide = (index: number) => {
@@ -51,6 +57,83 @@ export default function Home() {
 
   const previousSlide = () => {
     setCurrentSlide((prev) => (prev === 0 ? 4 : prev - 1));
+  };
+
+  const handleImageClick = (src: string, alt: string) => {
+    // Hanya tampilkan modal jika gambar yang diklik adalah gambar yang sedang aktif
+    const currentImageSrc = getCurrentImageSrc();
+    if (src === currentImageSrc) {
+      const imageIndex = getImageIndex(src);
+      setSelectedImage({ src, alt, index: imageIndex });
+    }
+  };
+
+  // Fungsi untuk mendapatkan src gambar yang sedang aktif
+  const getCurrentImageSrc = () => {
+    const imageSources = [
+      "/MA (3).jpeg",
+      "/MA (1).jpeg",
+      "/MA (2).jpeg",
+      "/mts cowok.jpg",
+      "/mts cewek.jpg",
+    ];
+    return imageSources[currentSlide];
+  };
+
+  // Fungsi untuk mendapatkan index gambar berdasarkan src
+  const getImageIndex = (src: string) => {
+    const imageSources = [
+      "/MA (3).jpeg",
+      "/MA (1).jpeg",
+      "/MA (2).jpeg",
+      "/mts cowok.jpg",
+      "/mts cewek.jpg",
+    ];
+    return imageSources.indexOf(src);
+  };
+
+  // Fungsi untuk navigasi dalam modal
+  const handleModalNavigate = (direction: "prev" | "next") => {
+    if (!selectedImage) return;
+
+    const imageSources = [
+      "/MA (3).jpeg",
+      "/MA (1).jpeg",
+      "/MA (2).jpeg",
+      "/mts cowok.jpg",
+      "/mts cewek.jpg",
+    ];
+
+    const imageAlts = [
+      "Kegiatan Santri - MA 1",
+      "Kegiatan Santri - MA 2",
+      "Kegiatan Santri - MA 3",
+      "Kegiatan Santri - MTs Laki-laki",
+      "Kegiatan Santri - MTs Perempuan",
+    ];
+
+    let newIndex;
+    if (direction === "prev") {
+      newIndex =
+        selectedImage.index === 0
+          ? imageSources.length - 1
+          : selectedImage.index - 1;
+    } else {
+      newIndex =
+        selectedImage.index === imageSources.length - 1
+          ? 0
+          : selectedImage.index + 1;
+    }
+
+    setSelectedImage({
+      src: imageSources[newIndex],
+      alt: imageAlts[newIndex],
+      index: newIndex,
+    });
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
   };
 
   // Auto-play carousel
@@ -274,7 +357,7 @@ export default function Home() {
                           📧 Email
                         </h4>
                         <p className="text-blue-600 font-medium">
-                          mti.yati@yahoo.com
+                          ponpesyatii@gmail.com
                         </p>
                       </div>
                       <div>
@@ -322,41 +405,71 @@ export default function Home() {
                       src="/MA (3).jpeg"
                       alt="Kegiatan Santri - MA 1"
                       fill
-                      className={`object-cover transition-opacity duration-700 ${
+                      className={`object-cover transition-opacity duration-700 cursor-pointer hover:scale-105 transition-transform duration-300 ${
                         currentSlide === 0 ? "opacity-100" : "opacity-0"
                       }`}
+                      onClick={() =>
+                        handleImageClick(
+                          "/MA (3).jpeg",
+                          "Kegiatan Santri - MA 1"
+                        )
+                      }
                     />
                     <Image
                       src="/MA (1).jpeg"
                       alt="Kegiatan Santri - MA 2"
                       fill
-                      className={`object-cover transition-opacity duration-700 ${
+                      className={`object-cover transition-opacity duration-700 cursor-pointer hover:scale-105 transition-transform duration-300 ${
                         currentSlide === 1 ? "opacity-100" : "opacity-0"
                       }`}
+                      onClick={() =>
+                        handleImageClick(
+                          "/MA (1).jpeg",
+                          "Kegiatan Santri - MA 2"
+                        )
+                      }
                     />
                     <Image
                       src="/MA (2).jpeg"
                       alt="Kegiatan Santri - MA 3"
                       fill
-                      className={`object-cover transition-opacity duration-700 ${
+                      className={`object-cover transition-opacity duration-700 cursor-pointer hover:scale-105 transition-transform duration-300 ${
                         currentSlide === 2 ? "opacity-100" : "opacity-0"
                       }`}
+                      onClick={() =>
+                        handleImageClick(
+                          "/MA (2).jpeg",
+                          "Kegiatan Santri - MA 3"
+                        )
+                      }
                     />
                     <Image
                       src="/mts cowok.jpg"
                       alt="Kegiatan Santri - MTs Laki-laki"
                       fill
-                      className={`object-cover transition-opacity duration-700 ${
+                      className={`object-cover transition-opacity duration-700 cursor-pointer hover:scale-105 transition-transform duration-300 ${
                         currentSlide === 3 ? "opacity-100" : "opacity-0"
                       }`}
+                      onClick={() =>
+                        handleImageClick(
+                          "/mts cowok.jpg",
+                          "Kegiatan Santri - MTs Laki-laki"
+                        )
+                      }
                     />
                     <Image
                       src="/mts cewek.jpg"
                       alt="Kegiatan Santri - MTs Perempuan"
                       fill
-                      className={`object-cover transition-opacity duration-700 ${
+                      className={`object-cover transition-opacity duration-700 cursor-pointer hover:scale-105 transition-transform duration-300 ${
                         currentSlide === 4 ? "opacity-100" : "opacity-0"
                       }`}
+                      onClick={() =>
+                        handleImageClick(
+                          "/mts cewek.jpg",
+                          "Kegiatan Santri - MTs Perempuan"
+                        )
+                      }
                     />
                   </div>
 
@@ -766,6 +879,25 @@ export default function Home() {
         </section>
       </main>
       <Footer />
+
+      {/* Image Modal */}
+      {selectedImage && (
+        <ImageModal
+          isOpen={!!selectedImage}
+          onClose={closeModal}
+          imageSrc={selectedImage.src}
+          imageAlt={selectedImage.alt}
+          allImages={[
+            { src: "/MA (3).jpeg", alt: "Kegiatan Santri - MA 1" },
+            { src: "/MA (1).jpeg", alt: "Kegiatan Santri - MA 2" },
+            { src: "/MA (2).jpeg", alt: "Kegiatan Santri - MA 3" },
+            { src: "/mts cowok.jpg", alt: "Kegiatan Santri - MTs Laki-laki" },
+            { src: "/mts cewek.jpg", alt: "Kegiatan Santri - MTs Perempuan" },
+          ]}
+          currentIndex={selectedImage.index}
+          onNavigate={handleModalNavigate}
+        />
+      )}
     </>
   );
 }
