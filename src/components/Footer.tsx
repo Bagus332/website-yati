@@ -48,19 +48,25 @@ export default function Footer() {
             </p>
             <div className="flex space-x-4">
               <a
-                href="#"
+                href="https://www.facebook.com/ponpes.yatikamangmudik"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white hover:text-blue-200 transition-colors"
               >
                 <FaFacebook size={24} />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/ponpes_yati/"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white hover:text-blue-200 transition-colors"
               >
                 <FaInstagram size={24} />
               </a>
               <a
-                href="#"
+                href="https://www.youtube.com/@ponpesyatikamangmudik7682"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="text-white hover:text-blue-200 transition-colors"
               >
                 <FaYoutube size={24} />
