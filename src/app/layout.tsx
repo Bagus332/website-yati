@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Pondok Pesantren Yati Kamang Mudik",
   description:
-    "Website resmi Pondok Pesantren Yati Kamang Mudik - Pendidikan Islam Modern dengan Nilai-nilai Pesantren",
+    "Website resmi Pondok Pesantren Yati Kamang Mudik - Pendidikan Islam Modern dengan Nilai-nilai Pesantren. Directed by: KKN 51 UIN Imam Bonjol Padang 2025.",
 };
 
 export default function RootLayout({
